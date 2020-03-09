@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>searchOptionsWindow</class>
+ <widget class="QWidget" name="searchOptionsWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="pageName_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>-10</y>
+     <width>261</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: Black;
+font-weight: 600;
+font-size: 35px;
+font-family: Roboto;</string>
+   </property>
+   <property name="text">
+    <string>Search options</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="applySearchOptionsButton">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>250</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+     background-color: #85ffb2; border: 1px solid black;
+     border-radius: 5px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="allCheckBox">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="tristate">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="idCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Id</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="numberCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>160</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>№</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="fromCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>160</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>From</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="toCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>160</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>To</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="typeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>160</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Type</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="depTimeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>160</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Dep. time</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="arrTimeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>160</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Arr. time</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="rateCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>160</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Rate</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="stringCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>80</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>String</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="integerCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>80</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+    color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Num</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="timeCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>80</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+    spacing: 5px;
+	font-size: 20px;
+    color: #838383;
+}
+
+QCheckBox:checked {
+	color: #000000;
+}
+
+QCheckBox::indicator {
+    width: 23px;
+    height: 23px;
+	margin-right: 15px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Time</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="applySearchOptionsButton_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+     background-color: #ff8585; border: 1px solid black;
+     border-radius: 5px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>130</y>
+     <width>971</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 2px solid black;</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

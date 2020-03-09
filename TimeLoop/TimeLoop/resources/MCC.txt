@@ -1,0 +1,31 @@
+Krymskaya, 4
+Ploschad Gagarina, 4
+Luzhniki, 4
+Kutuzovskaya, 3
+Delovoi Tsentr, 3
+Shelepikha, 4
+Khoroshyvo, 3
+Zorge, 3
+Panfilovskaya, 3
+Streshnevo, 3
+Baltiyskaya, 4
+Koptevo, 4
+Likhobory, 3
+Okruzhnaya, 3
+Vladikhino, 5
+Botanicheskyi Sad, 3
+Rostokino, 4
+Belokamennaya, 3
+Bulvar Rokossovskogo, 3
+Lokomotiv, 3
+Izmailovo, 3
+Sokolinaya Gora, 3
+Shosse Entuziastov, 3
+Andronovka, 4
+Nizhegorodskaya, 3
+Novokhokhlovskaya, 3
+Ugreshskaya, 3
+Dubrovka, 3
+Adtozavodskaya, 3
+ZIL, 3
+Verkhie Kotly, 2

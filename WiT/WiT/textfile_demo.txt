@@ -1,0 +1,4 @@
+64566345 6072 Kyiv Madrid Local 20:49 11:21 0.8 
+43892822 3767 London Donetsk Suburbal 11:54 16:09 0.9 
+35603637 2843 Kherson Kyiv Suburbal 04:13 12:56 0.5 
+75168151 7254 Minsk Sumy International 05:59 04:19 0.7 

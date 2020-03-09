@@ -1,0 +1,12 @@
+Taganskaya, 2
+Paveletskaya, 2
+Dobryninskaya, 2
+Oktyabrskaya, 2
+Park Kultury, 3
+Kievskaya, 3
+Krasnopresnenskaya, 3
+Belorusskaya, 2
+Novoslobodskaya, 3
+Prospekt Mira, 3
+Komsomolskaya, 3
+Kurskaya, 3

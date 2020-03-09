@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1500</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1500</width>
+      <height>900</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="mainPage">
+     <widget class="QPushButton" name="demoButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>410</y>
+        <width>311</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Demonstation mode</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="administrateButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>300</y>
+        <width>311</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Train administration</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="exitButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>710</y>
+        <width>311</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Exit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testsButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>520</y>
+        <width>311</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Benchmark</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pageName">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>60</y>
+        <width>191</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: orange;
+font-size: 35px;
+font-family: Roboto;</string>
+      </property>
+      <property name="text">
+       <string>Main menu</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1500</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
