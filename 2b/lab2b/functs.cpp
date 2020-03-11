@@ -43,3 +43,26 @@ PriorityQueue<QString> tasksToPrQ(std::vector<Task *> tasks)
 
     return prQ;
 }
+
+
+int getRandomInt(int min, int max)
+{
+
+    updateRandomSeed();
+
+    static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
+
+    return static_cast<int>(rand() * fraction * (max - min + 1) + min);
+}
+
+void updateRandomSeed()
+{
+    auto time = std::chrono::high_resolution_clock::now().time_since_epoch();
+
+    srand(static_cast<unsigned int>(std::chrono::duration_cast<std::chrono::microseconds>(time).count()));
+}
+
+void setLabelText(QLabel *label, QString text)
+{
+    label->setText(text);
+}

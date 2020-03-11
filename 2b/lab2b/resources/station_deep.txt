@@ -1,17 +1,17 @@
-1,Geologic & hydrologic reconnaissance
-1,Geodesy of construction site
-2,Communacations carryover
-3,Shaft excavation
-4,Shaft lining installation
-5,Support struts installation
-6,Station main deck excavations
-7,Station lining construction
-3,Escalator tunnel excavation
-4,Escalator tunnel lining installation
-8,Main & Side decks connection
-8,Escalator tunnel & Station main deck connection
-9,Station facilities construction
-10,Station inner elaboration
-10,Escalators installation
-10,Special equipment installation
-10,Adjacent territory beautifying
+16,Geologic & hydrologic reconnaissance
+16,Geodesy of construction site
+15,Communications carryover
+13,Shaft excavation
+12,Shaft lining installation
+11,Support struts installation
+10,Station main deck excavations
+9,Station lining construction
+10,Escalator tunnel excavation
+9,Escalator tunnel lining installation
+6,Main & Side decks connection
+6,Escalator tunnel & Station main deck connection
+5,Station facilities construction
+3,Station inner elaboration
+3,Escalators installation
+2,Special equipment installation
+1,Adjacent territory beautifying

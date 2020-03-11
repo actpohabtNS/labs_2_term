@@ -1,0 +1,14 @@
+16,Geologic & hydrologic reconnaissance
+16,Geodesy of construction site
+15,Communacations carryover
+14,Diaphgram wall construction
+13,Foundation pit excavation
+12,Support struts installation
+11,Foundation construction
+10,Station wall construction
+9,Station ceiling construction
+8,Station pit filling up
+5,Station facilities construction
+3,Station inner elaboration
+2,Special equipment installation
+1,Adjacent territory beautifying

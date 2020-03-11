@@ -93,6 +93,53 @@ public:
     }
 
 
+    void remove(T* data) {
+       if (begin == nullptr) return;
+
+       Node<T>* deletingNode;
+
+       if (begin->data == data) {
+          deletingNode = begin;
+
+          begin->next->prev == nullptr;
+          begin = begin->next;
+
+          delete deletingNode;
+          return;
+       }
+
+       if (end->data == data) {
+          deletingNode = end;
+
+          end->prev->next == nullptr;
+          end = end->prev;
+
+          delete deletingNode;
+          return;
+       }
+
+
+       Node<T>* temp = begin;
+
+       while(temp != nullptr) {
+
+           if (temp->data == data) {
+
+               deletingNode = temp;
+               temp->prev->next = temp->next;
+               temp->next->prev = temp->prev;
+
+               delete deletingNode;
+               return;
+
+           } else {
+               temp = temp->next;
+           }
+       }
+
+    }
+
+
     uint getMaxPr(){
 
         if (end == nullptr) return -1;
@@ -112,19 +159,25 @@ public:
 
         Node<T>* node = end;
 
-        while(node != begin) {
+        while(node != nullptr) {
 
             qDebug() << node->data;
            //node->data->print();       //TO THINK
            node = node->prev;
 
         }
-
-        qDebug() << node->data;
         //node->data->print();
 
     };
 
+
+    Node<T>* getBegin() {
+        return begin;
+    }
+
+    Node<T>* getEnd() {
+        return end;
+    }
 
 private:
     Node<T>* begin;

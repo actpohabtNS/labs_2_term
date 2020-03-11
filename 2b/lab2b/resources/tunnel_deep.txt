@@ -1,0 +1,17 @@
+16,Geologic & hydrologic reconnaissance
+16,Geodesy of construction site
+15,Communications carryover
+14,Shaft excavation
+13,Shaft lining installation
+12,Support struts installation
+11,Tunnel Boring Machine shaft excavation
+10,TBM shaft lining installation
+9,TBM assembling
+8,Tunnel boring & lining
+7,TBM disassembling
+6,Shaft filling up
+5,Tunnel facilities construction
+4,Tunnel drainage ditch construction
+3,Rails installation
+2,Electric rail installation
+1,Communications installation

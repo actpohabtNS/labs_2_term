@@ -1,0 +1,13 @@
+16,Geologic & hydrologic reconnaissance
+16,Geodesy of construction site
+15,Communacations carryover
+14,Diaphragm wall construction
+13,Foundation pit excavation
+12,Support struts installation
+11,Tunnel lining installation
+6,Tunnel pit filling up
+5,Tunnel facilities construction
+4,Tunnel drainage ditch construction
+3,Rails installation
+2,Electric rail installation
+1,Communications installation

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="removeStButton">
+  <widget class="QPushButton" name="removeTaskButton">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -68,7 +68,7 @@
     <string>Demo</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="loadKUTButton_2">
+  <widget class="QPushButton" name="loadTunnelDeepButton">
    <property name="geometry">
     <rect>
      <x>1150</x>
@@ -113,7 +113,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="addTasklistButton">
+  <widget class="QPushButton" name="addTaskListButton">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -139,7 +139,7 @@
     <string>load:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="loadKUTButton">
+  <widget class="QPushButton" name="loadStationDeepButton">
    <property name="geometry">
     <rect>
      <x>1150</x>
@@ -203,7 +203,7 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="trainLineNameLabel">
+  <widget class="QLabel" name="taskListNameLabel">
    <property name="geometry">
     <rect>
      <x>465</x>
@@ -228,7 +228,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="loadMCCButton">
+  <widget class="QPushButton" name="loadStationShallowButton">
    <property name="geometry">
     <rect>
      <x>1150</x>
@@ -264,7 +264,7 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="addStButton">
+  <widget class="QPushButton" name="addTaskButton">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -283,7 +283,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QTableWidget" name="trainLineTable">
+  <widget class="QTableWidget" name="taskListTable">
    <property name="geometry">
     <rect>
      <x>465</x>
@@ -325,7 +325,7 @@ QTableView::item {
 }</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="tasklistNameInput">
+  <widget class="QLineEdit" name="taskListNameInput">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -338,7 +338,7 @@ QTableView::item {
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="loadMCCButton_2">
+  <widget class="QPushButton" name="loadTunnelShallowButton">
    <property name="geometry">
     <rect>
      <x>1150</x>

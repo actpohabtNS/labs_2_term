@@ -21,6 +21,7 @@ SOURCES += \
     mainwindow.cpp \
     multilevelqueuewindow.cpp \
     priorityqueuewindow.cpp \
+    table.cpp \
     task.cpp
 
 HEADERS += \
@@ -29,6 +30,7 @@ HEADERS += \
     multilevelqueuewindow.h \
     priorityqueue.h \
     priorityqueuewindow.h \
+    table.h \
     task.h
 
 FORMS += \
