@@ -1,13 +1,25 @@
 #ifndef FUNCTS_H
 #define FUNCTS_H
-
 #include <vector>
 #include <QString>
 #include <QLabel>
 #include "task.h"
 #include "priorityqueue.h"
+#include "multilevelqueue.h"
 
-std::vector<Task*> getTasks(QString filepath);
+struct Station {
+    QString name;
+    bool stLayingDeep;
+    bool nextTunLayingDeep;
+};
+
+std::vector<Station> getStations(QString filepath);
+
+std::vector<Station> getSection(std::vector<Station> line, QString fromSt, QString toSt);
+
+MultilevelQueue<QString> lineSectToMlQ(std::vector<Station> line);
+
+std::vector<Task*> getTasks(QString filepath,  QString keyObj = "");
 
 PriorityQueue<QString> tasksToPrQ(std::vector<Task*> tasks);
 

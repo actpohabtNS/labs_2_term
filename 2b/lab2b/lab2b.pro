@@ -27,9 +27,11 @@ SOURCES += \
 HEADERS += \
     functs.h \
     mainwindow.h \
+    multilevelqueue.h \
     multilevelqueuewindow.h \
     priorityqueue.h \
     priorityqueuewindow.h \
+    queue.h \
     table.h \
     task.h
 

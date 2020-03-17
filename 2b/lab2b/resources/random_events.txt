@@ -1,0 +1,8 @@
+15,Ground reinforcement
+14,Water pumping
+7,Water pumping
+9,Tunnel repairing
+9,Station wall repairing
+8,Tunnel boring difficulties
+11,Support struts repairing
+8,TBM repairing

@@ -1,0 +1,18 @@
+Heroiv Dnipra, s, s
+Minska, s, s
+Obolon, s, s
+Pochaina, s, d
+Tarasa Shevchenka, s, s
+Kontractova Ploscha, s, d
+Poshtova Ploscha, s, d
+Maidan Nezhalezhnosti, d, d
+Ploscha Lva Tolstoho, d, d
+Olimpiiska, d, d
+Palats Ukraina, d, d
+Lybidska, d, d
+Demiivska, s, d
+Holosiivska, s, d
+Vasylkivska, s, d
+Vyskavkovyi Tsentr, s, s
+Ipodrom, s, s
+Teremky, s, s

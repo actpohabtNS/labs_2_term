@@ -6,6 +6,9 @@
 #include <QString>
 #include "priorityqueue.h"
 #include "ui_priorityqueuewindow.h"
+#include "multilevelqueue.h"
+#include "ui_multilevelqueuewindow.h"
+#include "functs.h"
 
 
 class table : public QTableWidget
@@ -19,6 +22,12 @@ public:
     void setSize(int rowCount, int rowHeight, std::vector<int> columnWidths, std::vector<QString> headLabels = {});
 
     void setPrQ(PriorityQueue<QString> prQ);
+
+    void setStations(std::vector<Station> stations);
+
+    void addQueue(Queue<QString> queue);
+
+    void setMlQ(MultilevelQueue<QString> mlQ);
 
     QTableWidget* getTable();
 

@@ -3,8 +3,7 @@
 #include <QDebug>
 #include <QRegularExpression>
 
-
-std::vector<Task *> getTasks(QString filepath)
+std::vector<Task *> getTasks(QString filepath, QString keyObj)
 {
     QFile file(filepath);
 
@@ -25,6 +24,7 @@ std::vector<Task *> getTasks(QString filepath)
         taskQstr = taskQstr.simplified();
 
         taskData = taskQstr.split(",");
+        taskData[1] = keyObj + taskData[1];
 
         tasks.push_back(new Task{taskData[0].toInt(), taskData[1]});
     }
@@ -65,4 +65,98 @@ void updateRandomSeed()
 void setLabelText(QLabel *label, QString text)
 {
     label->setText(text);
+}
+
+std::vector<Station> getStations(QString filepath)
+{
+    QFile file(filepath);
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "[ ERROR ] failed to open file " << filepath;
+        return {};
+    }
+
+    std::vector<Station> stations;
+
+    QString stationQstr;
+    QStringList stationData;
+
+    QTextStream stream(&file);
+
+    while (!stream.atEnd()) {
+        stationQstr = file.readLine();
+        stationQstr = stationQstr.simplified();
+
+        stationData = stationQstr.split(",");
+
+        Station station = {stationData[0], stationData[1].simplified() == "d", stationData[2].simplified() == "d"};
+
+        stations.push_back(station);
+    }
+
+
+    return stations;
+}
+
+std::vector<Station> getSection(std::vector<Station> line, QString fromSt, QString toSt)
+{
+
+    std::vector<Station> section;
+    bool inSection = false;
+
+    for (Station st : line) {
+
+        if (!inSection && (st.name == fromSt || st.name == toSt)) {
+
+            inSection = true;
+            section.push_back(st);
+            continue;
+
+        }
+
+        if (!inSection) continue;
+
+        section.push_back(st);
+
+        if (inSection && (st.name == fromSt || st.name == toSt)) {
+
+            inSection = false;
+            break;
+
+        }
+    }
+
+    if (inSection) return {};
+
+    return section;
+
+}
+
+MultilevelQueue<QString> lineSectToMlQ(std::vector<Station> line)
+{
+
+    MultilevelQueue<QString> mlQ;
+
+    for (uint stNum = 0; stNum < line.size(); stNum++) {
+
+        QString stFilepath = "station_";
+        stFilepath += (line[stNum].stLayingDeep ? "deep" : "shallow");
+        stFilepath += ".txt";
+
+
+        mlQ.loadPrQ(tasksToPrQ(getTasks(stFilepath, "St.<" + line[stNum].name + "> ")));
+
+
+        if (stNum == line.size() - 1) break;
+
+        QString tunFilepath = "tunnel_";
+        tunFilepath += (line[stNum].nextTunLayingDeep ? "deep" : "shallow");
+        tunFilepath += ".txt";
+
+        mlQ.loadPrQ(tasksToPrQ(getTasks(tunFilepath, "Tun.<" + line[stNum].name + "-" + line[stNum+1].name + "> ")));
+
+    }
+
+    return mlQ;
+
 }

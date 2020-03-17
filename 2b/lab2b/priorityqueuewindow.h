@@ -33,12 +33,20 @@ private slots:
 
     void on_removeTaskButton_clicked();
 
+    void on_addRandomEventButton_clicked();
+
+    void on_demoButton_clicked();
+
     void setTaskButtonsEnabled(bool enabled);
+
+    void enableRandomEvents();
 
 private:
     Ui::PriorityQueueWindow *ui;
 
     PriorityQueue<QString> m_prQ;
+
+    std::vector<Task*> m_randomEvents;
 
 signals:
     void backButtonClicked();

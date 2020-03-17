@@ -21,8 +21,8 @@ public:
       end = nullptr;
     };
 
-    PriorityQueue(T data) {
-        Node<T>* node = new Node<T>(data);
+    PriorityQueue(T data, uint priority) {
+        Node<T>* node = new Node<T>{data, priority, nullptr, nullptr};
 
         begin = node;
         end = node;
@@ -87,9 +87,22 @@ public:
         if (begin == nullptr) return nullptr;
 
         Node<T>* temp = end;
-        end->prev->next = nullptr;
 
-        return temp->data;
+        end = end->prev;
+
+        if (end == nullptr) {
+
+            end = nullptr;
+            begin = nullptr;
+
+        } else {
+
+            end->next = nullptr;
+
+        }
+
+
+        return &(temp->data);
     }
 
 
@@ -101,8 +114,8 @@ public:
        if (begin->data == data) {
           deletingNode = begin;
 
-          begin->next->prev == nullptr;
           begin = begin->next;
+          begin->prev = nullptr;
 
           delete deletingNode;
           return;
@@ -111,8 +124,8 @@ public:
        if (end->data == data) {
           deletingNode = end;
 
-          end->prev->next == nullptr;
           end = end->prev;
+          end->next = nullptr;
 
           delete deletingNode;
           return;
@@ -135,7 +148,9 @@ public:
            } else {
                temp = temp->next;
            }
+
        }
+
 
     }
 
@@ -161,12 +176,10 @@ public:
 
         while(node != nullptr) {
 
-            qDebug() << node->data;
-           //node->data->print();       //TO THINK
+           qDebug() << node->data;
            node = node->prev;
 
         }
-        //node->data->print();
 
     };
 
