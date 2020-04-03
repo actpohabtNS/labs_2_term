@@ -3,6 +3,9 @@
 #include <QMessageBox>
 #include "sorting.h"
 #include <QDebug>
+#include "functs.h"
+
+#define n 100
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,9 +17,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&DW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
-    int arr[] = {5, 7, 8, 1, 6, 3, 2, 9, 4};
+    //int arr[] = {5, 7, 10, 5, 24, 8, 1, 6, 3, 2, 13, 9, 4, 19, 15, 14};
 
-    quickSort(arr, 0, 8);
+    //int temp[9];
+
+    int arr[n] = {};
+
+    randomizeIntArray(arr, n, 1, n);
+
+
+
+   mergeSort(arr, n);
+   //hybridQuicksort(arr, 0, n-1, 10);
 
     for (int elem : arr) {
         qDebug() << elem;
