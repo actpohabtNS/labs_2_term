@@ -6,8 +6,10 @@ int getRandomInt(int min, int max);
 
 void updateRandomSeed();
 
-void randomizeIntArray(int arr[], int size, int from, int to);
+int* createRandomIntArray(int size, int from = 0, int to = -1);
 
-std::vector<int> create_random_vector(int size);
+int* createSortedIntArray(int size, bool ascending);
+
+int* almostSortedIntArray(int size, bool ascending = true);
 
 #endif // FUNCTS_H

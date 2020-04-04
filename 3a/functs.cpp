@@ -5,42 +5,57 @@
 #include <algorithm>
 #include <iterator>
 #include <functional>
+#include "sorting.h"
 
 
-static std::random_device rd; // random device engine, usually based on /dev/random on UNIX-like systems
-// initialize Mersennes' twister using rd to generate the seed
-static std::mt19937 rng(rd());
+std::random_device device;
+std::seed_seq seq{device(),(unsigned)time(nullptr)};
+std::mt19937 generator(seq);
 
 int getRandomInt(int min, int max)
 {
-    static std::uniform_int_distribution<int> uid(min,max); // random dice
-    return uid(rng); // use rng as a generator
+    std::uniform_int_distribution<int> distribution(min,max);
+    return distribution(generator);
 }
 
-void updateRandomSeed()
-{
-    auto time = std::chrono::high_resolution_clock::now().time_since_epoch();
 
-    srand(static_cast<unsigned int>(std::chrono::duration_cast<std::chrono::microseconds>(time).count()));
-}
-
-void randomizeIntArray(int arr[], int size, int from, int to)
+int* createRandomIntArray(int size, int from, int to)
 {
+    int* arr = new int[size];
+
+    if (to == -1) to = size-1;
 
     for (int i = 0; i < size; i++) {
         arr[i] = getRandomInt(from, to);
     }
 
+    return arr;
 }
 
-std::vector<int> create_random_vector(int n) {
-  std::random_device r;
-  std::seed_seq      seed{r(), r(), r(), r(), r(), r(), r(), r()};
-  std::mt19937       eng(seed); // a source of random data
+int* createSortedIntArray(int size, bool ascending)
+{
+    int* arr = new int[size];
 
-  std::uniform_int_distribution<int> dist;
-  std::vector<int> v(n);
+    int elem = (ascending ? 1 : size);
 
-  generate(begin(v), end(v), bind(dist, eng));
-  return v;
+    for (int elem_idx = 0; elem_idx < size; elem_idx++)
+    {
+        arr[elem_idx] = elem;
+
+        elem = elem + (ascending ? 1 : -1);
+    }
+
+    return arr;
+}
+
+int* almostSortedIntArray(int size, bool ascending)
+{
+    int* arr = createSortedIntArray(size, ascending);
+
+    for (int i = 0; i < size/10; i++) {
+        int idx1 = getRandomInt(0, size-1), idx2 = getRandomInt(0, size-1);
+        _swap(arr[idx1], arr[idx2]);
+    }
+
+    return arr;
 }

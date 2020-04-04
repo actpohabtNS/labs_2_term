@@ -1,6 +1,7 @@
 #ifndef SORTING_H
 #define SORTING_H
 #include <cstddef>
+#include <chrono>
 #include <QDebug>
 
 template <typename T>
@@ -62,7 +63,6 @@ template <typename T>
 int partition(T arr[], int first, int last)
 {
     T pivot = medianOfThree(arr, first, last);
-
     int low = first-1, high = last+1;
 
     while (true) {
@@ -76,7 +76,10 @@ int partition(T arr[], int first, int last)
         } while(arr[high] > pivot);
 
         if (low >= high)
-            return high;
+        {
+           return high;
+        }
+
 
         _swap(arr[high], arr[low]);
     }
@@ -85,15 +88,11 @@ int partition(T arr[], int first, int last)
 template <typename T>
 void quicksort(T arr[], int first, int last)
 {
-
-
     if (first >= last) return;
-
 
     int pivot_idx = partition(arr, first, last);
     quicksort(arr, first, pivot_idx);
     quicksort(arr, pivot_idx+1, last);
-
 }
 
 template <typename T>
@@ -145,6 +144,8 @@ void mergesort(T arr[], int n)
                 int mid = min(left_start + curr_size - 1, n-1);
                 int to = min(left_start + 2*curr_size - 1, n-1);
 
+                //qDebug() << curr_size << left_start;
+
                 merge(arr, from, mid, to);
             }
         }
@@ -157,7 +158,6 @@ void hybridQuicksort(T arr[], int first, int last, int step)
 
     if (last - first < step) {
 
-        qDebug() << "selectionSort:" << first << last;
         selectionSort(arr, first, last);
 
     } else {
@@ -169,5 +169,7 @@ void hybridQuicksort(T arr[], int first, int last, int step)
     }
 
 }
+
+
 
 #endif // SORTING_H

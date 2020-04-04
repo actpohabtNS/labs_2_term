@@ -4,8 +4,8 @@
 #include "sorting.h"
 #include <QDebug>
 #include "functs.h"
-
-#define n 101
+#include "date.h"
+#include "benchmark.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,22 +17,16 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&DW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
-    //int arr[] = {5, 7, 10, 5, 24, 8, 1, 6, 3, 2, 13, 9, 4, 19, 15, 14};
+    int n = 260468;
 
-    //int temp[9];
+    //Date* arr = getRandomDateArray(n);
+    int* arr = createRandomIntArray(n);
 
-    int arr[n] = {};
+//    for (int i = 0; i < n; i++) {
+//            qDebug() << arr[i];
+//        }
 
-    randomizeIntArray(arr, n, 1, n);
-
-
-
-   mergesort(arr, n);
-   //hybridQuicksort(arr, 0, n-1, 10);
-
-    for (int elem : arr) {
-        qDebug() << elem;
-    }
+    qDebug() << benchSortAlg(mergesort, arr, n);
 
 }
 

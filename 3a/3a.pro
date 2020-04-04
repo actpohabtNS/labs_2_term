@@ -17,17 +17,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     benchmarkwindow.cpp \
+    date.cpp \
     demowindow.cpp \
     functs.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    table.cpp
 
 HEADERS += \
+    benchmark.h \
     benchmarkwindow.h \
+    date.h \
     demowindow.h \
     functs.h \
     mainwindow.h \
-    sorting.h
+    sorting.h \
+    table.h
 
 FORMS += \
     benchmarkwindow.ui \
