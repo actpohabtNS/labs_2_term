@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "functs.h"
 
-#define n 100
+#define n 101
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-   mergeSort(arr, n);
+   mergesort(arr, n);
    //hybridQuicksort(arr, 0, n-1, 10);
 
     for (int elem : arr) {
