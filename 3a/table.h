@@ -17,6 +17,10 @@ public:
 
     void insertDataRow(std::vector<QString> data, int after);
 
+    int getRowsHeight();
+    int getColumnsWidth();
+    void squeezeColumns(int shift);
+
     QTableWidget* getTable();
 
 };

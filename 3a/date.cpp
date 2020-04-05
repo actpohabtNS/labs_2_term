@@ -1,6 +1,7 @@
 #include "date.h"
 #include "functs.h"
 #include <stdexcept>
+#include "sorting.h"
 #include <QDebug>
 
 Date::Date()
@@ -18,6 +19,7 @@ Date::Date(int day, int month, int year)
 
     correct();
 }
+
 
 bool Date::operator ==(Date d)
 {
@@ -53,11 +55,19 @@ bool Date::operator <=(Date d)
     return (*this == d ? true : *this < d);
 }
 
-void Date::randomize()
+Date& Date::operator++(int)
+{
+    day++;
+    correct();
+
+    return *this;
+}
+
+void Date::randomize(int n)
 {
     day = getRandomInt(1, 31);
     month = getRandomInt(1, 12);
-    year = getRandomInt(1000, 3000);
+    year = getRandomInt(2000-n/730-1, 2000+n/730+1);
 
     correct();
 }
@@ -116,7 +126,7 @@ Date::operator QString()
     return (toISOtime(day) + "." + toISOtime(month) + " " + QString::number(year));
 }
 
-Date *getRandomDateArray(unsigned int size)
+Date *randomDateArray(unsigned int size)
 {
     if (size < 1) throw std::range_error("Size of array must be > 0");
 
@@ -125,7 +135,7 @@ Date *getRandomDateArray(unsigned int size)
     for (unsigned int i = 0; i < size; i++)
     {
         Date d;
-        d.randomize();
+        d.randomize(size);
         arr[i] = d;
     }
 
@@ -147,4 +157,33 @@ QString toISOtime(int timeUnit)
 {
     if (timeUnit < 10) return ("0" + QString::number(timeUnit));
     return QString::number(timeUnit);
+}
+
+Date *sortedDateArray(unsigned int size, bool ascending)
+{
+    Date* arr = new Date[size];
+    Date date = {1, 1, 2000-(int)(size/730)-1};
+
+    unsigned int elem_idx = (ascending ? 1 : size);
+    int shift = (ascending ? 1 : -1);
+
+    for (; elem_idx < size; elem_idx += shift)
+    {
+        arr[elem_idx] = date;
+        date++;
+    }
+
+    return arr;
+}
+
+Date *almostSortedDateArray(unsigned int size, bool ascending)
+{
+    Date* arr = sortedDateArray(size, ascending);
+
+    for (unsigned int i = 0; i < size/10; i++) {
+        int idx1 = getRandomInt(0, size-1), idx2 = getRandomInt(0, size-1);
+        _swap(arr[idx1], arr[idx2]);
+    }
+
+    return arr;
 }

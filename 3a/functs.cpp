@@ -1,23 +1,6 @@
 #include "functs.h"
 #include <QDebug>
-#include <QRegularExpression>
-#include <random>
-#include <algorithm>
-#include <iterator>
-#include <functional>
 #include "sorting.h"
-
-
-std::random_device device;
-std::seed_seq seq{device(),(unsigned)time(nullptr)};
-std::mt19937 generator(seq);
-
-int getRandomInt(int min, int max)
-{
-    std::uniform_int_distribution<int> distribution(min,max);
-    return distribution(generator);
-}
-
 
 int* createRandomIntArray(int size, int from, int to)
 {

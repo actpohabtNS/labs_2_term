@@ -17,16 +17,21 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&DW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
-    int n = 260468;
+    int n = 100;
 
-    //Date* arr = getRandomDateArray(n);
-    int* arr = createRandomIntArray(n);
+    //Date* arr = almostSortedDateArray(n);
+    //int* arr = createRandomIntArray(n);
+
+//    Date d{31, 12, 1999};
+//    d++;
+//    qDebug() << d;
+
+    //qDebug() << benchSortAlg(mergesort, arr, n);
+
 
 //    for (int i = 0; i < n; i++) {
-//            qDebug() << arr[i];
+//            qDebug() << arr[i] << "NUMBER " << i;
 //        }
-
-    qDebug() << benchSortAlg(mergesort, arr, n);
 
 }
 

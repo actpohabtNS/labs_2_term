@@ -15,17 +15,22 @@ public:
     bool operator >= (Date d);
     bool operator < (Date d);
     bool operator <= (Date d);
+    Date& operator++(int);
+    virtual operator QString();
 
-    void randomize();
+    void randomize(int n);
     void correct();
 
-    virtual operator QString();
 };
 
 int cutDay(int& day, int max);
 
 QString toISOtime(int timeUnit);
 
-Date* getRandomDateArray(unsigned int size);
+Date* randomDateArray(unsigned int size);
+
+Date* sortedDateArray(unsigned int size, bool ascending);
+
+Date* almostSortedDateArray(unsigned int size, bool ascending = true);
 
 #endif // DATE_H

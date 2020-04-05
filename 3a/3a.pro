@@ -22,6 +22,7 @@ SOURCES += \
     functs.cpp \
     main.cpp \
     mainwindow.cpp \
+    random.cpp \
     table.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     demowindow.h \
     functs.h \
     mainwindow.h \
+    random.h \
     sorting.h \
     table.h
 

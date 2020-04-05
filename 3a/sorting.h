@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <chrono>
 #include <QDebug>
+#include "random.h"
 
 template <typename T>
 void _swap(T &a, T &b) {
@@ -12,20 +13,31 @@ void _swap(T &a, T &b) {
 }
 
 template <typename T>
+void shuffle(T arr[], int size)
+{
+    for (int i = size-1; i > 0; i--)
+    {
+        int j = getRandomInt(0,i);
+        _swap(arr[i], arr[j]);
+    }
+}
+
+template <typename T>
 void selectionSort(T arr[], int first, int last)
 {
     int sorted_idx = first,
         elem = first,
         min_idx = first;
 
-    while(sorted_idx < last) {
-
+    while(sorted_idx < last)
+    {
         min_idx = sorted_idx;
         elem = sorted_idx + 1;
 
-        while (elem < last+1) {
-
-            if (arr[elem] < arr[min_idx]) {
+        while (elem < last+1)
+        {
+            if (arr[elem] < arr[min_idx])
+            {
                 min_idx = elem;
             }
 
