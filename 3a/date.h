@@ -20,6 +20,7 @@ public:
 
     void randomize(int n);
     void correct();
+    QString getTwoRowsText();
 
 };
 

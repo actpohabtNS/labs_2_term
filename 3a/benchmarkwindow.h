@@ -17,6 +17,9 @@ public:
     explicit BenchmarkWindow(QWidget *parent = nullptr);
     ~BenchmarkWindow();
 
+    Date* m_arr;
+    int m_arr_size;
+
 private:
     Ui::BenchmarkWindow *ui;
 
@@ -28,6 +31,7 @@ private:
     table* m_mergeTable;
     table* m_hybridTable;
     table* m_libraryTable;
+
 
 signals:
     void backButtonClicked();

@@ -6,6 +6,7 @@
 #include "functs.h"
 #include "date.h"
 #include "benchmark.h"
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,21 +18,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&DW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
-    int n = 100;
+    int n = 10;
 
-    //Date* arr = almostSortedDateArray(n);
+    //Date* arr = randomDateArray(n);
     //int* arr = createRandomIntArray(n);
 
 //    Date d{31, 12, 1999};
 //    d++;
-//    qDebug() << d;
+    //qDebug() << "Hello\nworld!";
 
     //qDebug() << benchSortAlg(mergesort, arr, n);
 
+    //QTimer::singleShot(2000, [n]{qDebug() << "n:" << n;});
 
-//    for (int i = 0; i < n; i++) {
-//            qDebug() << arr[i] << "NUMBER " << i;
-//        }
+    n = 15;
 
 }
 

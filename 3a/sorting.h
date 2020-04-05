@@ -4,6 +4,8 @@
 #include <chrono>
 #include <QDebug>
 #include "random.h"
+#include "table.h"
+#include <QTableWidget>
 
 template <typename T>
 void _swap(T &a, T &b) {
@@ -23,7 +25,7 @@ void shuffle(T arr[], int size)
 }
 
 template <typename T>
-void selectionSort(T arr[], int first, int last)
+void selectionSort(T arr[], int first, int last, bool vis, table* table, int* delay)
 {
     int sorted_idx = first,
         elem = first,
@@ -31,11 +33,14 @@ void selectionSort(T arr[], int first, int last)
 
     while(sorted_idx < last)
     {
+
         min_idx = sorted_idx;
         elem = sorted_idx + 1;
 
         while (elem < last+1)
         {
+            if (vis) visualizeComparison(table, *delay, elem, min_idx);
+
             if (arr[elem] < arr[min_idx])
             {
                 min_idx = elem;
@@ -43,6 +48,8 @@ void selectionSort(T arr[], int first, int last)
 
             elem++;
         }
+
+        if (vis) visualizeSwap(table, *delay, min_idx, sorted_idx);
 
         _swap(arr[min_idx], arr[sorted_idx]);
 
@@ -170,7 +177,7 @@ void hybridQuicksort(T arr[], int first, int last, int step)
 
     if (last - first < step) {
 
-        selectionSort(arr, first, last);
+        selectionSort(arr, first, last, false, nullptr, nullptr);
 
     } else {
 

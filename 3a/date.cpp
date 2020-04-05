@@ -121,6 +121,11 @@ void Date::correct()
     }
 }
 
+QString Date::getTwoRowsText()
+{
+    return (toISOtime(day) + "." + toISOtime(month) + "\n" + QString::number(year));
+}
+
 Date::operator QString()
 {
     return (toISOtime(day) + "." + toISOtime(month) + " " + QString::number(year));
