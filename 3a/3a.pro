@@ -23,7 +23,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     random.cpp \
-    table.cpp
+    table.cpp \
+    visualize.cpp
 
 HEADERS += \
     benchmark.h \
@@ -34,7 +35,8 @@ HEADERS += \
     mainwindow.h \
     random.h \
     sorting.h \
-    table.h
+    table.h \
+    visualize.h
 
 FORMS += \
     benchmarkwindow.ui \

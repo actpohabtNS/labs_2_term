@@ -1,6 +1,7 @@
 #include "benchmarkwindow.h"
 #include "ui_benchmarkwindow.h"
 #include "benchmark.h"
+#include "sorting.h"
 
 BenchmarkWindow::BenchmarkWindow(QWidget *parent) :
     QWidget(parent),
@@ -59,12 +60,11 @@ void BenchmarkWindow::on_testSelectionSortButton_clicked()
 {
     Date* arr = dateArray();
 
-    table* tempTable = nullptr;
-    int tempDelay = 0;
+    std::queue<visualization>* visuals = nullptr;
 
     int size = ui->arrSizeCounter->value();
     QString sortionType = sortionTypeQString();
-    auto time = benchSortAlg(selectionSort, arr, 0, size-1, false, tempTable, &tempDelay);
+    auto time = benchSortAlg(selectionSort, arr, 0, size-1, false, visuals);
 
     m_selectionTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_selectionTable->rowCount());
 }
@@ -73,9 +73,11 @@ void BenchmarkWindow::on_testQuickSortButton_clicked()
 {
     Date* arr = dateArray();
 
+    std::queue<visualization>* visuals = nullptr;
+
     int size = ui->arrSizeCounter->value();
     QString sortionType = sortionTypeQString();
-    auto time = benchSortAlg(quicksort, arr, 0, size-1);
+    auto time = benchSortAlg(quicksort, arr, 0, size-1, false, visuals);
 
     m_quickTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_quickTable->rowCount());
 }
@@ -84,9 +86,14 @@ void BenchmarkWindow::on_testMergeSortButton_clicked()
 {
     Date* arr = dateArray();
 
+    std::queue<visualization>* visuals = nullptr;
+
     int size = ui->arrSizeCounter->value();
     QString sortionType = sortionTypeQString();
-    auto time = benchSortAlg(mergesort, arr, size);
+
+    Date* temp = new Date[size];
+
+    auto time = benchSortAlg(mergesort, temp, arr, size, false, visuals);
 
     m_mergeTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_mergeTable->rowCount());
 }
@@ -95,10 +102,12 @@ void BenchmarkWindow::on_testHybridSortButton_clicked()
 {
     Date* arr = dateArray();
 
+    std::queue<visualization>* visuals = nullptr;
+
     int size = ui->arrSizeCounter->value();
     int step = ui->stepCounter->value();
     QString sortionType = sortionTypeQString();
-    auto time = benchSortAlg(hybridQuicksort, arr, 0, size-1, step);
+    auto time = benchSortAlg(hybridQuicksort, arr, 0, size-1, step, false, visuals);
 
     m_hybridTable->insertDataRow({QString::number(size), QString::number(step), sortionType, QString::number(time)}, m_hybridTable->rowCount());
 }
@@ -119,8 +128,7 @@ void BenchmarkWindow::on_testAllButton_clicked()
 
     m_arr = dateArray();
 
-    table* tempTable = new table();
-    int tempDelay = 0;
+    std::queue<visualization>* visuals = nullptr;
 
     int size = ui->arrSizeCounter->value();
     m_arr_size = size;
@@ -130,22 +138,24 @@ void BenchmarkWindow::on_testAllButton_clicked()
     Date* arr = new Date[size];
     std::copy(m_arr, m_arr + size, arr);
 
-    auto time = benchSortAlg(selectionSort, arr, 0, size-1, false, tempTable, &tempDelay);
+    auto time = benchSortAlg(selectionSort, arr, 0, size-1, false, visuals);
     m_selectionTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_selectionTable->rowCount());
 
     std::copy(m_arr, m_arr + size, arr);
 
-    time = benchSortAlg(quicksort, arr, 0, size-1);
+    time = benchSortAlg(quicksort, arr, 0, size-1, false, visuals);
     m_quickTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_quickTable->rowCount());
 
     std::copy(m_arr, m_arr + size, arr);
 
-    time = benchSortAlg(mergesort, arr, size);
+    Date* temp = new Date[size];
+
+    time = benchSortAlg(mergesort, temp, arr, size, false, visuals);
     m_mergeTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_mergeTable->rowCount());
 
     std::copy(m_arr, m_arr + size, arr);
 
-    time = benchSortAlg(hybridQuicksort, arr, 0, size-1, step);
+    time = benchSortAlg(hybridQuicksort, arr, 0, size-1, step, false, visuals);
     m_hybridTable->insertDataRow({QString::number(size), QString::number(step), sortionType, QString::number(time)}, m_hybridTable->rowCount());
 
     std::copy(m_arr, m_arr + size, arr);

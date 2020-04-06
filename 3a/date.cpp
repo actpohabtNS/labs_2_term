@@ -63,11 +63,20 @@ Date& Date::operator++(int)
     return *this;
 }
 
-void Date::randomize(int n)
+Date &Date::operator+=(int num)
 {
+    day += num;
+    correct();
+
+    return *this;
+}
+
+void Date::randomize(int interval)
+{
+
     day = getRandomInt(1, 31);
     month = getRandomInt(1, 12);
-    year = getRandomInt(2000-n/730-1, 2000+n/730+1);
+    year = getRandomInt(2000-interval/2, 2000+interval/2);
 
     correct();
 }
@@ -140,7 +149,7 @@ Date *randomDateArray(unsigned int size)
     for (unsigned int i = 0; i < size; i++)
     {
         Date d;
-        d.randomize(size);
+        d.randomize(size+10);
         arr[i] = d;
     }
 
@@ -167,15 +176,15 @@ QString toISOtime(int timeUnit)
 Date *sortedDateArray(unsigned int size, bool ascending)
 {
     Date* arr = new Date[size];
-    Date date = {1, 1, 2000-(int)(size/730)-1};
+    Date date = {1, 1, 2000-(int)(size/7300 < 1 ? size/73 : size/730)-1};
 
-    unsigned int elem_idx = (ascending ? 1 : size);
+    unsigned int elem_idx = (ascending ? 0 : size-1);
     int shift = (ascending ? 1 : -1);
 
     for (; elem_idx < size; elem_idx += shift)
     {
         arr[elem_idx] = date;
-        date++;
+        date += getRandomInt(1, 400);
     }
 
     return arr;
@@ -185,10 +194,59 @@ Date *almostSortedDateArray(unsigned int size, bool ascending)
 {
     Date* arr = sortedDateArray(size, ascending);
 
-    for (unsigned int i = 0; i < size/10; i++) {
+    for (unsigned int i = 0; i < size/8 + 1; i++) {
         int idx1 = getRandomInt(0, size-1), idx2 = getRandomInt(0, size-1);
         _swap(arr[idx1], arr[idx2]);
     }
 
     return arr;
+}
+
+dateElem *dateArrToDateElemArr(Date *dateArr, unsigned int size)
+{
+    dateElem* dateElemArr = new dateElem[size];
+
+    for (unsigned int idx = 0; idx < size; idx++)
+    {
+        dateElemArr[idx] = dateElem{dateArr[idx], idx};
+    }
+
+    return dateElemArr;
+}
+
+Date *dateElemArrToDateArr(dateElem *dateElemArr, unsigned int size)
+{
+    Date* dateArr = new Date[size];
+
+    for(unsigned int idx = 0; idx < size; idx++)
+    {
+        dateArr[idx] = dateElemArr[idx].date;
+    }
+
+    return dateArr;
+}
+
+bool operator==(dateElem dE1, dateElem dE2)
+{
+    return dE1.date == dE2.date;
+}
+
+bool operator>(dateElem dE1, dateElem dE2)
+{
+    return dE1.date > dE2.date;
+}
+
+bool operator>=(dateElem dE1, dateElem dE2)
+{
+    return dE1.date >= dE2.date;
+}
+
+bool operator<(dateElem dE1, dateElem dE2)
+{
+    return dE1.date < dE2.date;
+}
+
+bool operator<=(dateElem dE1, dateElem dE2)
+{
+    return dE1.date <= dE2.date;
 }

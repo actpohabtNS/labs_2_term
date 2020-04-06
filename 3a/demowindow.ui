@@ -248,7 +248,7 @@ font-weight: 500;</string>
     <rect>
      <x>20</x>
      <y>70</y>
-     <width>331</width>
+     <width>241</width>
      <height>61</height>
     </rect>
    </property>
@@ -261,25 +261,12 @@ border-radius: 5px;
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="runSelectionButton">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>9</y>
-      <width>261</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
@@ -301,7 +288,7 @@ color: #e66739;</string>
     <rect>
      <x>20</x>
      <y>220</y>
-     <width>331</width>
+     <width>241</width>
      <height>61</height>
     </rect>
    </property>
@@ -314,25 +301,12 @@ border-radius: 5px;
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="runQuickButton">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>9</y>
-      <width>261</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
@@ -383,8 +357,8 @@ border-radius: 5px;
     <rect>
      <x>20</x>
      <y>370</y>
-     <width>331</width>
-     <height>61</height>
+     <width>241</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -396,26 +370,13 @@ border-radius: 5px;
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="runMergeButton">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>9</y>
-      <width>261</width>
-      <height>31</height>
+      <y>3</y>
+      <width>221</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -465,7 +426,7 @@ border-radius: 5px;
     <rect>
      <x>20</x>
      <y>520</y>
-     <width>331</width>
+     <width>241</width>
      <height>61</height>
     </rect>
    </property>
@@ -478,25 +439,12 @@ border-radius: 5px;
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="runHybridButton">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>9</y>
-      <width>261</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
@@ -547,7 +495,7 @@ border-radius: 5px;
     <rect>
      <x>20</x>
      <y>670</y>
-     <width>331</width>
+     <width>241</width>
      <height>61</height>
     </rect>
    </property>
@@ -560,25 +508,12 @@ border-radius: 5px;
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="runLibraryButton">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>9</y>
-      <width>261</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
@@ -627,9 +562,9 @@ border-radius: 5px;
   <widget class="QGroupBox" name="groupBox_13">
    <property name="geometry">
     <rect>
-     <x>590</x>
+     <x>340</x>
      <y>-10</y>
-     <width>321</width>
+     <width>801</width>
      <height>71</height>
     </rect>
    </property>
@@ -645,7 +580,7 @@ border-radius: 5px;
    <widget class="QLabel" name="pageName">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>-10</x>
       <y>-10</y>
       <width>301</width>
       <height>91</height>
@@ -663,8 +598,180 @@ font-family: Roboto;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QGroupBox" name="groupBox_20">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>30</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	border: none;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QGroupBox" name="groupBox_19">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+	background-color: lightgrey;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>0</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 17px;</string>
+     </property>
+     <property name="text">
+      <string>comparison</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_21">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>30</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	border: none;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QGroupBox" name="groupBox_22">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+	background-color: yellow;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>0</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 17px;</string>
+     </property>
+     <property name="text">
+      <string>swap</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_23">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>30</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	border: none;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QGroupBox" name="groupBox_24">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+	background-color: green;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>0</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 17px;</string>
+     </property>
+     <property name="text">
+      <string>replace from an auxilary array</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>10</y>
+      <width>16</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QPushButton" name="runAllButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>1200</x>
@@ -677,6 +784,201 @@ font-family: Roboto;</string>
     <string>Run all</string>
    </property>
   </widget>
+  <widget class="QGroupBox" name="groupBox_14">
+   <property name="geometry">
+    <rect>
+     <x>1360</x>
+     <y>70</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="runSelectionButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_15">
+   <property name="geometry">
+    <rect>
+     <x>1360</x>
+     <y>220</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="runQuickButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_16">
+   <property name="geometry">
+    <rect>
+     <x>1360</x>
+     <y>370</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="runMergeButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_17">
+   <property name="geometry">
+    <rect>
+     <x>1360</x>
+     <y>520</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="runHybridButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_18">
+   <property name="geometry">
+    <rect>
+     <x>1360</x>
+     <y>670</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="runLibraryButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <zorder>groupBox_18</zorder>
+  <zorder>groupBox_17</zorder>
+  <zorder>groupBox_16</zorder>
+  <zorder>groupBox_15</zorder>
+  <zorder>groupBox_14</zorder>
   <zorder>groupBox_4</zorder>
   <zorder>backButton</zorder>
   <zorder>groupBox</zorder>
@@ -685,7 +987,6 @@ font-family: Roboto;</string>
   <zorder>groupBox_3</zorder>
   <zorder>groupBox_5</zorder>
   <zorder>groupBox_6</zorder>
-  <zorder>groupBox_7</zorder>
   <zorder>groupBox_8</zorder>
   <zorder>groupBox_9</zorder>
   <zorder>groupBox_10</zorder>
@@ -693,6 +994,7 @@ font-family: Roboto;</string>
   <zorder>groupBox_12</zorder>
   <zorder>groupBox_13</zorder>
   <zorder>runAllButton</zorder>
+  <zorder>groupBox_7</zorder>
  </widget>
  <resources/>
  <connections/>

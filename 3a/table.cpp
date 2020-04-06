@@ -115,10 +115,19 @@ void table::insertDataRow(std::vector<QString> data, int after)
     }
 }
 
+void table::setColor(QColor color)
+{
+    for (int row = 0; row < m_table->rowCount(); row++)
+    {
+        for(int column = 0; column < m_table->columnCount(); column++)
+        {
+            m_table->item(row, column)->setBackground(color);
+        }
+    }
+}
+
 void table::highlightItems(int row1, int column1, int row2, int column2, QColor color)
 {
-   qDebug() << column1 << column2;
-
    m_table->item(row1, column1)->setBackground(color);
    m_table->item(row2, column2)->setBackground(color);
 }
@@ -169,32 +178,3 @@ QTableWidget *table::getTable()
 {
     return m_table;
 }
-
-void visualizeComparison(table *table, int& delay, int elem1, int elem2)
-{
-    delay+=50;
-
-    QTimer::singleShot(delay, [table, elem1, elem2]{table->highlightItems(0, elem1, 0, elem2, Qt::lightGray);});
-
-    delay+=500;
-
-    QTimer::singleShot(delay, [table, elem1, elem2]{table->highlightItems(0, elem1, 0, elem2, Qt::white); qDebug() << "whitened";});
-
-    delay+=50;
-}
-
-void visualizeSwap(table *table, int &delay, int elem1, int elem2)
-{
-    QTimer::singleShot(delay, [table, elem1, elem2]{table->highlightItems(0, elem1, 0, elem2, Qt::yellow);});
-
-    delay+=500;
-
-    QTimer::singleShot(delay, [table, elem1, elem2]{table->swapItemsText(0, elem1, 0, elem2);});
-
-    delay += 500;
-
-    QTimer::singleShot(delay, [table, elem1, elem2]{table->highlightItems(0, elem1, 0, elem2, Qt::white);});
-
-    delay += 500;
-}
-

@@ -18,6 +18,7 @@ public:
 
     Date* m_arr;
     int m_arr_size;
+    void setRunButtonsEnabled(bool enabled);
 
 private:
     Ui::DemoWindow *ui;
@@ -35,6 +36,12 @@ signals:
 private slots:
     void on_backButton_clicked();
     void on_generateAllButton_clicked();
+    void on_runSelectionButton_clicked();
+    void on_runQuickButton_clicked();
+    void on_runMergeButton_clicked();
+    void on_runHybridButton_clicked();
+    void on_runLibraryButton_clicked();
+    void on_runAllButton_clicked();
 };
 
 #endif // DEMOWINDOW_H

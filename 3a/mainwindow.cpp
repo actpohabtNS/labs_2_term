@@ -18,21 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&DW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
-    int n = 10;
-
-    //Date* arr = randomDateArray(n);
-    //int* arr = createRandomIntArray(n);
-
-//    Date d{31, 12, 1999};
-//    d++;
-    //qDebug() << "Hello\nworld!";
-
-    //qDebug() << benchSortAlg(mergesort, arr, n);
-
-    //QTimer::singleShot(2000, [n]{qDebug() << "n:" << n;});
-
-    n = 15;
-
 }
 
 MainWindow::~MainWindow()

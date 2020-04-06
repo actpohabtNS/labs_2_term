@@ -20,6 +20,7 @@ public:
     void setVisTable(int rowHeight, int columnCount);
     void setDateArray(Date arr[], int size);
     void insertDataRow(std::vector<QString> data, int after);
+    void setColor(QColor color);
 
     void highlightItems(int row1, int column1, int row2, int column2, QColor color);
     void squeezeColumns(int shift);
@@ -32,8 +33,7 @@ public:
 
 };
 
-void visualizeComparison(table* table, int& delay, int elem1, int elem2);
-void visualizeSwap(table* table, int& delay, int elem1, int elem2);
+
 bool compareVisualizeDates(Date& d1, Date& d2, table* table, int &delay);
 
 #endif // TABLE_H

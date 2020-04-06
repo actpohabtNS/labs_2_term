@@ -3,7 +3,6 @@
 #include <vector>
 #include <chrono>
 #include "date.h"
-#include "sorting.h"
 
 template <class ...Types>
 unsigned long long benchSortAlg(void sort(Types ...Args), Types ...Args)
