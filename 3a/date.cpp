@@ -24,8 +24,8 @@ Date::Date(int day, int month, int year)
 bool Date::operator ==(Date d)
 {
     if (year != d.year || month != d.month || day != d.day)
-        {
-            return false;
+    {
+      return false;
     } else return true;
 }
 
