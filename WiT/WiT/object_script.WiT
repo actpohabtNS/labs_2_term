@@ -6,7 +6,9 @@ demo.o
 functs.o
 main.o
 mainwindow.o
+random.o
 searchoptionswindow.o
+sorting.o
 sortoptionswindow.o
 table.o
 tests.o

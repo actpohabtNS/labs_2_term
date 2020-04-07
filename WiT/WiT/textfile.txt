@@ -1,2 +1,5 @@
+44786584 5674 Odesa Kharkiv Local 12:53 19:00 0.8 
 21173095 1234 Kyiv Kharkiv Rapid 12:19 21:17 0.7 
 75327453 7272 Kopenhahen Lviv Rapid 12:53 19:00 0.7 
+31211682 3455 Abu-Dhabi Xianjou International 10:00 14:00 0.8 
+79102804 7272 Abu-Dhabi Lviv International 10:00 19:00 0.5 

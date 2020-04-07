@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <chrono>
 #include <QTimer>
+#include "sorting.h"
 
 
 Administrate::Administrate(QWidget *parent, bool demo) :
@@ -175,12 +176,14 @@ void Administrate::changeSearchField(QString newRequest)
 
 void Administrate::sort(ushort sortingAlg, std::vector<QString> sortingSequence)
 {
-    qDebug() << "SortingAlg:" << sortingAlg;
-
-    for (QString elem : sortingSequence)
+    if (sortingAlg == 1)
     {
-        qDebug() << elem;
+        quicksort(sortingSequence, m_trains, 0, m_trains.size()-1);
     }
+
+
+    table t(ui->trainTable);
+    t.setTrainTable(m_trains);
 }
 
 void Administrate::on_optionsButton_clicked()

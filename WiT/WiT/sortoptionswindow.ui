@@ -211,7 +211,7 @@ border: none;
    <widget class="QCheckBox" name="numberCheckBox">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>40</y>
       <width>131</width>
       <height>20</height>
@@ -237,7 +237,7 @@ border: none;
      <string notr="true">font-size: 17px;</string>
     </property>
     <property name="text">
-     <string>Departure</string>
+     <string>From</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="toCheckBox">
@@ -253,13 +253,13 @@ border: none;
      <string notr="true">font-size: 17px;</string>
     </property>
     <property name="text">
-     <string>Destination</string>
+     <string>To</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="arrTimeCheckBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>330</x>
       <y>70</y>
       <width>101</width>
       <height>20</height>
@@ -270,38 +270,6 @@ border: none;
     </property>
     <property name="text">
      <string>Arr. time</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="depTimeCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>70</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 17px;</string>
-    </property>
-    <property name="text">
-     <string>Dep. time</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="typeCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>70</y>
-      <width>111</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 17px;</string>
-    </property>
-    <property name="text">
-     <string>Train type</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="rateCheckBox">
@@ -318,6 +286,38 @@ border: none;
     </property>
     <property name="text">
      <string>Train rate</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="depTimeCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>70</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 17px;</string>
+    </property>
+    <property name="text">
+     <string>Dep. time</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="typeCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 17px;</string>
+    </property>
+    <property name="text">
+     <string>Train type</string>
     </property>
    </widget>
   </widget>

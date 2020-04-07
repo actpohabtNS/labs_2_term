@@ -1,6 +1,7 @@
 #include "train.h"
 #include "functs.h"
 #include <stdexcept>
+#include "random.h"
 
 train::train(int id, short number, QString from, QString to, QString type, time depTime, time arrTime, double rate)
 {
@@ -178,9 +179,9 @@ bool compareQString(QString s1, QString s2, bool strict)
 {
     int numComp = QString::localeAwareCompare(s1.toUpper(), s2.toUpper());
 
-    if (strict && numComp < 0)
-        return true; //Caution! compare("A", "B") < 0!
-    else if (!strict && numComp <= 0)
+    if (strict && numComp > 0)
+        return true; //Caution! compare("A", "B") > 0!
+    else if (!strict && numComp >= 0)
         return true;
     else return false;
 }

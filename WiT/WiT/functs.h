@@ -20,8 +20,6 @@ void editTrain(std::vector<train> &trains, int oldTrainId, train newTrain);
 
 std::vector<train> searchTrains(std::vector<train> trains, QString request, std::vector<bool> settings);
 
-int getRandomInt(int min, int max);
-
 short getRandomShort(short min, short max);
 
 double getRandomDouble(double min, double max);

@@ -24,7 +24,9 @@ SOURCES += \
     functs.cpp \
     main.cpp \
     mainwindow.cpp \
+    random.cpp \
     searchoptionswindow.cpp \
+    sorting.cpp \
     sortoptionswindow.cpp \
     table.cpp \
     tests.cpp \
@@ -39,6 +41,7 @@ HEADERS += \
     demo.h \
     functs.h \
     mainwindow.h \
+    random.h \
     searchoptionswindow.h \
     sorting.h \
     sortoptionswindow.h \

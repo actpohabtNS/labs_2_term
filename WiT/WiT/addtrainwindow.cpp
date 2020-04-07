@@ -7,6 +7,7 @@
 #include "binfile.h"
 #include <QTime>
 #include <QTimer>
+#include "random.h"
 
 
 addTrainWindow::addTrainWindow(QWidget *parent, QString mode, bool test) :
