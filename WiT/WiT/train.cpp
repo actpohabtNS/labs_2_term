@@ -1,5 +1,6 @@
 #include "train.h"
 #include "functs.h"
+#include <stdexcept>
 
 train::train(int id, short number, QString from, QString to, QString type, time depTime, time arrTime, double rate)
 {
@@ -12,8 +13,6 @@ train::train(int id, short number, QString from, QString to, QString type, time 
        m_arrTime = arrTime;
        m_rate = rate;
 }
-
-
 
 int train::getId()
 {
@@ -55,8 +54,6 @@ double train::getTrainRate()
     return m_rate;
 }
 
-
-
 std::vector<QString> train::getInfo()
 {
     return std::vector<QString> {QString::number(m_id), QString::number(m_number), m_from, m_to, m_type, m_depTime.getTime(), m_arrTime.getTime(), QString::number(m_rate)};
@@ -66,7 +63,8 @@ QString train::getInfoQStr()
 {
     QString res = "";
 
-    for (QString info : getInfo()){
+    for (QString info : getInfo())
+    {
         res += info + " ";
     }
 
@@ -75,7 +73,6 @@ QString train::getInfoQStr()
 
 void train::randomize()
 {
-
     m_id = getRandomInt(10000000, 99999999);
     m_number = getRandomInt(1000, 9999);
 
@@ -88,6 +85,102 @@ void train::randomize()
     m_depTime = {getRandomShort(0, 22), getRandomShort(0, 59)};
 
     m_rate = static_cast<double>(getRandomInt(0, 10)) / 10;
-
 }
 
+bool greaterByField(QString field, train t1, train t2, bool strict)
+{
+    bool res = false;
+
+    if (field == "id")
+    {
+        return strict ? t1.getId() > t2.getId() : t1.getId() >= t2.getId();
+    }
+    else if (field == "number")
+    {
+        return strict ? t1.getTrainNumber() > t2.getTrainNumber() : t1.getTrainNumber() >= t2.getTrainNumber();
+    }
+    else if (field == "from")
+    {
+        return compareQString(t1.getFrom(), t2.getFrom(), strict);
+    }
+    else if (field == "to")
+    {
+        return compareQString(t1.getTo(), t2.getTo(), strict);
+    }
+    else if (field == "arrTime")
+    {
+        return strict ? t1.getArrTime() > t2.getArrTime() : t1.getArrTime() >= t2.getArrTime();
+    }
+    else if (field == "depTime")
+    {
+        return strict ? t1.getDepTime() > t2.getDepTime() : t1.getDepTime() >= t2.getDepTime();
+    }
+    else if (field == "type")
+    {
+        return compareQString(t1.getTrainType(), t2.getTrainType(), strict);
+    }
+    else if (field == "rate")
+    {
+        return strict ? t1.getTrainRate() > t2.getTrainRate() : t1.getTrainRate() >= t2.getTrainRate();
+    }
+    else
+    {
+        throw new std::out_of_range("Wrong field name!");
+    }
+
+    return res;
+}
+
+bool equalByField(QString field, train t1, train t2)
+{
+    return !(greaterByField(field, t1, t2, true) == greaterByField(field, t1, t2, false));
+}
+
+bool sequenceGreater(std::vector<QString> sortingSequence, train t1, train t2, bool strict)
+{
+    bool res;
+    uint field_idx = 0;
+
+    do {
+        res = greaterByField(sortingSequence[field_idx], t1, t2, strict);
+        field_idx++;
+    } while (equalByField(sortingSequence[field_idx-1], t1, t2) && field_idx < sortingSequence.size());
+
+    return res;
+}
+
+bool train::time::operator ==(train::time t)
+{
+    if (this->getHours() != t.getHours() || this->getMinutes() != t.getMinutes())
+        return false;
+    else return true;
+}
+
+bool train::time::operator >(train::time t)
+{
+    if (this->getHours() != t.getHours())
+    {
+        return this->getHours() > t.getHours();
+    }
+    else if (this->getMinutes() != t.getMinutes())
+    {
+        return this->getMinutes() > t.getMinutes();
+    }
+    else return false;
+}
+
+bool train::time::operator >=(train::time t)
+{
+    return (*this == t ? true : *this > t);
+}
+
+bool compareQString(QString s1, QString s2, bool strict)
+{
+    int numComp = QString::localeAwareCompare(s1.toUpper(), s2.toUpper());
+
+    if (strict && numComp < 0)
+        return true; //Caution! compare("A", "B") < 0!
+    else if (!strict && numComp <= 0)
+        return true;
+    else return false;
+}

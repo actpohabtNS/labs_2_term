@@ -25,6 +25,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     searchoptionswindow.cpp \
+    sortoptionswindow.cpp \
     table.cpp \
     tests.cpp \
     textfile.cpp \
@@ -39,6 +40,8 @@ HEADERS += \
     functs.h \
     mainwindow.h \
     searchoptionswindow.h \
+    sorting.h \
+    sortoptionswindow.h \
     table.h \
     tests.h \
     textfile.h \
@@ -50,6 +53,7 @@ FORMS += \
     demo.ui \
     mainwindow.ui \
     searchoptionswindow.ui \
+    sortoptionswindow.ui \
     tests.ui
 
 # Default rules for deployment.

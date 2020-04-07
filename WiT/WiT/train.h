@@ -31,7 +31,13 @@ public:
 
             return s_hours + ":" + s_minutes;
         }
+
+        bool operator == (time t);
+        bool operator > (time t);
+        bool operator >= (time t);
     };    
+
+
 
     time m_depTime;
     time m_arrTime;
@@ -67,8 +73,14 @@ private:
     QString m_to;
     QString m_type;
     double m_rate;
-
-
 };
+
+bool greaterByField(QString field, train t1, train t2, bool strict = true);
+
+bool equalByField(QString field, train t1, train t2);
+
+bool sequenceGreater(std::vector<QString> sortingSequence, train t1, train t2, bool strict = true);
+
+bool compareQString(QString s1, QString s2, bool strict);
 
 #endif // TRAIN_H

@@ -48,23 +48,19 @@ addTrainWindow::~addTrainWindow()
 
 void addTrainWindow::on_applyAddTrainButton_clicked()
 {
-
-    if (m_mode == "add") {
-
-
+    if (m_mode == "add")
+    {
         train newTrain = getTrainFromForm();
         emit trainAdded(newTrain);
 
-    } else if (m_mode == "edit") {
-
+    }
+    else if (m_mode == "edit")
+    {
         train newTrain = getTrainFromForm(m_train.getId());
         emit trainEdited(newTrain);
-
     }
 
-
     close();
-
 }
 
 void addTrainWindow::on_cancelButton_clicked()
