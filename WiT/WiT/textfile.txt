@@ -3,3 +3,4 @@
 75327453 7272 Kopenhahen Lviv Rapid 12:53 19:00 0.7 
 31211682 3455 Abu-Dhabi Xianjou International 10:00 14:00 0.8 
 79102804 7272 Abu-Dhabi Lviv International 10:00 19:00 0.5 
+55705708 7272 Odesa Lviv Local 11:00 21:17 0.8 

@@ -20,7 +20,6 @@ SOURCES += \
     administrate.cpp \
     benchmark.cpp \
     binfile.cpp \
-    demo.cpp \
     functs.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -38,7 +37,6 @@ HEADERS += \
     administrate.h \
     benchmark.h \
     binfile.h \
-    demo.h \
     functs.h \
     mainwindow.h \
     random.h \
@@ -53,7 +51,6 @@ HEADERS += \
 FORMS += \
     addtrainwindow.ui \
     administrate.ui \
-    demo.ui \
     mainwindow.ui \
     searchoptionswindow.ui \
     sortoptionswindow.ui \

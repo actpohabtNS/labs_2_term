@@ -88,6 +88,36 @@ void train::randomize()
     m_rate = static_cast<double>(getRandomInt(0, 10)) / 10;
 }
 
+short train::getTrainTypeShort()
+{
+    if (m_type == "International")
+        return 0;
+    else if (m_type == "Rapid")
+        return 1;
+    else if (m_type == "Local")
+        return 2;
+    else if(m_type == "Suburbal")
+        return 3;
+    else
+    {
+        qDebug() << "Unknown train type:" << m_type;
+        return -1;
+    }
+}
+
+short train::getShort(QString field)
+{
+    if (field == "type")
+        return getTrainTypeShort();
+    else if (field == "number")
+        return m_number;
+    else
+    {
+        qDebug() << "Unknown short field:" << field;
+        return -1;
+    }
+}
+
 bool greaterByField(QString field, train t1, train t2, bool strict)
 {
     bool res = false;
@@ -184,4 +214,34 @@ bool compareQString(QString s1, QString s2, bool strict)
     else if (!strict && numComp >= 0)
         return true;
     else return false;
+}
+
+short getMinShortByField(QString field, std::vector<train> trains, int first, int last)
+{
+    if(last == -1) last = trains.size()-1;
+
+    short min = trains[first].getShort(field);
+
+    for (int i = first+1; i <= last; i++)
+    {
+        if (min > trains[i].getShort(field))
+            min = trains[i].getShort(field);
+    }
+
+    return min;
+}
+
+short getMaxShortByField(QString field, std::vector<train> trains, int first, int last)
+{
+    if(last == -1) last = trains.size()-1;
+
+    short max = trains[first].getShort(field);
+
+    for (int i = first+1; i <= last; i++)
+    {
+        if (max < trains[i].getShort(field))
+            max = trains[i].getShort(field);
+    }
+
+    return max;
 }

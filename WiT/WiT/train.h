@@ -66,6 +66,10 @@ public:
 
     void randomize();
 
+    short getTrainTypeShort();
+
+    short getShort(QString field);
+
 private:
     int m_id;
     short m_number;
@@ -74,6 +78,10 @@ private:
     QString m_type;
     double m_rate;
 };
+
+short getMinShortByField(QString field, std::vector<train> trains, int first = 0, int last = -1);
+
+short getMaxShortByField(QString field, std::vector<train> trains, int first = 0, int last = -1);
 
 bool greaterByField(QString field, train t1, train t2, bool strict = true);
 

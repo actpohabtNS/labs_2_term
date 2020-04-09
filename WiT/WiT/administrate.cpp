@@ -39,6 +39,8 @@ Administrate::Administrate(QWidget *parent, bool demo) :
 
     trainTable.setTrainTable(m_trains);
 
+    std::vector<train> temp(m_trains.size());
+
     if (!demo) return;
 
     ui->pageName_1->setText("Demonstration mode");
@@ -179,6 +181,15 @@ void Administrate::sort(ushort sortingAlg, std::vector<QString> sortingSequence)
     if (sortingAlg == 1)
     {
         quicksort(sortingSequence, m_trains, 0, m_trains.size()-1);
+    }
+    else if (sortingAlg == 2)
+    {
+        std::vector<train> temp(m_trains.size());
+        countingSortBySeq(sortingSequence, m_trains, temp);
+    } else if (sortingAlg == 3)
+    {
+        std::vector<train> temp(m_trains.size());
+        radixSortBySeq(sortingSequence, m_trains, temp);
     }
 
 
