@@ -175,7 +175,7 @@ bool sequenceGreater(std::vector<QString> sortingSequence, train t1, train t2, b
     do {
         res = greaterByField(sortingSequence[field_idx], t1, t2, strict);
         field_idx++;
-    } while (equalByField(sortingSequence[field_idx-1], t1, t2) && field_idx < sortingSequence.size());
+    } while (field_idx < sortingSequence.size() && equalByField(sortingSequence[field_idx-1], t1, t2));
 
     return res;
 }
