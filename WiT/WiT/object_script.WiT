@@ -1,6 +1,7 @@
 addtrainwindow.o
 administrate.o
 benchmark.o
+benchsortingwindow.o
 binfile.o
 functs.o
 main.o
@@ -15,6 +16,7 @@ textfile.o
 train.o
 moc_addtrainwindow.o
 moc_administrate.o
+moc_benchsortingwindow.o
 moc_mainwindow.o
 moc_searchoptionswindow.o
 moc_sortoptionswindow.o

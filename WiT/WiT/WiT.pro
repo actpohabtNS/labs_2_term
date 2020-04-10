@@ -19,6 +19,7 @@ SOURCES += \
     addtrainwindow.cpp \
     administrate.cpp \
     benchmark.cpp \
+    benchsortingwindow.cpp \
     binfile.cpp \
     functs.cpp \
     main.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     addtrainwindow.h \
     administrate.h \
     benchmark.h \
+    benchsortingwindow.h \
     binfile.h \
     functs.h \
     mainwindow.h \
@@ -51,6 +53,7 @@ HEADERS += \
 FORMS += \
     addtrainwindow.ui \
     administrate.ui \
+    benchsortingwindow.ui \
     mainwindow.ui \
     searchoptionswindow.ui \
     sortoptionswindow.ui \

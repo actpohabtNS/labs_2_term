@@ -4,6 +4,7 @@
 #include "textfile.h"
 #include "train.h"
 #include "searchoptionswindow.h"
+#include "sorting.h"
 #include <QFile>
 
 std::vector<unsigned long long> benchmarkVector(int elements)
@@ -201,4 +202,27 @@ std::vector<unsigned long long> benchmarkBinFile(int elements)
 // ==========================================================
 
     return res;
+}
+
+unsigned long long benchSortingBySeq(QString sorting, std::vector<QString> sortingSequence, std::vector<train> &trains, std::vector<train> &temp)
+{
+    auto start = std::chrono::high_resolution_clock::now();
+    // ==========================================================
+
+    if (sorting == "counting")
+        countingSortBySeq(sortingSequence, trains, temp);
+    else if (sorting == "radix")
+        radixSortBySeq(sortingSequence, trains, temp);
+    else if (sorting == "comparison")
+        quicksort(sortingSequence, trains, 0, trains.size()-1);
+    else
+    {
+        qDebug() << "Unknown sorting type:" << sorting;
+        return -1;
+    }
+
+    // ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+    return duration.count();
 }

@@ -91,4 +91,6 @@ bool sequenceGreater(std::vector<QString> sortingSequence, train t1, train t2, b
 
 bool compareQString(QString s1, QString s2, bool strict);
 
+std::vector<train>* randomize(int size);
+
 #endif // TRAIN_H

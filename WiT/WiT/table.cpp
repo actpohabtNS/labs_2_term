@@ -70,7 +70,6 @@ void table::setTrainTable(std::vector<train> trains)
     for (unsigned int i = 0; i < trains.size(); i++) {
 
         for (int j = 0; j < 8; j++) {
-             //qDebug() << trains[i].getInfo()[j];
              m_table->setItem(i, j, new QTableWidgetItem(trains[i].getInfo()[j]));
         }
 
@@ -190,5 +189,61 @@ void table::searchTable(std::vector<train> trains, QString search, std::vector<b
 void table::sortTable(std::vector<bool> settings)
 {
     settings[0] = false;
-    qDebug() << "sort";
+}
+
+void table::insertDataRow(std::vector<QString> data, int after)
+{
+    if (m_table->height() < getRowsHeight() && m_table->width() < getColumnsWidth()+22)
+    {
+        squeezeColumns(22);
+    }
+
+    m_table->insertRow(after);
+
+    for (uint data_idx = 0; data_idx < data.size(); data_idx++)
+    {
+        QTableWidgetItem * item = new QTableWidgetItem();
+        item->setTextAlignment(Qt::AlignCenter);
+        item->setText(data[data_idx]);
+        m_table->setItem(after, data_idx, item);
+    }
+}
+
+int table::getRowsHeight()
+{
+    int height = 75;
+
+    for(int row = 0; row < getTable()->rowCount(); row++)
+    {
+        height += getTable()->rowHeight(row);
+    }
+
+    return height;
+}
+
+int table::getColumnsWidth()
+{
+    int width = 0;
+
+    for(int column = 0; column < getTable()->columnCount(); column++)
+    {
+        width += getTable()->columnWidth(column);
+    }
+
+    return width;
+}
+
+void table::squeezeColumns(int shift)
+{
+    int oneShift = shift/getTable()->columnCount();
+
+    for(int column = 0; column < getTable()->columnCount(); column++)
+    {
+        getTable()->setColumnWidth(column, getTable()->columnWidth(column) - oneShift);
+    }
+}
+
+QTableWidget* table::getTable()
+{
+    return m_table;
 }

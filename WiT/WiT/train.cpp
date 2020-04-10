@@ -245,3 +245,17 @@ short getMaxShortByField(QString field, std::vector<train> trains, int first, in
 
     return max;
 }
+
+std::vector<train> *randomize(int size)
+{
+    std::vector<train>* trains = new std::vector<train>();
+
+    for (int idx = 0; idx < size; idx++)
+    {
+        train tr;
+        tr.randomize();
+        trains->push_back(tr);
+    }
+
+    return trains;
+}

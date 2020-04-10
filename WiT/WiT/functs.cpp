@@ -7,7 +7,7 @@
 
 std::vector<std::string> split(std::string str, std::string del) {
     std::vector<std::string> res;
-    int pos1 = 0, pos2 = 0;
+    unsigned int pos1 = 0, pos2 = 0;
 
 
     while (true) {

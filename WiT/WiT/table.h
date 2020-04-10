@@ -18,14 +18,17 @@ public:
     table(QTableWidget* table);
 
     void setSize(int rowCount, int rowHeight, std::vector<int> columnWidths, std::vector<QString> headLabels = {});
-
     void setSizeTrainTable(std::vector<train> trains);
-
     void setTrainTable(std::vector<train> trains);
-
     void searchTable(std::vector<train> trains, QString search, std::vector<bool> settings);
-
     void sortTable(std::vector<bool> settings);
+    void insertDataRow(std::vector<QString> data, int after);
+
+    void squeezeColumns(int shift);
+
+    int getRowsHeight();
+    int getColumnsWidth();
+    QTableWidget* getTable();
 };
 
 #endif // TABLE_H

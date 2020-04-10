@@ -15,17 +15,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->insertWidget(1, &administrateWindow);
     ui->stackedWidget->insertWidget(2, &demoWindow);
     ui->stackedWidget->insertWidget(3, &testsWindow);
+    ui->stackedWidget->insertWidget(4, &bSW);
 
     connect(&administrateWindow, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&testsWindow, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
+    connect(&bSW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
     ui->stackedWidget->setCurrentIndex(0);
-
-//    train t1(123, 34, "Aaa", "Odesa", "Cbb", {11, 35}, {12, 34}, 0.8);
-//    train t2(124, 34, "BBb", "Odesa", "Bbb", {11, 34}, {12, 34}, 0.5);
-
-//    qDebug() << sequenceGreater({"arrTime", "type", "rate"}, t1, t2);
-
 }
 
 void MainWindow::on_administrateButton_clicked()
@@ -47,8 +43,12 @@ void MainWindow::on_demoButton_clicked()
 
 void MainWindow::on_testsButton_clicked()
 {
-
     ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_benchSorting_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void MainWindow::on_exitButton_clicked()
@@ -67,7 +67,4 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
-
 

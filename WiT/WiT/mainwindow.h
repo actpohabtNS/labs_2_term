@@ -5,7 +5,7 @@
 #include <QtGui>
 #include <QStackedWidget>
 #include <administrate.h>
-#include <demo.h>
+#include "benchsortingwindow.h"
 #include <tests.h>
 
 QT_BEGIN_NAMESPACE
@@ -23,13 +23,15 @@ public:
 private:
     Ui::MainWindow *ui;
     Administrate administrateWindow;
-    Demo demoWindow;
+    Administrate demoWindow;
     Tests testsWindow;
+    BenchSortingWindow bSW;
 
 private slots:
     void on_administrateButton_clicked();
     void on_demoButton_clicked();
     void on_testsButton_clicked();
+    void on_benchSorting_clicked();
     void on_exitButton_clicked();
     void toMainMenu();
 };
