@@ -65,5 +65,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    binfile.bin \
-    textfile.txt
+    resources/binfile.bin \
+    resources/textfile.txt \
+    resources/benchBin.bin \
+    resources/benchText.txt \
+    resources/textfile_demo.txt \
+    resources/binfile_demo.bin
+
+copydata.commands = $(COPY_FILE) \"$$shell_path($$PWD\\resources)\" \"$$shell_path($$OUT_PWD)\"
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata
+
+
