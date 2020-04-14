@@ -33,6 +33,7 @@ private:
     table* m_libraryTable;
     table* m_shakerTable;
     table* m_heapTable;
+    table* m_binaryTreeTable;
 
 
 signals:
@@ -46,6 +47,8 @@ private slots:
     void on_testLibrarySortButton_clicked();
     void on_testAllButton_clicked();
     void on_testShakerSortButton_clicked();
+    void on_testHeapSortButton_clicked();
+    void on_testBinaryTreeSortButton_clicked();
 };
 
 #endif // BENCHMARKWINDOW_H

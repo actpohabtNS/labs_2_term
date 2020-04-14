@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "random.h"
 #include "table.h"
-#include <QTableWidget>
+#include "binaryTree.h"
 #include "visualize.h"
 
 template <typename T>
@@ -252,9 +252,62 @@ void shakerSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
 }
 
 template <typename T>
-void heapSort(T arr[], int size)
+void heapify(T arr[], int size, int max, bool vis, std::queue<visualization>* visuals)
 {
+    int largest = max;
+    int left = 2*max + 1;
+    int right = 2*max + 2;
 
+    if (left < size)
+    {
+        if (vis) visuals->push({0, left, largest, ""});
+        if (arr[left] > arr[largest])
+            largest = left;
+    }
+
+    if (right < size)
+    {
+        if (vis) visuals->push({0, right, largest, ""});
+        if (arr[right] > arr[largest])
+            largest = right;
+    }
+
+    if (largest != max)
+    {
+        if (vis) visuals->push({1, max, largest, ""});
+        _swap(arr[max], arr[largest]);
+
+        heapify(arr, size, largest, vis, visuals);
+    }
+}
+
+template <typename T>
+void heapSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
+{
+    for (int i = size / 2 - 1; i >= 0; i--)
+            heapify(arr, size, i, vis, visuals);
+
+    for (int i=size-1; i>0; i--)
+        {
+            if (vis) visuals->push({1, 0, i, ""});
+            _swap(arr[0], arr[i]);
+
+            heapify(arr, i, 0, vis, visuals);
+        }
+}
+
+template <typename T>
+void binaryTreeSort(T arr[], int size)
+{
+    Node<T> *root = new Node<T>(arr[0]);
+
+    for (int idx = 1; idx < size; idx++)
+    {
+        root->insert(arr[idx]);
+    }
+
+    int elem = 0;
+    root->BTtoArr(arr, elem);
 }
 
 #endif // SORTING_H

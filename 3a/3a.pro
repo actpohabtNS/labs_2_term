@@ -29,6 +29,7 @@ SOURCES += \
 HEADERS += \
     benchmark.h \
     benchmarkwindow.h \
+    binaryTree.h \
     date.h \
     demowindow.h \
     functs.h \

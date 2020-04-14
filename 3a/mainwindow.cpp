@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
 //    int a[] = {9, 4, 2, 1, 5, 7, 6, 3, 8};
-//    shakerSort(a, 9);
+//    binaryTreeSort(a, 9);
 
 //    for (int el : a)
 //    {

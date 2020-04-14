@@ -163,6 +163,19 @@ void DemoWindow::on_runShakerButton_clicked()
     ui->runAllButton->setEnabled(false);
 }
 
+void DemoWindow::on_runHeapButton_clicked()
+{
+    Date* arr = new Date[m_arr_size];
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* visuals = new std::queue<visualization>;
+    heapSort(arr, m_arr_size, true, visuals);
+    visualizeItems(visuals, m_heapTable);
+
+    ui->runHeapButton->setEnabled(false);
+    ui->runAllButton->setEnabled(false);
+}
+
 void DemoWindow::on_runAllButton_clicked()
 {
     Date* arr = new Date[m_arr_size];
@@ -212,6 +225,11 @@ void DemoWindow::on_runAllButton_clicked()
     shakerSort(arr, m_arr_size, true, shakerVisuals);
     visualizeItems(shakerVisuals, m_shakerTable);
 
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* heapVisuals = new std::queue<visualization>;
+    heapSort(arr, m_arr_size, true, heapVisuals);
+    visualizeItems(heapVisuals, m_heapTable);
+
     setRunButtonsEnabled(false);
 }
-

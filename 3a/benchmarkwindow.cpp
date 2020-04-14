@@ -29,6 +29,9 @@ BenchmarkWindow::BenchmarkWindow(QWidget *parent) :
 
     m_heapTable = new table(ui->heapTable);
     m_heapTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
+
+    m_binaryTreeTable = new table(ui->binaryTreeTable);
+    m_binaryTreeTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
 }
 
 BenchmarkWindow::~BenchmarkWindow()
@@ -141,9 +144,32 @@ void BenchmarkWindow::on_testShakerSortButton_clicked()
     m_shakerTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_shakerTable->rowCount());
 }
 
+void BenchmarkWindow::on_testHeapSortButton_clicked()
+{
+    Date* arr = dateArray();
+
+    std::queue<visualization>* visuals = nullptr;
+
+    int size = ui->arrSizeCounter->value();
+    QString sortionType = sortionTypeQString();
+    auto time = benchSortAlg(heapSort, arr, size, false, visuals);
+
+    m_heapTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_heapTable->rowCount());
+}
+
+void BenchmarkWindow::on_testBinaryTreeSortButton_clicked()
+{
+    Date* arr = dateArray();
+
+    int size = ui->arrSizeCounter->value();
+    QString sortionType = sortionTypeQString();
+    auto time = benchSortAlg(binaryTreeSort, arr, size);
+
+    m_binaryTreeTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_binaryTreeTable->rowCount());
+}
+
 void BenchmarkWindow::on_testAllButton_clicked()
 {
-
     m_arr = dateArray();
 
     std::queue<visualization>* visuals = nullptr;
@@ -183,7 +209,16 @@ void BenchmarkWindow::on_testAllButton_clicked()
 
     std::copy(m_arr, m_arr + size, arr);
 
-    time = time = benchSortAlg(shakerSort, arr, size, false, visuals);
+    time = benchSortAlg(shakerSort, arr, size, false, visuals);
     m_shakerTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_shakerTable->rowCount());
-}
 
+    std::copy(m_arr, m_arr + size, arr);
+
+    time = benchSortAlg(heapSort, arr, size, false, visuals);
+    m_heapTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_heapTable->rowCount());
+
+    std::copy(m_arr, m_arr + size, arr);
+
+    time = benchSortAlg(binaryTreeSort, arr, size);
+    m_binaryTreeTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_binaryTreeTable->rowCount());
+}

@@ -45,6 +45,7 @@ private slots:
     void on_runLibraryButton_clicked();
     void on_runAllButton_clicked();
     void on_runShakerButton_clicked();
+    void on_runHeapButton_clicked();
 };
 
 #endif // DEMOWINDOW_H

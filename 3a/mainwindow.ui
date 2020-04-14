@@ -42,7 +42,7 @@ font-size: 35px;
 font-family: Roboto;</string>
       </property>
       <property name="text">
-       <string>Lab 3A welcomes you!</string>
+       <string>Labs 3A + 3C welcome you!</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
