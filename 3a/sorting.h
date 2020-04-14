@@ -26,6 +26,32 @@ void shuffle(T arr[], int size)
 }
 
 template <typename T>
+void bubbleSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
+{
+    bool sorted = false;
+    int lastSorted = size-1;
+
+    while (!sorted)
+    {
+        sorted = true;
+
+        for (int idx = 0; idx < lastSorted; idx++)
+        {
+            if (vis) visuals->push({0, idx, idx+1, ""});
+
+            if (arr[idx] > arr[idx+1])
+            {
+                if (vis) visuals->push({1, idx, idx+1, ""});
+                _swap(arr[idx], arr[idx+1]);
+                sorted = false;
+            }
+        }
+
+        lastSorted--;
+    }
+}
+
+template <typename T>
 void selectionSort(T arr[], int first, int last, bool vis, std::queue<visualization>* visuals)
 {
     int sorted_idx = first,
@@ -308,6 +334,84 @@ void binaryTreeSort(T arr[], int size)
 
     int elem = 0;
     root->BTtoArr(arr, elem);
+}
+
+template <typename T>
+void combSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
+{
+    if(size <= 1) return;
+
+    double factor = 1.2473;
+    int step = size-1;
+    while (step > 1)
+    {
+        for(int idx = 0; idx + step < size; idx++)
+        {
+            if(vis) visuals->push({0, idx, idx+step, ""});
+            if (arr[idx] > arr[idx+step])
+            {
+                if(vis) visuals->push({1, idx, idx+step, ""});
+                _swap(arr[idx], arr[idx+step]);
+            }
+        }
+
+        step /= factor;
+    }
+
+    bubbleSort(arr, size, vis, visuals);
+}
+
+template <typename T>
+void gnomeSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
+{
+    int idx = 0;
+
+    while (idx < size) {
+        if (idx == 0)
+            idx++;
+
+        if(vis) visuals->push({0, idx, idx-1, ""});
+
+        if (arr[idx] >= arr[idx - 1])
+            idx++;
+        else {
+            if(vis) visuals->push({1, idx, idx-1, ""});
+            _swap(arr[idx], arr[idx - 1]);
+            idx--;
+        }
+    }
+}
+
+template <typename T>
+void oddEvenSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
+{
+    bool sorted = false;
+    while(!sorted)
+    {
+        sorted = true;
+
+        for(int idx = 0; idx <= size - 2; idx+=2)
+        {
+            if(vis) visuals->push({0, idx, idx+1, ""});
+            if (arr[idx] > arr[idx+1])
+            {
+                if(vis) visuals->push({1, idx, idx+1, ""});
+                _swap(arr[idx], arr[idx+1]);
+                sorted = false;
+            }
+        }
+
+        for(int idx = 1; idx <= size - 2; idx +=2)
+        {
+            if(vis) visuals->push({0, idx, idx+1, ""});
+            if (arr[idx] > arr[idx+1])
+            {
+                if(vis) visuals->push({1, idx, idx+1, ""});
+                _swap(arr[idx], arr[idx+1]);
+                sorted = false;
+            }
+        }
+    }
 }
 
 #endif // SORTING_H

@@ -284,9 +284,9 @@ font-family: Roboto;</string>
    <widget class="QWidget" name="scrollAreaWidgetContents">
     <property name="geometry">
      <rect>
-      <x>-899</x>
+      <x>-1301</x>
       <y>0</y>
-      <width>2368</width>
+      <width>3271</width>
       <height>700</height>
      </rect>
     </property>
@@ -963,6 +963,345 @@ color: #e66739;</string>
          </property>
          <property name="text">
           <string>Shaker sort</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_11">
+        <property name="minimumSize">
+         <size>
+          <width>261</width>
+          <height>671</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+	border: none;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QPushButton" name="testCombSortButton">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>630</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Bench</string>
+         </property>
+        </widget>
+        <widget class="QTableWidget" name="combTable">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>50</y>
+           <width>261</width>
+           <height>560</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QHeaderView::section {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #DE6262,  stop:1 #FFB88C);
+    color: white;
+    padding-left: 4px;
+    border: 1px solid #6c6c6c;
+	font-size: 14px;
+}
+
+QTableView {
+    selection-background-color: #dedede;
+
+	selection-color: dark-grey;
+
+	font-size:14px;
+}
+
+
+/* style the sort indicator */
+QHeaderView::down-arrow {
+    image: url(down_arrow.png);
+}
+
+QHeaderView::up-arrow {
+    image: url(up_arrow.png);
+}
+
+QTableView::item {
+}
+</string>
+         </property>
+         <column>
+          <property name="text">
+           <string>N</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Step</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Arr type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Time</string>
+          </property>
+         </column>
+        </widget>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>261</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 28px;
+font-weight: 500;
+text-decoration: underline;
+color: #e66739;</string>
+         </property>
+         <property name="text">
+          <string>Comb sort</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_12">
+        <property name="minimumSize">
+         <size>
+          <width>261</width>
+          <height>671</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+	border: none;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QPushButton" name="testGnomeSortButton">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>630</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Bench</string>
+         </property>
+        </widget>
+        <widget class="QTableWidget" name="gnomeTable">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>50</y>
+           <width>261</width>
+           <height>560</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QHeaderView::section {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #DE6262,  stop:1 #FFB88C);
+    color: white;
+    padding-left: 4px;
+    border: 1px solid #6c6c6c;
+	font-size: 14px;
+}
+
+QTableView {
+    selection-background-color: #dedede;
+
+	selection-color: dark-grey;
+
+	font-size:14px;
+}
+
+
+/* style the sort indicator */
+QHeaderView::down-arrow {
+    image: url(down_arrow.png);
+}
+
+QHeaderView::up-arrow {
+    image: url(up_arrow.png);
+}
+
+QTableView::item {
+}
+</string>
+         </property>
+         <column>
+          <property name="text">
+           <string>N</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Step</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Arr type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Time</string>
+          </property>
+         </column>
+        </widget>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>261</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 28px;
+font-weight: 500;
+text-decoration: underline;
+color: #e66739;</string>
+         </property>
+         <property name="text">
+          <string>Gnome sort</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_14">
+        <property name="minimumSize">
+         <size>
+          <width>261</width>
+          <height>671</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+	border: none;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QPushButton" name="testOddEvenSortButton">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>630</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Bench</string>
+         </property>
+        </widget>
+        <widget class="QTableWidget" name="oddEvenTable">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>50</y>
+           <width>261</width>
+           <height>560</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QHeaderView::section {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #DE6262,  stop:1 #FFB88C);
+    color: white;
+    padding-left: 4px;
+    border: 1px solid #6c6c6c;
+	font-size: 14px;
+}
+
+QTableView {
+    selection-background-color: #dedede;
+
+	selection-color: dark-grey;
+
+	font-size:14px;
+}
+
+
+/* style the sort indicator */
+QHeaderView::down-arrow {
+    image: url(down_arrow.png);
+}
+
+QHeaderView::up-arrow {
+    image: url(up_arrow.png);
+}
+
+QTableView::item {
+}
+</string>
+         </property>
+         <column>
+          <property name="text">
+           <string>N</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Step</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Arr type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Time</string>
+          </property>
+         </column>
+        </widget>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>261</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 28px;
+font-weight: 500;
+text-decoration: underline;
+color: #e66739;</string>
+         </property>
+         <property name="text">
+          <string>Odd-even sort</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

@@ -24,8 +24,17 @@ BenchmarkWindow::BenchmarkWindow(QWidget *parent) :
     m_libraryTable = new table(ui->libraryTable);
     m_libraryTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
 
+    m_combTable = new table(ui->combTable);
+    m_combTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
+
+    m_gnomeTable = new table(ui->gnomeTable);
+    m_gnomeTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
+
     m_shakerTable = new table(ui->shakerTable);
     m_shakerTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
+
+    m_oddEvenTable = new table(ui->oddEvenTable);
+    m_oddEvenTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
 
     m_heapTable = new table(ui->heapTable);
     m_heapTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
@@ -131,6 +140,32 @@ void BenchmarkWindow::on_testLibrarySortButton_clicked()
     m_libraryTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_libraryTable->rowCount());
 }
 
+void BenchmarkWindow::on_testCombSortButton_clicked()
+{
+    Date* arr = dateArray();
+
+    std::queue<visualization>* visuals = nullptr;
+
+    int size = ui->arrSizeCounter->value();
+    QString sortionType = sortionTypeQString();
+    auto time = benchSortAlg(combSort, arr, size, false, visuals);
+
+    m_combTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_combTable->rowCount());
+}
+
+void BenchmarkWindow::on_testGnomeSortButton_clicked()
+{
+    Date* arr = dateArray();
+
+    std::queue<visualization>* visuals = nullptr;
+
+    int size = ui->arrSizeCounter->value();
+    QString sortionType = sortionTypeQString();
+    auto time = benchSortAlg(gnomeSort, arr, size, false, visuals);
+
+    m_gnomeTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_gnomeTable->rowCount());
+}
+
 void BenchmarkWindow::on_testShakerSortButton_clicked()
 {
     Date* arr = dateArray();
@@ -142,6 +177,19 @@ void BenchmarkWindow::on_testShakerSortButton_clicked()
     auto time = benchSortAlg(shakerSort, arr, size, false, visuals);
 
     m_shakerTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_shakerTable->rowCount());
+}
+
+void BenchmarkWindow::on_testOddEvenSortButton_clicked()
+{
+    Date* arr = dateArray();
+
+    std::queue<visualization>* visuals = nullptr;
+
+    int size = ui->arrSizeCounter->value();
+    QString sortionType = sortionTypeQString();
+    auto time = benchSortAlg(oddEvenSort, arr, size, false, visuals);
+
+    m_oddEvenTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_oddEvenTable->rowCount());
 }
 
 void BenchmarkWindow::on_testHeapSortButton_clicked()
@@ -209,8 +257,23 @@ void BenchmarkWindow::on_testAllButton_clicked()
 
     std::copy(m_arr, m_arr + size, arr);
 
+    time = benchSortAlg(combSort, arr, size, false, visuals);
+    m_combTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_combTable->rowCount());
+
+    std::copy(m_arr, m_arr + size, arr);
+
+    time = benchSortAlg(gnomeSort, arr, size, false, visuals);
+    m_gnomeTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_gnomeTable->rowCount());
+
+    std::copy(m_arr, m_arr + size, arr);
+
     time = benchSortAlg(shakerSort, arr, size, false, visuals);
     m_shakerTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_shakerTable->rowCount());
+
+    std::copy(m_arr, m_arr + size, arr);
+
+    time = benchSortAlg(oddEvenSort, arr, size, false, visuals);
+    m_oddEvenTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_oddEvenTable->rowCount());
 
     std::copy(m_arr, m_arr + size, arr);
 

@@ -31,6 +31,9 @@ private:
     table* m_mergeTable;
     table* m_hybridTable;
     table* m_libraryTable;
+    table* m_combTable;
+    table* m_gnomeTable;
+    table* m_oddEvenTable;
     table* m_shakerTable;
     table* m_heapTable;
     table* m_binaryTreeTable;
@@ -49,6 +52,9 @@ private slots:
     void on_testShakerSortButton_clicked();
     void on_testHeapSortButton_clicked();
     void on_testBinaryTreeSortButton_clicked();
+    void on_testCombSortButton_clicked();
+    void on_testGnomeSortButton_clicked();
+    void on_testOddEvenSortButton_clicked();
 };
 
 #endif // BENCHMARKWINDOW_H

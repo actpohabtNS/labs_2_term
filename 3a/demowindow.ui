@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1500</width>
-    <height>1057</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -463,9 +463,9 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-300</y>
+      <y>-759</y>
       <width>1440</width>
-      <height>1051</height>
+      <height>1510</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -1104,6 +1104,252 @@ color: #e66739;</string>
          </widget>
         </widget>
        </widget>
+       <widget class="QGroupBox" name="groupBox_50">
+        <property name="minimumSize">
+         <size>
+          <width>1430</width>
+          <height>133</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+	border: none;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QGroupBox" name="groupBox_51">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>241</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_19">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>9</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 29px;
+font-weight: 500;
+color: #e66739;</string>
+          </property>
+          <property name="text">
+           <string>Comb sort</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_52">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>41</y>
+           <width>1431</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QTableWidget" name="combTable">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>1411</width>
+            <height>71</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_53">
+         <property name="geometry">
+          <rect>
+           <x>1310</x>
+           <y>0</y>
+           <width>121</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QPushButton" name="runCombButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_54">
+        <property name="minimumSize">
+         <size>
+          <width>1430</width>
+          <height>133</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+	border: none;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QGroupBox" name="groupBox_58">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>241</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_21">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>9</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 29px;
+font-weight: 500;
+color: #e66739;</string>
+          </property>
+          <property name="text">
+           <string>Gnome sort</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_59">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>41</y>
+           <width>1431</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QTableWidget" name="gnomeTable">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>1411</width>
+            <height>71</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_60">
+         <property name="geometry">
+          <rect>
+           <x>1310</x>
+           <y>0</y>
+           <width>121</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QPushButton" name="runGnomeButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </widget>
+       </widget>
        <widget class="QGroupBox" name="groupBox_30">
         <property name="minimumSize">
          <size>
@@ -1207,6 +1453,129 @@ border-radius: 5px;
           <string/>
          </property>
          <widget class="QPushButton" name="runShakerButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Run</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_61">
+        <property name="minimumSize">
+         <size>
+          <width>1430</width>
+          <height>133</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+	border: none;
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QGroupBox" name="groupBox_65">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>241</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QLabel" name="label_23">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>9</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 29px;
+font-weight: 500;
+color: #e66739;</string>
+          </property>
+          <property name="text">
+           <string>Odd-even sort</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_66">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>41</y>
+           <width>1431</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QTableWidget" name="oddEvenTable">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>1411</width>
+            <height>71</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_67">
+         <property name="geometry">
+          <rect>
+           <x>1310</x>
+           <y>0</y>
+           <width>121</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	background-color: #e1e1e1;
+border-radius: 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <widget class="QPushButton" name="runOddEvenButton">
           <property name="enabled">
            <bool>false</bool>
           </property>

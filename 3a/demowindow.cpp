@@ -14,15 +14,11 @@ DemoWindow::DemoWindow(QWidget *parent) :
     m_mergeTable = new table(ui->mergeTable, ui->mergeTable->height(), 1);
     m_hybridTable = new table(ui->hybridTable, ui->hybridTable->height(), 1);
     m_libraryTable = new table(ui->libraryTable, ui->libraryTable->height(), 1);
+    m_combTable = new table(ui->combTable, ui->combTable->height(), 1);
+    m_gnomeTable = new table(ui->gnomeTable, ui->gnomeTable->height(), 1);
     m_shakerTable = new table(ui->shakerTable, ui->shakerTable->height(), 1);
+    m_oddEvenTable = new table(ui->oddEvenTable, ui->oddEvenTable->height(), 1);
     m_heapTable = new table(ui->heapTable, ui->heapTable->height(), 1);
-
-//    int delay = 2000;
-//    QTableWidget* table = ui->selectionTable;
-//    int elem1 = 5;
-
-//    QTimer::singleShot(delay, [table, elem1]{table->item(0, elem1)->setText("TEST");});
-
 }
 
 DemoWindow::~DemoWindow()
@@ -37,7 +33,10 @@ void DemoWindow::setRunButtonsEnabled(bool enabled)
     ui->runMergeButton->setEnabled(enabled);
     ui->runHybridButton->setEnabled(enabled);
     ui->runLibraryButton->setEnabled(enabled);
+    ui->runCombButton->setEnabled(enabled);
+    ui->runGnomeButton->setEnabled(enabled);
     ui->runShakerButton->setEnabled(enabled);
+    ui->runOddEvenButton->setEnabled(enabled);
     ui->runHeapButton->setEnabled(enabled);
     ui->runAllButton->setEnabled(enabled);
 }
@@ -68,7 +67,10 @@ void DemoWindow::on_generateAllButton_clicked()
     m_mergeTable->setDateArray(m_arr, m_arr_size);
     m_hybridTable->setDateArray(m_arr, m_arr_size);
     m_libraryTable->setDateArray(m_arr, m_arr_size);
+    m_combTable->setDateArray(m_arr, m_arr_size);
+    m_gnomeTable->setDateArray(m_arr, m_arr_size);
     m_shakerTable->setDateArray(m_arr, m_arr_size);
+    m_oddEvenTable->setDateArray(m_arr, m_arr_size);
     m_heapTable->setDateArray(m_arr, m_arr_size);
 
     setRunButtonsEnabled(true);
@@ -150,6 +152,32 @@ void DemoWindow::on_runLibraryButton_clicked()
     ui->runAllButton->setEnabled(false);
 }
 
+void DemoWindow::on_runCombButton_clicked()
+{
+    Date* arr = new Date[m_arr_size];
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* visuals = new std::queue<visualization>;
+    combSort(arr, m_arr_size, true, visuals);
+    visualizeItems(visuals, m_combTable);
+
+    ui->runCombButton->setEnabled(false);
+    ui->runAllButton->setEnabled(false);
+}
+
+void DemoWindow::on_runGnomeButton_clicked()
+{
+    Date* arr = new Date[m_arr_size];
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* visuals = new std::queue<visualization>;
+    gnomeSort(arr, m_arr_size, true, visuals);
+    visualizeItems(visuals, m_gnomeTable);
+
+    ui->runGnomeButton->setEnabled(false);
+    ui->runAllButton->setEnabled(false);
+}
+
 void DemoWindow::on_runShakerButton_clicked()
 {
     Date* arr = new Date[m_arr_size];
@@ -160,6 +188,19 @@ void DemoWindow::on_runShakerButton_clicked()
     visualizeItems(visuals, m_shakerTable);
 
     ui->runShakerButton->setEnabled(false);
+    ui->runAllButton->setEnabled(false);
+}
+
+void DemoWindow::on_runOddEvenButton_clicked()
+{
+    Date* arr = new Date[m_arr_size];
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* visuals = new std::queue<visualization>;
+    oddEvenSort(arr, m_arr_size, true, visuals);
+    visualizeItems(visuals, m_oddEvenTable);
+
+    ui->runOddEvenButton->setEnabled(false);
     ui->runAllButton->setEnabled(false);
 }
 
@@ -221,9 +262,27 @@ void DemoWindow::on_runAllButton_clicked()
 
     std::copy(m_arr, m_arr + m_arr_size, arr);
 
+    std::queue<visualization>* combVisuals = new std::queue<visualization>;
+    combSort(arr, m_arr_size, true, combVisuals);
+    visualizeItems(combVisuals, m_combTable);
+
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* gnomeVisuals = new std::queue<visualization>;
+    gnomeSort(arr, m_arr_size, true, gnomeVisuals);
+    visualizeItems(gnomeVisuals, m_gnomeTable);
+
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
     std::queue<visualization>* shakerVisuals = new std::queue<visualization>;
     shakerSort(arr, m_arr_size, true, shakerVisuals);
     visualizeItems(shakerVisuals, m_shakerTable);
+
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* oddEvenVisuals = new std::queue<visualization>;
+    oddEvenSort(arr, m_arr_size, true, oddEvenVisuals);
+    visualizeItems(oddEvenVisuals, m_oddEvenTable);
 
     std::copy(m_arr, m_arr + m_arr_size, arr);
 
