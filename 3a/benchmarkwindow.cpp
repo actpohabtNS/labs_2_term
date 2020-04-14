@@ -24,6 +24,11 @@ BenchmarkWindow::BenchmarkWindow(QWidget *parent) :
     m_libraryTable = new table(ui->libraryTable);
     m_libraryTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
 
+    m_shakerTable = new table(ui->shakerTable);
+    m_shakerTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
+
+    m_heapTable = new table(ui->heapTable);
+    m_heapTable->setSize(0, 50, {90, 80, 89}, {"N", "Pre-sort", "Time"});
 }
 
 BenchmarkWindow::~BenchmarkWindow()
@@ -123,6 +128,19 @@ void BenchmarkWindow::on_testLibrarySortButton_clicked()
     m_libraryTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_libraryTable->rowCount());
 }
 
+void BenchmarkWindow::on_testShakerSortButton_clicked()
+{
+    Date* arr = dateArray();
+
+    std::queue<visualization>* visuals = nullptr;
+
+    int size = ui->arrSizeCounter->value();
+    QString sortionType = sortionTypeQString();
+    auto time = benchSortAlg(shakerSort, arr, size, false, visuals);
+
+    m_shakerTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_shakerTable->rowCount());
+}
+
 void BenchmarkWindow::on_testAllButton_clicked()
 {
 
@@ -163,4 +181,9 @@ void BenchmarkWindow::on_testAllButton_clicked()
     time = benchSortAlg(std::sort, &arr[0], &arr[size-1]);
     m_libraryTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_libraryTable->rowCount());
 
+    std::copy(m_arr, m_arr + size, arr);
+
+    time = time = benchSortAlg(shakerSort, arr, size, false, visuals);
+    m_shakerTable->insertDataRow({QString::number(size), sortionType, QString::number(time)}, m_shakerTable->rowCount());
 }
+

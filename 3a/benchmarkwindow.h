@@ -31,6 +31,8 @@ private:
     table* m_mergeTable;
     table* m_hybridTable;
     table* m_libraryTable;
+    table* m_shakerTable;
+    table* m_heapTable;
 
 
 signals:
@@ -43,6 +45,7 @@ private slots:
     void on_testHybridSortButton_clicked();
     void on_testLibrarySortButton_clicked();
     void on_testAllButton_clicked();
+    void on_testShakerSortButton_clicked();
 };
 
 #endif // BENCHMARKWINDOW_H

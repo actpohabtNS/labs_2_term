@@ -210,4 +210,51 @@ void hybridQuicksort(T arr[], int first, int last, int step, bool vis, std::queu
 
 }
 
+template <typename T>
+void shakerSort(T arr[], int size, bool vis, std::queue<visualization>* visuals)
+{
+    if (size <= 1) return;
+    bool arrSorted = false;
+
+    int beg = -1;
+    int end = size - 1;
+
+    while (!arrSorted)
+    {
+        arrSorted = true;
+        beg++;
+        for (int elem = beg; elem < end; elem++)
+        {
+            if (vis) if (vis) visuals->push({0, elem, elem+1, ""});
+            if (arr[elem] > arr[elem+1])
+            {
+                if (vis) if (vis) visuals->push({1, elem, elem+1, ""});
+                _swap(arr[elem], arr[elem+1]);
+                arrSorted = false;
+            }
+        }
+
+        if (arrSorted) break;
+
+        end--;
+        for(int elem = end; elem > beg; elem--)
+        {
+            if (vis) if (vis) visuals->push({0, elem, elem-1, ""});
+            if (arr[elem] < arr[elem-1])
+            {
+                if (vis) if (vis) visuals->push({1, elem, elem-1, ""});
+                _swap(arr[elem], arr[elem-1]);
+                arrSorted = false;
+            }
+        }
+
+    }
+}
+
+template <typename T>
+void heapSort(T arr[], int size)
+{
+
+}
+
 #endif // SORTING_H

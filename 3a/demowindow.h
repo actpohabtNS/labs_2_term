@@ -27,6 +27,8 @@ private:
     table* m_mergeTable;
     table* m_hybridTable;
     table* m_libraryTable;
+    table* m_shakerTable;
+    table* m_heapTable;
 
     Date* dateArray();
 
@@ -42,6 +44,7 @@ private slots:
     void on_runHybridButton_clicked();
     void on_runLibraryButton_clicked();
     void on_runAllButton_clicked();
+    void on_runShakerButton_clicked();
 };
 
 #endif // DEMOWINDOW_H

@@ -14,6 +14,8 @@ DemoWindow::DemoWindow(QWidget *parent) :
     m_mergeTable = new table(ui->mergeTable, ui->mergeTable->height(), 1);
     m_hybridTable = new table(ui->hybridTable, ui->hybridTable->height(), 1);
     m_libraryTable = new table(ui->libraryTable, ui->libraryTable->height(), 1);
+    m_shakerTable = new table(ui->shakerTable, ui->shakerTable->height(), 1);
+    m_heapTable = new table(ui->heapTable, ui->heapTable->height(), 1);
 
 //    int delay = 2000;
 //    QTableWidget* table = ui->selectionTable;
@@ -35,6 +37,8 @@ void DemoWindow::setRunButtonsEnabled(bool enabled)
     ui->runMergeButton->setEnabled(enabled);
     ui->runHybridButton->setEnabled(enabled);
     ui->runLibraryButton->setEnabled(enabled);
+    ui->runShakerButton->setEnabled(enabled);
+    ui->runHeapButton->setEnabled(enabled);
     ui->runAllButton->setEnabled(enabled);
 }
 
@@ -64,6 +68,8 @@ void DemoWindow::on_generateAllButton_clicked()
     m_mergeTable->setDateArray(m_arr, m_arr_size);
     m_hybridTable->setDateArray(m_arr, m_arr_size);
     m_libraryTable->setDateArray(m_arr, m_arr_size);
+    m_shakerTable->setDateArray(m_arr, m_arr_size);
+    m_heapTable->setDateArray(m_arr, m_arr_size);
 
     setRunButtonsEnabled(true);
 }
@@ -74,7 +80,7 @@ void DemoWindow::on_runSelectionButton_clicked()
     std::copy(m_arr, m_arr + m_arr_size, arr);
 
     std::queue<visualization>* visuals = new std::queue<visualization>;
-    selectionSort(m_arr, 0, m_arr_size-1, true, visuals);
+    selectionSort(arr, 0, m_arr_size-1, true, visuals);
     visualizeItems(visuals, m_selectionTable);
 
     ui->runSelectionButton->setEnabled(false);
@@ -87,7 +93,7 @@ void DemoWindow::on_runQuickButton_clicked()
     std::copy(m_arr, m_arr + m_arr_size, arr);
 
     std::queue<visualization>* visuals = new std::queue<visualization>;
-    quicksort(m_arr, 0, m_arr_size-1, true, visuals);
+    quicksort(arr, 0, m_arr_size-1, true, visuals);
     visualizeItems(visuals, m_quickTable);
 
     ui->runSelectionButton->setEnabled(false);
@@ -103,7 +109,7 @@ void DemoWindow::on_runMergeButton_clicked()
 
     Date* temp = new Date[m_arr_size];
 
-    mergesort(m_arr, temp, m_arr_size, true, visuals);
+    mergesort(arr, temp, m_arr_size, true, visuals);
     visualizeItems(visuals, m_mergeTable);
 
     ui->runMergeButton->setEnabled(false);
@@ -118,7 +124,7 @@ void DemoWindow::on_runHybridButton_clicked()
     std::copy(m_arr, m_arr + m_arr_size, arr);
 
     std::queue<visualization>* visuals = new std::queue<visualization>;
-    hybridQuicksort(m_arr, 0, m_arr_size-1, step, true, visuals);
+    hybridQuicksort(arr, 0, m_arr_size-1, step, true, visuals);
     visualizeItems(visuals, m_hybridTable);
 
     ui->runHybridButton->setEnabled(false);
@@ -141,6 +147,19 @@ void DemoWindow::on_runLibraryButton_clicked()
     visualizeItems(visuals, m_libraryTable, dateElemArrToDateArr(arr, m_arr_size));
 
     ui->runLibraryButton->setEnabled(false);
+    ui->runAllButton->setEnabled(false);
+}
+
+void DemoWindow::on_runShakerButton_clicked()
+{
+    Date* arr = new Date[m_arr_size];
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* visuals = new std::queue<visualization>;
+    shakerSort(arr, m_arr_size, true, visuals);
+    visualizeItems(visuals, m_shakerTable);
+
+    ui->runShakerButton->setEnabled(false);
     ui->runAllButton->setEnabled(false);
 }
 
@@ -187,5 +206,12 @@ void DemoWindow::on_runAllButton_clicked()
 
     visualizeItems(libraryVisuals, m_libraryTable, dateElemArrToDateArr(dateElemArr, m_arr_size));
 
+    std::copy(m_arr, m_arr + m_arr_size, arr);
+
+    std::queue<visualization>* shakerVisuals = new std::queue<visualization>;
+    shakerSort(arr, m_arr_size, true, shakerVisuals);
+    visualizeItems(shakerVisuals, m_shakerTable);
+
     setRunButtonsEnabled(false);
 }
+
