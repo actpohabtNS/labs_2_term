@@ -21,6 +21,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    binaryTree.h \
     functs.h \
     generalTree.h \
     mainwindow.h

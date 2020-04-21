@@ -1,334 +1,377 @@
 #ifndef GENERALTREE_H
 #define GENERALTREE_H
+
 #include <vector>
 #include <stack>
 #include <queue>
 #include <utility>
-#include <functs.h>
 #include <iostream>
+#include <cassert>
 #include <QDebug>
 
-QString pathToQStr(std::vector<int> path, std::vector<int> maxMap);
+#include <functs.h>
 
 template <typename T>
-class Node {
+class Tree {
+
 private:
-    T data;
-    std::vector<Node<T>*> children;
+    class Node {
+
+        friend Tree;
+
+    private:
+        T _data;
+        std::vector<Node*> _children;
+
+    public:
+        explicit Node(T _data);
+        explicit Node(T _data, std::vector<Node*> _children);
+        virtual ~Node();
+
+        const T& data() const;
+        const std::vector<Node*>& children() const;
+
+        friend std::ostream& operator<<(std::ostream& ostream, const Node& node)
+        {
+            return ostream << node._data;
+        }
+
+        friend QTextStream& operator<<(QTextStream &ostream, const Node& node)
+        {
+            return ostream << node._data;
+        }
+    };
+
+    Node* _root;
+
+    std::vector<int> getMaxChildrenMap() const;
 
 public:
-    Node()
-    {
-        this->data = NULL;
-    }
+    explicit Tree(T _data);
+    explicit Tree(Node* node);
+    virtual ~Tree();
 
-    Node(T data)
-    {
-        this->data = data;
-    }
+    bool contains(const T& searchData) const;
 
-    Node(T data, std::vector<Node<T>*> children)
-    {
-        this->data = data;
-        this->children = children;
-    }
+    void insert(const std::vector<int>& path, const T& data);
 
-    ~Node()
-    {
-        delete &data;
-        delete &children;
-    }
+    Tree* removeSubtree(const std::vector<int>& path);
+    void removeSubtree(const T& removingData);
 
-    bool contains(T searchData)
-    {
-        std::stack<Node*> nodes;
+    std::vector<int> getPath(const T& searchData) const;
+    Node* getNode(const std::vector<int>& path) const;
 
-        nodes.push(this);
+    const Node* root() const;
+    const T& get(const std::vector<int>& path) const;
+    void set(const std::vector<int>& path, const T& data);
 
-        while (!nodes.empty())
-        {
-            Node* current = nodes.top();
-            nodes.pop();
+    QString getQStrPaths() const;
 
-            if (current->data == searchData)
-                return true;
-
-            if (current->children.size() != 0)
-            {
-                for(int idx = current->children.size() - 1; idx >= 0; idx--)
-                {
-                    nodes.push(current->children[idx]);
-                }
-            }
-        }
-
-        return false;
-    }
-
-    T get(std::vector<int> path)
-    {
-        Node* node = this;
-
-        for (int idx : path)
-        {
-            node = node->children[idx];
-        }
-
-        return node->data;
-    }
-
-    void set(std::vector<int> path, T newData)
-    {
-        Node* node = this;
-
-        for (int idx : path)
-        {
-            node = node->children[idx];
-        }
-
-        node->data = newData;
-    }
-
-    Node* remove(std::vector<int> path)
-    {
-        Node* node = this;
-
-        for (uint elem = 0; elem < path.size(); elem++)
-        {
-            if (elem == path.size()-1)
-            {
-                Node* temp = node->children[path[elem]];
-
-                node->children.erase(node->children.begin() + path[elem]);
-                node = temp;
-                break;
-            }
-
-            node = node->children[path[elem]];
-
-        }
-
-        Node* temp = new Node(node->getData(), node->getChildren());
-        delete node;
-        return temp;
-    }
-
-    void remove(T removingData)
-    {
-        std::vector<int> removingPath;
-
-        while (this->contains(removingData))
-        {
-            removingPath = this->getPath(removingData);
-            this->remove(removingPath);
-        }
-    }
-
-
-    void insert(std::vector<int> path, T data)
-    {
-        Node* parent = this;
-
-        for (int idx : path)
-        {
-            parent = parent->children[idx];
-        }
-
-        parent->children.push_back(new Node(data));
-    }
-
-    std::vector<int> getPath(T searchData)
-    {
-        std::stack<Node*> nodes;
-        nodes.push(this);
-
-        std::stack<std::vector<int>> intPaths;
-        intPaths.push({});
-
-        while (!nodes.empty())
-        {
-            Node* current = nodes.top();
-            nodes.pop();
-
-            if (current->data == searchData)
-            {
-                return intPaths.top();
-            }
-
-            std::vector<int> parentPath = intPaths.top();
-            intPaths.pop();
-
-            if (current->children.size() != 0)
-            {
-                for (int idx = current->children.size() - 1; idx >= 0; idx--)
-                {
-                    std::vector<int> extendedPath(parentPath);
-                    extendedPath.push_back(idx);
-
-                    nodes.push(current->children[idx]);
-                    intPaths.push(extendedPath);
-                }
-            }
-        }
-
-        return {-1};
-    }
-
-    QString getSubtreeQStr(std::vector<int> maxChildrenMap)
-    {
-        std::stack<Node*> nodes;
-        nodes.push(this);
-
-        std::stack<std::vector<int>> intPaths;
-        intPaths.push({});
-
-        QString subtreeQStr;
-
-        while (!nodes.empty())
-        {
-            Node<T>* current = nodes.top();
-            nodes.pop();
-
-            std::vector<int> parentPath = intPaths.top();
-            intPaths.pop();
-
-            //subtreeQStr += QVariant(*current).toString();
-            QTextStream(&subtreeQStr) << *current;
-            subtreeQStr += pathToQStr(parentPath, maxChildrenMap);
-            subtreeQStr += "\n";
-
-            if (current->children.size() != 0)
-            {
-                for (int idx = current->children.size() - 1; idx >= 0; idx--)
-                {
-                    std::vector<int> extendedPath(parentPath);
-                    extendedPath.push_back(idx);
-
-                    nodes.push(current->children[idx]);
-                    intPaths.push(extendedPath);
-                }
-            }
-
-        }
-
-        return subtreeQStr;
-    }
-
-    std::vector<int> getMaxChildrenMap()
-    {
-        std::queue<Node*> nodes;
-        nodes.push(this);
-
-        std::vector<int> maxChildrenMap;
-
-        int thisLevelNodes = 1;
-        int nextLevelNodes = 0;
-        int levelMaxDigits = getDigitsNum(this->getChildrenSize()-1);
-
-        while (!nodes.empty())
-        {
-            Node* current = nodes.front();
-            nodes.pop();
-
-            if (thisLevelNodes == 0)
-            {
-                thisLevelNodes = nextLevelNodes;
-                nextLevelNodes = 0;
-                maxChildrenMap.push_back(levelMaxDigits);
-                levelMaxDigits = getDigitsNum(current->getChildrenSize()-1);
-            }
-
-            int levelDigits = getDigitsNum(current->getChildrenSize()-1);
-
-            if (levelMaxDigits < levelDigits)
-            {
-                levelMaxDigits = levelDigits;
-            }
-
-            if (current->getChildrenSize() != 0)
-            {
-                for (int idx = 0; idx < current->getChildrenSize(); idx++)
-                {
-                    nodes.push(current->children[idx]);
-                }
-            }
-            nextLevelNodes += current->getChildrenSize();
-            thisLevelNodes--;
-
-        }
-
-        return maxChildrenMap;
-    }
-
-    void print()
-    {
-        std::stack<Node*> nodes;
-
-        nodes.push(this);
-
-        while (!nodes.empty())
-        {
-            Node* current = nodes.top();
-            nodes.pop();
-
-            qDebug() << current->data;
-
-            if (current->children.size() != 0)
-            {
-                for (int idx = current->getChildrenSize() - 1; idx >= 0; idx--)
-                {
-                    nodes.push(current->children[idx]);
-                }
-            }
-        }
-    }
-
-    T getData()
-    {
-        return data;
-    }
-
-    std::vector<Node<T>*> getChildren()
-    {
-        return children;
-    }
-
-    int getChildrenSize()
-    {
-        return children.size();
-    }
-
-    friend std::ostream& operator<<(std::ostream& ostream, const Node<T>& node)
-    {
-        return ostream << node.data;
-    }
-
-    friend QTextStream& operator<<(QTextStream &ostream, const Node<T>& node)
-    {
-        return ostream << node.data;
-    }
-
+    void print() const;
 };
 
-QString pathToQStr(std::vector<int> path, std::vector<int> maxMap)
-{
-    QString resQStr = "—> ";
 
-    for (uint pathIdx = 0; pathIdx < path.size(); pathIdx++)
+
+// --------------------------- Node ------------------------------
+
+template <typename T>
+Tree<T>::Node::Node(T _data) : _data(_data) {}
+
+template<typename T>
+Tree<T>::Node::Node(T _data, std::vector<Tree::Node *> _children)
+    : _data(_data), _children(_children) {}
+
+template <typename T>
+Tree<T>::Node::~Node()
+{
+    for (auto& child : this->_children)
     {
-        for (int nullDigits = maxMap[pathIdx] - getDigitsNum(path[pathIdx]); nullDigits > 0; nullDigits--)
+        delete child;
+    }
+}
+
+template <typename T>
+const T& Tree<T>::Node::data() const
+{
+    return this->_data;
+}
+
+template <typename T>
+const std::vector<typename Tree<T>::Node*>& Tree<T>::Node::children() const
+{
+    return this->_children;
+}
+
+
+
+// --------------------------- Tree ------------------------------
+
+template <typename T>
+Tree<T>::Tree(T _data) : _root(new Node(_data)) {}
+
+template<typename T>
+Tree<T>::Tree(Tree::Node *node) : _root(new Node(node->_data, node->_children)) {}
+
+template <typename T>
+Tree<T>::~Tree()
+{
+    delete _root;
+}
+
+template<typename T>
+std::vector<int> Tree<T>::getMaxChildrenMap() const
+{
+    std::queue<Node*> nodes;
+    nodes.push(this->_root);
+
+    std::vector<int> maxChildrenMap;
+
+    int thisLevelNodes = 1;
+    int nextLevelNodes = 0;
+    int levelMaxDigits = getDigitsNum(this->_root->_children.size() - 1);
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.front();
+        nodes.pop();
+
+        if (thisLevelNodes == 0)
         {
-            resQStr += " ";
+            thisLevelNodes = nextLevelNodes;
+            nextLevelNodes = 0;
+            maxChildrenMap.push_back(levelMaxDigits);
+            levelMaxDigits = getDigitsNum(current->_children.size() - 1);
         }
 
-        resQStr += QString::number(path[pathIdx]);
+        int levelDigits = getDigitsNum(current->_children.size() - 1);
 
-        if (pathIdx != path.size()-1)
-            resQStr += ",";
+        if (levelMaxDigits < levelDigits)
+        {
+            levelMaxDigits = levelDigits;
+        }
+
+        if (current->_children.size() != 0)
+        {
+            for (uint idx = 0; idx < current->_children.size(); idx++)
+            {
+                nodes.push(current->_children[idx]);
+            }
+        }
+
+        nextLevelNodes += current->_children.size();
+        thisLevelNodes--;
     }
 
-    resQStr += " <—";
-    return resQStr;
+    return maxChildrenMap;
+}
+
+template<typename T>
+bool Tree<T>::contains(const T &searchData) const
+{
+    std::stack<Node*> nodes;
+
+    nodes.push(this->_root);
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.top();
+        nodes.pop();
+
+        if (current->_data == searchData)
+            return true;
+
+        if (current->_children.size() != 0)
+        {
+            for(int idx = current->_children.size() - 1; idx >= 0; idx--)
+            {
+                nodes.push(current->_children[idx]);
+            }
+        }
+    }
+
+    return false;
+}
+
+template<typename T>
+void Tree<T>::insert(const std::vector<int> &path, const T &data)
+{
+    Node* parent = this->getNode(path);
+    parent->_children.push_back(new Node(data));
+}
+
+template<typename T>
+void Tree<T>::removeSubtree(const T &removingData)
+{
+    std::vector<int> removingPath;
+
+    while (this->contains(removingData))
+    {
+        removingPath = this->getPath(removingData);
+        this->removeSubtree(removingPath);
+    }
+}
+
+template<typename T>
+std::vector<int> Tree<T>::getPath(const T &searchData) const
+{
+    std::stack<Node*> nodes;
+    nodes.push(this->_root);
+
+    std::stack<std::vector<int>> intPaths;
+    intPaths.push({});
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.top();
+        nodes.pop();
+
+        if (current->_data == searchData)
+        {
+            return intPaths.top();
+        }
+
+        std::vector<int> parentPath = intPaths.top();
+        intPaths.pop();
+
+        if (current->_children.size() != 0)
+        {
+            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
+            {
+                std::vector<int> extendedPath(parentPath);
+                extendedPath.push_back(idx);
+
+                nodes.push(current->_children[idx]);
+                intPaths.push(extendedPath);
+            }
+        }
+    }
+
+    return {-1};
+}
+
+template<typename T>
+Tree<T>* Tree<T>::removeSubtree(const std::vector<int> &path)
+{
+    Node* node = this->getNode(path);
+
+    if (path.size() != 0)
+    {
+        std::vector<int> parentPath(path);
+        parentPath.pop_back();
+
+        Node* parentNode = this->getNode(parentPath);
+
+        parentNode->_children.erase(parentNode->_children.begin() + path.back());
+    }
+
+    return new Tree(node); //TODO deleting the whole tree itself
+}
+
+template <typename T>
+const typename Tree<T>::Node* Tree<T>::root() const
+{
+    return this->_root;
+}
+
+template<typename T>
+const T& Tree<T>::get(const std::vector<int> &path) const
+{
+    return getNode(path)->_data;
+}
+
+template<typename T>
+typename Tree<T>::Node* Tree<T>::getNode(const std::vector<int> &path) const
+{
+    Node* node = this->_root;
+
+    for (uint idx : path)
+    {
+        assert(idx <= node->_children.size() - 1);
+        node = node->_children[idx];
+    }
+
+    return node;
+}
+
+template<typename T>
+void Tree<T>::set(const std::vector<int> &path, const T &data)
+{
+    Node* node = this->_root;
+
+    for (int idx : path)
+    {
+        assert(idx <= node->_children.size() - 1);
+        node = node->_children[idx];
+    }
+
+    node->_data = data;
+}
+
+template<typename T>
+QString Tree<T>::getQStrPaths() const
+{
+    std::vector<int> maxChildrenMap = this->getMaxChildrenMap();
+
+    std::stack<Node*> nodes;
+    nodes.push(this->_root);
+
+    std::stack<std::vector<int>> intPaths;
+    intPaths.push({});
+
+    QString subtreeQStr;
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.top();
+        nodes.pop();
+
+        std::vector<int> parentPath = intPaths.top();
+        intPaths.pop();
+
+        subtreeQStr += pathToQStr(parentPath, maxChildrenMap);
+
+        QTextStream *stream = new QTextStream(&subtreeQStr);
+        *stream << "     { " << *current << " }\n";
+
+        if (current->_children.size() != 0)
+        {
+            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
+            {
+                std::vector<int> extendedPath(parentPath);
+                extendedPath.push_back(idx);
+
+                nodes.push(current->_children[idx]);
+                intPaths.push(extendedPath);
+            }
+        }
+    }
+
+    return subtreeQStr;
+}
+
+template<typename T>
+void Tree<T>::print() const
+{
+    std::stack<Node*> nodes;
+
+    nodes.push(this->_root);
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.top();
+        nodes.pop();
+
+        qDebug() << current->_data;
+
+        if (current->_children.size() != 0)
+        {
+            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
+            {
+                nodes.push(current->_children[idx]);
+            }
+        }
+    }
 }
 
 #endif // GENERALTREE_H
+

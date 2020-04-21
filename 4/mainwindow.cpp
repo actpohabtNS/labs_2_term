@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    Node<int>* root = new Node<int>(1);
+    Tree<int> *root = new Tree<int>(1);
     root->insert({}, 2);
     root->insert({}, 5);
     root->insert({}, 8);
@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //qDebug() << root->get({0});
 
-    qDebug().noquote() << root->getSubtreeQStr(root->getMaxChildrenMap());
+    //qDebug().noquote() << root->getQStrPaths();
 //    std::vector<int> path = root->getPath(10);
 
 //    qDebug() << "FINAL PATH:";
@@ -42,12 +42,12 @@ MainWindow::MainWindow(QWidget *parent)
 //    }
 
 
-//    root->print();
+    root->print();
 
-//    qDebug() << "manipulating";
-//    root->remove(11);
+    qDebug() << "manipulating";
+    Tree<int>* root2 = root->removeSubtree(root->getPath(2));
 
-    //root->print();
+    root2->print();
 
 //    std::vector<int> maxes = root->getMaxChildrenMap();
 
