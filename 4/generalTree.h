@@ -47,6 +47,7 @@ private:
     std::vector<int> getMaxChildrenMap() const;
 
 public:
+    Tree();
     explicit Tree(T _data);
     explicit Tree(Node* node);
     virtual ~Tree();
@@ -106,6 +107,10 @@ const std::vector<typename Tree<T>::Node*>& Tree<T>::Node::children() const
 
 // --------------------------- Tree ------------------------------
 
+
+template<typename T>
+Tree<T>::Tree() : _root(nullptr) {}
+
 template <typename T>
 Tree<T>::Tree(T _data) : _root(new Node(_data)) {}
 
@@ -121,6 +126,9 @@ Tree<T>::~Tree()
 template<typename T>
 std::vector<int> Tree<T>::getMaxChildrenMap() const
 {
+    if (!_root)
+        return {};
+
     std::queue<Node*> nodes;
     nodes.push(this->_root);
 
@@ -168,6 +176,9 @@ std::vector<int> Tree<T>::getMaxChildrenMap() const
 template<typename T>
 bool Tree<T>::contains(const T &searchData) const
 {
+    if (!_root)
+        return false;
+
     std::stack<Node*> nodes;
 
     nodes.push(this->_root);
@@ -195,6 +206,12 @@ bool Tree<T>::contains(const T &searchData) const
 template<typename T>
 void Tree<T>::insert(const std::vector<int> &path, const T &data)
 {
+    if (!_root)
+    {
+        _root = new Node(data);
+        return;
+    }
+
     Node* parent = this->getNode(path);
     parent->_children.push_back(new Node(data));
 }
@@ -202,6 +219,9 @@ void Tree<T>::insert(const std::vector<int> &path, const T &data)
 template<typename T>
 void Tree<T>::removeSubtree(const T &removingData)
 {
+    if (!_root)
+        return;
+
     std::vector<int> removingPath;
 
     while (this->contains(removingData))
@@ -214,6 +234,9 @@ void Tree<T>::removeSubtree(const T &removingData)
 template<typename T>
 std::vector<int> Tree<T>::getPath(const T &searchData) const
 {
+    if (!_root)
+        return {-1};
+
     std::stack<Node*> nodes;
     nodes.push(this->_root);
 
@@ -252,7 +275,12 @@ std::vector<int> Tree<T>::getPath(const T &searchData) const
 template<typename T>
 Tree<T>* Tree<T>::removeSubtree(const std::vector<int> &path)
 {
+    if (!_root)
+        return new Tree();
+
     Node* node = this->getNode(path);
+
+    Tree* newTree = new Tree(node);
 
     if (path.size() != 0)
     {
@@ -263,8 +291,12 @@ Tree<T>* Tree<T>::removeSubtree(const std::vector<int> &path)
 
         parentNode->_children.erase(parentNode->_children.begin() + path.back());
     }
+    else
+    {
+        _root = nullptr;
+    }
 
-    return new Tree(node); //TODO deleting the whole tree itself
+    return newTree;
 }
 
 template <typename T>
@@ -276,12 +308,18 @@ const typename Tree<T>::Node* Tree<T>::root() const
 template<typename T>
 const T& Tree<T>::get(const std::vector<int> &path) const
 {
+    if (!_root)
+        return NULL;
+
     return getNode(path)->_data;
 }
 
 template<typename T>
 typename Tree<T>::Node* Tree<T>::getNode(const std::vector<int> &path) const
 {
+    if (!_root)
+        return nullptr;
+
     Node* node = this->_root;
 
     for (uint idx : path)
@@ -296,6 +334,9 @@ typename Tree<T>::Node* Tree<T>::getNode(const std::vector<int> &path) const
 template<typename T>
 void Tree<T>::set(const std::vector<int> &path, const T &data)
 {
+    if (!_root)
+        _root = new Node(data);
+
     Node* node = this->_root;
 
     for (int idx : path)
@@ -310,6 +351,9 @@ void Tree<T>::set(const std::vector<int> &path, const T &data)
 template<typename T>
 QString Tree<T>::getQStrPaths() const
 {
+    if (!_root)
+        return "";
+
     std::vector<int> maxChildrenMap = this->getMaxChildrenMap();
 
     std::stack<Node*> nodes;
@@ -352,6 +396,9 @@ QString Tree<T>::getQStrPaths() const
 template<typename T>
 void Tree<T>::print() const
 {
+    if (!_root)
+        return;
+
     std::stack<Node*> nodes;
 
     nodes.push(this->_root);
