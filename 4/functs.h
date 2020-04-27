@@ -6,6 +6,8 @@
 
 int getDigitsNum(int num);
 
-QString pathToQStr(std::vector<int> path, std::vector<int> maxMap);
+QString pathToQStr(const std::vector<int>& path);
+
+QString pathToQStr(const std::vector<int>& path, const std::vector<int>& maxMap);
 
 #endif // FUNCTS_H
