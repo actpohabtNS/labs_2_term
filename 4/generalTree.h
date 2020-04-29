@@ -9,15 +9,16 @@
 #include <cassert>
 #include <QDebug>
 
+#include "tree.h"
 #include <functs.h>
 
 template <typename T>
-class Tree {
+class GeneralTree : public Tree<T> {
 
 private:
-    class Node {
+    class Node : Tree<T>::Node {
 
-        friend Tree;
+        friend GeneralTree;
 
     private:
         T _data;
@@ -30,6 +31,7 @@ private:
 
         const T& data() const;
         const std::vector<Node*>& children() const;
+        int childrenCount() const;
 
         friend std::ostream& operator<<(std::ostream& ostream, const Node& node)
         {
@@ -44,23 +46,27 @@ private:
 
     Node* _root;
 
-    std::vector<int> getMaxChildrenMap() const;
+    std::vector<int> _getMaxChildrenMap() const;
+    Node* _getNode(const std::vector<int>& path) const;
 
 public:
-    Tree();
-    explicit Tree(T _data);
-    explicit Tree(Node* node);
-    virtual ~Tree();
+    GeneralTree();
+    explicit GeneralTree(T _data);
+    explicit GeneralTree(Node* node);
+    virtual ~GeneralTree();
 
     bool contains(const T& searchData) const;
 
     void insert(const std::vector<int>& path, const T& data);
 
-    Tree* removeSubtree(const std::vector<int>& path);
+    GeneralTree* removeSubtree(const std::vector<int>& path);
     void removeSubtree(const T& removingData);
 
     std::vector<int> getPath(const T& searchData) const;
-    Node* getNode(const std::vector<int>& path) const;
+    int childrenCount(const std::vector<int>& path) const;
+
+    std::vector<int> childrenCount() const;
+    std::vector<T> preorderTravData() const;
 
     const Node* root() const;
     const T& get(const std::vector<int>& path) const;
@@ -76,14 +82,14 @@ public:
 // --------------------------- Node ------------------------------
 
 template <typename T>
-Tree<T>::Node::Node(T _data) : _data(_data) {}
+GeneralTree<T>::Node::Node(T _data) : _data(_data) {}
 
 template<typename T>
-Tree<T>::Node::Node(T _data, std::vector<Tree::Node *> _children)
+GeneralTree<T>::Node::Node(T _data, std::vector<GeneralTree::Node *> _children)
     : _data(_data), _children(_children) {}
 
 template <typename T>
-Tree<T>::Node::~Node()
+GeneralTree<T>::Node::~Node()
 {
     for (auto& child : this->_children)
     {
@@ -92,39 +98,43 @@ Tree<T>::Node::~Node()
 }
 
 template <typename T>
-const T& Tree<T>::Node::data() const
+const T& GeneralTree<T>::Node::data() const
 {
     return this->_data;
 }
 
 template <typename T>
-const std::vector<typename Tree<T>::Node*>& Tree<T>::Node::children() const
+const std::vector<typename GeneralTree<T>::Node*>& GeneralTree<T>::Node::children() const
 {
     return this->_children;
 }
 
-
+template<typename T>
+int GeneralTree<T>::Node::childrenCount() const
+{
+    return this->_children.size();
+}
 
 // --------------------------- Tree ------------------------------
 
 
 template<typename T>
-Tree<T>::Tree() : _root(nullptr) {}
+GeneralTree<T>::GeneralTree() : _root(nullptr) {}
 
 template <typename T>
-Tree<T>::Tree(T _data) : _root(new Node(_data)) {}
+GeneralTree<T>::GeneralTree(T _data) : _root(new Node(_data)) {}
 
 template<typename T>
-Tree<T>::Tree(Tree::Node *node) : _root(new Node(node->_data, node->_children)) {}
+GeneralTree<T>::GeneralTree(GeneralTree::Node *node) : _root(new Node(node->_data, node->_children)) {}
 
 template <typename T>
-Tree<T>::~Tree()
+GeneralTree<T>::~GeneralTree()
 {
     delete _root;
 }
 
 template<typename T>
-std::vector<int> Tree<T>::getMaxChildrenMap() const
+std::vector<int> GeneralTree<T>::_getMaxChildrenMap() const
 {
     if (!_root)
         return {};
@@ -174,7 +184,24 @@ std::vector<int> Tree<T>::getMaxChildrenMap() const
 }
 
 template<typename T>
-bool Tree<T>::contains(const T &searchData) const
+typename GeneralTree<T>::Node* GeneralTree<T>::_getNode(const std::vector<int> &path) const
+{
+    if (!_root)
+        return nullptr;
+
+    Node* node = this->_root;
+
+    for (uint idx : path)
+    {
+        assert(idx <= node->_children.size() - 1);
+        node = node->_children[idx];
+    }
+
+    return node;
+}
+
+template<typename T>
+bool GeneralTree<T>::contains(const T &searchData) const
 {
     if (!_root)
         return false;
@@ -204,7 +231,7 @@ bool Tree<T>::contains(const T &searchData) const
 }
 
 template<typename T>
-void Tree<T>::insert(const std::vector<int> &path, const T &data)
+void GeneralTree<T>::insert(const std::vector<int> &path, const T &data)
 {
     if (!_root)
     {
@@ -212,12 +239,12 @@ void Tree<T>::insert(const std::vector<int> &path, const T &data)
         return;
     }
 
-    Node* parent = this->getNode(path);
+    Node* parent = this->_getNode(path);
     parent->_children.push_back(new Node(data));
 }
 
 template<typename T>
-void Tree<T>::removeSubtree(const T &removingData)
+void GeneralTree<T>::removeSubtree(const T &removingData)
 {
     if (!_root)
         return;
@@ -232,7 +259,7 @@ void Tree<T>::removeSubtree(const T &removingData)
 }
 
 template<typename T>
-std::vector<int> Tree<T>::getPath(const T &searchData) const
+std::vector<int> GeneralTree<T>::getPath(const T &searchData) const
 {
     if (!_root)
         return {-1};
@@ -273,14 +300,14 @@ std::vector<int> Tree<T>::getPath(const T &searchData) const
 }
 
 template<typename T>
-Tree<T>* Tree<T>::removeSubtree(const std::vector<int> &path)
+GeneralTree<T>* GeneralTree<T>::removeSubtree(const std::vector<int> &path)
 {
     if (!_root)
-        return new Tree();
+        return new GeneralTree();
 
     Node* node = this->getNode(path);
 
-    Tree* newTree = new Tree(node);
+    GeneralTree* newTree = new GeneralTree(node);
 
     if (path.size() != 0)
     {
@@ -300,39 +327,82 @@ Tree<T>* Tree<T>::removeSubtree(const std::vector<int> &path)
 }
 
 template <typename T>
-const typename Tree<T>::Node* Tree<T>::root() const
+const typename GeneralTree<T>::Node* GeneralTree<T>::root() const
 {
     return this->_root;
 }
 
 template<typename T>
-const T& Tree<T>::get(const std::vector<int> &path) const
+const T& GeneralTree<T>::get(const std::vector<int> &path) const
 {
-    if (!_root)
-        return NULL;
-
-    return getNode(path)->_data;
+    assert(this->_root);
+    return _getNode(path)->_data;
 }
 
 template<typename T>
-typename Tree<T>::Node* Tree<T>::getNode(const std::vector<int> &path) const
+int GeneralTree<T>::childrenCount(const std::vector<int> &path) const
+{
+    return this->_getNode(path)->childrenCount();
+}
+
+template<typename T>
+std::vector<int> GeneralTree<T>::childrenCount() const
 {
     if (!_root)
-        return nullptr;
+        return {-1};
 
-    Node* node = this->_root;
+    std::stack<Node*> nodes;
+    nodes.push(this->_root);
 
-    for (uint idx : path)
+    std::vector<int> childrenCount;
+
+    while (!nodes.empty())
     {
-        assert(idx <= node->_children.size() - 1);
-        node = node->_children[idx];
+        Node* current = nodes.top();
+        nodes.pop();
+
+        childrenCount.push_back(current->childrenCount());
+
+        if (current->_children.size() != 0)
+        {
+            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
+                nodes.push(current->_children[idx]);
+        }
     }
 
-    return node;
+    return childrenCount;
 }
 
 template<typename T>
-void Tree<T>::set(const std::vector<int> &path, const T &data)
+std::vector<T> GeneralTree<T>::preorderTravData() const
+{
+    if (!_root)
+        return {-1};
+
+    std::stack<Node*> nodes;
+    nodes.push(this->_root);
+
+    std::vector<T> preorderTravData;
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.top();
+        nodes.pop();
+
+        preorderTravData.push_back(current->_data);
+
+        if (current->_children.size() != 0)
+        {
+            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
+                nodes.push(current->_children[idx]);
+        }
+    }
+
+    return preorderTravData;
+}
+
+template<typename T>
+void GeneralTree<T>::set(const std::vector<int> &path, const T &data)
 {
     if (!_root)
         _root = new Node(data);
@@ -349,12 +419,12 @@ void Tree<T>::set(const std::vector<int> &path, const T &data)
 }
 
 template<typename T>
-QString Tree<T>::getQStrPaths() const
+QString GeneralTree<T>::getQStrPaths() const
 {
     if (!_root)
         return "";
 
-    std::vector<int> maxChildrenMap = this->getMaxChildrenMap();
+    std::vector<int> maxChildrenMap = this->_getMaxChildrenMap();
 
     std::stack<Node*> nodes;
     nodes.push(this->_root);
@@ -394,7 +464,7 @@ QString Tree<T>::getQStrPaths() const
 }
 
 template<typename T>
-void Tree<T>::print() const
+void GeneralTree<T>::print() const
 {
     if (!_root)
         return;
@@ -421,4 +491,3 @@ void Tree<T>::print() const
 }
 
 #endif // GENERALTREE_H
-

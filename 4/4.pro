@@ -24,7 +24,10 @@ HEADERS += \
     binaryTree.h \
     functs.h \
     generalTree.h \
-    mainwindow.h
+    interactivetreeview.h \
+    mainwindow.h \
+    tree.h \
+    treewidget.h
 
 FORMS += \
     mainwindow.ui

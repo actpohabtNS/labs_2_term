@@ -15,7 +15,7 @@ int getDigitsNum(int num)
 
 QString pathToQStr(const std::vector<int>& path)
 {
-    QString resQStr = "-> ";
+    QString resQStr = "( ";
 
     for (uint pathIdx = 0; pathIdx < path.size(); pathIdx++)
     {
@@ -25,13 +25,13 @@ QString pathToQStr(const std::vector<int>& path)
             resQStr += ",";
     }
 
-    resQStr += " <-";
+    resQStr += " )";
     return resQStr;
 }
 
 QString pathToQStr(const std::vector<int>& path, const std::vector<int>& maxMap)
 {
-    QString resQStr = "—> ";
+    QString resQStr = "( ";
 
     for (uint pathIdx = 0; pathIdx < path.size(); pathIdx++)
     {
@@ -46,7 +46,7 @@ QString pathToQStr(const std::vector<int>& path, const std::vector<int>& maxMap)
             resQStr += ",";
     }
 
-    resQStr += " <—";
+    resQStr += " )";
     return resQStr;
 }
 
