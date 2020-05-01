@@ -32,13 +32,6 @@ public:
     void setupBinaryTreeUI();
     void setupTreeUI();
 
-    template <typename T>
-    void updateTreeTable(void setTree(Tree<T>&, QTreeWidget*), Tree<T>& tree, QTreeWidget* treeWidget)
-    {
-        treeWidget->clear();
-        setTree(tree, treeWidget);
-    }
-
     template <typename treeType>
     void updatePathBeforeElemText(const treeType& tree, QTextBrowser* browser)
     {
@@ -98,6 +91,7 @@ private:
 
     BinaryTree<int>* _bTree;
     GeneralTree<int>* _tree;
+    TreeWidget<int>* _bTW;
     TreeWidget<int>* _tW;
     InteractiveTreeView<int>* _iBTV;
     InteractiveTreeView<int>* _iTV;

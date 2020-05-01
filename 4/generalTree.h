@@ -25,8 +25,8 @@ private:
         std::vector<Node*> _children;
 
     public:
-        explicit Node(T _data);
-        explicit Node(T _data, std::vector<Node*> _children);
+        explicit Node(const T& data);
+        explicit Node(const T& data, const std::vector<Node*>& children);
         virtual ~Node();
 
         const T& data() const;
@@ -51,9 +51,12 @@ private:
 
 public:
     GeneralTree();
-    explicit GeneralTree(T _data);
+    explicit GeneralTree(const T& data);
     explicit GeneralTree(Node* node);
     virtual ~GeneralTree();
+
+    void empty();
+    void empty(const T& newRoot);
 
     bool contains(const T& searchData) const;
     virtual bool nodeExists(const std::vector<int>& path) const;
@@ -85,11 +88,11 @@ public:
 // --------------------------- Node ------------------------------
 
 template <typename T>
-GeneralTree<T>::Node::Node(T _data) : _data(_data) {}
+GeneralTree<T>::Node::Node(const T& data) : _data(data) {}
 
 template<typename T>
-GeneralTree<T>::Node::Node(T _data, std::vector<GeneralTree::Node *> _children)
-    : _data(_data), _children(_children) {}
+GeneralTree<T>::Node::Node(const T& data, const std::vector<GeneralTree::Node *>& children)
+    : _data(data), _children(children) {}
 
 template <typename T>
 GeneralTree<T>::Node::~Node()
@@ -125,7 +128,7 @@ template<typename T>
 GeneralTree<T>::GeneralTree() : _root(nullptr) {}
 
 template <typename T>
-GeneralTree<T>::GeneralTree(T _data) : _root(new Node(_data)) {}
+GeneralTree<T>::GeneralTree(const T& data) : _root(new Node(data)) {}
 
 template<typename T>
 GeneralTree<T>::GeneralTree(GeneralTree::Node *node) : _root(new Node(node->_data, node->_children)) {}
@@ -134,6 +137,20 @@ template <typename T>
 GeneralTree<T>::~GeneralTree()
 {
     delete _root;
+}
+
+template<typename T>
+void GeneralTree<T>::empty()
+{
+    delete this->_root;
+}
+
+template<typename T>
+void GeneralTree<T>::empty(const T &newRoot)
+{
+    this->empty();
+
+    this->_root = new Node(newRoot);
 }
 
 template<typename T>

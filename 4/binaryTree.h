@@ -69,7 +69,9 @@ public:
     explicit BinaryTree(const T& _data);
     virtual ~BinaryTree();
 
-    virtual Node* root() const;
+    void empty();
+    void empty(const T& newRoot);
+
     bool isThreaded() const;
 
     void add(const T& data);
@@ -90,6 +92,8 @@ public:
     virtual T get(const std::vector<int>& path) const;
     std::vector<int> getPath(const T& data) const;
     QString getQStrPaths() const;
+    virtual Node* root() const;
+
     void print() const;
 
     virtual QString type() const;
@@ -295,6 +299,21 @@ template <typename T>
 BinaryTree<T>::~BinaryTree()
 {
     delete _root;
+}
+
+template<typename T>
+void BinaryTree<T>::empty()
+{
+    delete this->_root;
+    this->_root = nullptr;
+}
+
+template<typename T>
+void BinaryTree<T>::empty(const T &newRoot)
+{
+    this->empty();
+
+    this->_root = new Node(newRoot);
 }
 
 template <typename T>

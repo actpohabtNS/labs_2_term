@@ -76,7 +76,7 @@ font-family: Roboto;</string>
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <property name="usesScrollButtons">
      <bool>true</bool>
@@ -97,7 +97,7 @@ font-family: Roboto;</string>
      <attribute name="title">
       <string>Binary tree</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox_2">
+     <widget class="QGroupBox" name="ManipulateTree_2">
       <property name="geometry">
        <rect>
         <x>390</x>
@@ -218,7 +218,7 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Adds child with [value] to binary tree</string>
+         <string>Adds child with [ value ] to binary tree</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -239,7 +239,7 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Note: adding elements to binary tree will cause Interactive Tree View go to [Root]</string>
+         <string>Note: adding elements to binary tree will cause Interactive Tree View go to [ Root ]</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -501,7 +501,65 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Creates binary tree which root element is with [root]</string>
+         <string>Creates binary tree which root element is with [ root ]</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_49">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>690</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QPushButton" name="binaryTreeDemoButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo mode</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_140">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Starts demonstration mode to show programs features</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -509,7 +567,7 @@ font-family: Roboto;</string>
        </widget>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_8">
+     <widget class="QGroupBox" name="cascadeTreeView">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -600,7 +658,7 @@ e</string>
        </column>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_9">
+     <widget class="QGroupBox" name="PathBeforeElem">
       <property name="geometry">
        <rect>
         <x>760</x>
@@ -671,7 +729,7 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_10">
+     <widget class="QGroupBox" name="InteractiveTreeView_2">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -911,16 +969,16 @@ QPushButton:disabled {
       <zorder>binaryChildrenTable</zorder>
       <zorder>toBinaryRootButton</zorder>
      </widget>
-     <zorder>groupBox_8</zorder>
-     <zorder>groupBox_2</zorder>
-     <zorder>groupBox_9</zorder>
-     <zorder>groupBox_10</zorder>
+     <zorder>cascadeTreeView</zorder>
+     <zorder>ManipulateTree_2</zorder>
+     <zorder>PathBeforeElem</zorder>
+     <zorder>InteractiveTreeView_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Integer tree</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox_11">
+     <widget class="QGroupBox" name="ManipulateTree">
       <property name="geometry">
        <rect>
         <x>390</x>
@@ -966,7 +1024,7 @@ QPushButton:disabled {
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>150</y>
+         <y>210</y>
          <width>351</width>
          <height>91</height>
         </rect>
@@ -1041,7 +1099,7 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Adds elem with [value] as a child to selected elem to tree</string>
+         <string>Adds elem with [ value ] as a child to selected elem to tree</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -1052,7 +1110,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>270</y>
+         <y>320</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -1110,7 +1168,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>350</y>
+         <y>390</y>
          <width>351</width>
          <height>91</height>
         </rect>
@@ -1169,7 +1227,8 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Prints path to element with [value]</string>
+         <string>Prints path to element with
+[ value ]</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -1196,7 +1255,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>470</y>
+         <y>500</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -1254,7 +1313,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>550</y>
+         <y>570</y>
          <width>351</width>
          <height>91</height>
         </rect>
@@ -1313,7 +1372,8 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Removes all elements with [value] and their subtrees</string>
+         <string>Removes all elements with
+[ value ] and their subtrees</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -1340,7 +1400,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>30</y>
+         <y>100</y>
          <width>351</width>
          <height>91</height>
         </rect>
@@ -1415,7 +1475,128 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Creates tree which root element is with [root]</string>
+         <string>Creates tree which root element is with [ root ]</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_45">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_97">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>0</y>
+          <width>291</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #8f5050;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Note: changing tree will cause Interactive Tree View go to [ Root ]</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: red;
+font-size: 35px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>!</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_61">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>680</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QPushButton" name="integerTreeDemoButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo mode</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_141">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Starts demonstration mode to show programs features</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -1423,7 +1604,7 @@ font-family: Roboto;</string>
        </widget>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_38">
+     <widget class="QGroupBox" name="PathBeforeElem_2">
       <property name="geometry">
        <rect>
         <x>760</x>
@@ -1494,7 +1675,7 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_39">
+     <widget class="QGroupBox" name="InteractiveTreeView">
       <property name="geometry">
        <rect>
         <x>760</x>
@@ -1732,7 +1913,7 @@ QPushButton:pressed {
       <zorder>toIntegerRootButton</zorder>
       <zorder>toIntegerParentButton</zorder>
      </widget>
-     <widget class="QGroupBox" name="groupBox_40">
+     <widget class="QGroupBox" name="Console">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1803,7 +1984,7 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_41">
+     <widget class="QGroupBox" name="CascadeTreeView">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1894,6 +2075,1212 @@ e</string>
      <attribute name="title">
       <string>File system</string>
      </attribute>
+     <widget class="QGroupBox" name="FileSystem">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>351</width>
+        <height>741</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 1px solid black;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_98">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>351</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>File system</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QTreeWidget" name="fileSystem">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>351</width>
+         <height>711</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTreeWidget {
+	border: none;
+	background-color: #f2f2f2;
+}
+
+QHeaderView::section {
+    background-color: #e1e1e1;
+    color: black;
+	border: none;
+	padding-left: 30px;
+	font-size: 17px;
+}
+
+QTreeView::item {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+	font-size: 17px;
+}
+
+QTreeView::item::selected {
+	color: black;
+	background-color: #9fbfa0;
+}
+
+e</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>Value</string>
+        </property>
+       </column>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="SortBy">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>400</y>
+        <width>351</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	background-color: #fcfcfc;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_133">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>351</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>Sort by</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="nameSortElemInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_132">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>100</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   min size (in kB)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_134">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>200</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   changed later </string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_59">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>310</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+	border: none;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_135">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Sorts file system by including elems with above properties</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="sortElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sort</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLineEdit" name="minSizeSortElemInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTimeEdit" name="minTimeSortElemInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>200</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_136">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>50</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_137">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>250</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   changed earlier</string>
+       </property>
+      </widget>
+      <widget class="QTimeEdit" name="maxTimeSortElemInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>250</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="maxSizeSortElemInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_138">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>150</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   max size (in kB)</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="ManipulateFileSystem">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>20</y>
+        <width>721</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	background-color: #fcfcfc;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_114">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>721</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Manipulate file system</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_50">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>390</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_117">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints size of selected elem's subtree</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getTotalSizeElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get total size</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_51">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_119">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints total amount of elem's subtree's files and folders</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getTotalAmountElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get total amount</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_53">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_128">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints amount of elem's subtree's files</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getFilesAmountElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get files amount</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_55">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>310</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_129">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints amount of elem's subtree's folders</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getFoldersAmountElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get folders amount</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_54">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_123">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Removes selected elem and its subtree</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="removeSelectedElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remove selected</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_56">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>30</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_124">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Starts demonstration mode to show programs features</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="fileSystemDemoButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo mode</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_57">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>150</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_130">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints elem that has been modificated the last</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getLastEditedElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get last edited</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_58">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>230</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_131">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints elem that has been modificated the first</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getFirstEditedElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get first edited</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_60">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>390</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_139">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Display the whole file system</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="clearSortElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Clear sort</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="FileSystemConsole">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>560</y>
+        <width>721</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 1px solid black;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_113">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>721</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>Console</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QTextBrowser" name="fileConsole">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>721</width>
+         <height>171</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTextBrowser {
+	background-color: #f2f2f2;
+	border: 1px solid #c9c9c9;
+	color: #4a455c;
+	font-size: 15px;
+	font-family: monospace;
+	padding: 5px;
+}</string>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'monospace'; font-size:15px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:19px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="AddNewElem">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>20</y>
+        <width>351</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	background-color: #fcfcfc;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_126">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>351</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>Add new elem</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="isFolderCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>51</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>Is a [ Folder ]</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_122">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>53</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>If elem will be able to have children. (Sets size to [ 0 ])</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_120">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>110</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   name</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="addElemNameInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_125">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>170</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   size (in kB)</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="addElemSizeInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTimeEdit" name="addElemTimeInput">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_127">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>230</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+       </property>
+       <property name="text">
+        <string>—   last changed at</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_52">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>290</y>
+         <width>351</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+	border: none;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_121">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>20</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Adds elem as a child to selected elem of file system</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addElemChildButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add child</string>
+        </property>
+       </widget>
+      </widget>
+      <zorder>groupBox_52</zorder>
+      <zorder>label_126</zorder>
+      <zorder>isFolderCheckBox</zorder>
+      <zorder>label_122</zorder>
+      <zorder>label_120</zorder>
+      <zorder>addElemNameInput</zorder>
+      <zorder>label_125</zorder>
+      <zorder>addElemSizeInput</zorder>
+      <zorder>addElemTimeInput</zorder>
+      <zorder>label_127</zorder>
+     </widget>
+     <zorder>ManipulateFileSystem</zorder>
+     <zorder>FileSystem</zorder>
+     <zorder>SortBy</zorder>
+     <zorder>FileSystemConsole</zorder>
+     <zorder>AddNewElem</zorder>
     </widget>
    </widget>
   </widget>
