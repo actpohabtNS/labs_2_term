@@ -247,7 +247,7 @@ void MainWindow::on_newIntegerTreeButton_clicked()
     this->_iTV->toRoot();
 
     this->_console->newPar();
-    this->_console->printTech("New tree with [root] = " + QString::number(newRoot) + " created!");
+    this->_console->printTech("New tree with [ root ] = " + QString::number(newRoot) + " created!");
 }
 
 void MainWindow::on_newIntegerTreeInput_textEdited()
@@ -260,15 +260,15 @@ void MainWindow::on_addIntegerChildButton_clicked()
     int value = ui->addIntegerInput->text().toInt();
 
     this->_console->newPar();
-    this->_console->printTech("Adding child with [value] = " + QString::number(value) + " to selected item");
+    this->_console->printTech("Adding child with [ value ] = " + QString::number(value) + " to selected item");
     this->_console->newLine();
 
     std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
 
     this->_tree->insert(path, value);
 
-    this->_tW->setTree(this->_tree);
     this->_tW->update();
+
     updatePathBeforeElemText(*_tree, ui->pathBeforeElemIntegerTextField);
 
     this->_iTV->setTree(this->_tree);
@@ -296,7 +296,7 @@ void MainWindow::on_getIntegerPathByValueButton_clicked()
     int value = ui->getIntegerPathInput->text().toInt();
 
     this->_console->newPar();
-    this->_console->printTech("Path to [elem] with value = " + QString::number(value) + ":");
+    this->_console->printTech("Path to [ elem ] with value = " + QString::number(value) + ":");
     this->_console->newLine();
 
     if (this->_tree->contains(value))
@@ -306,9 +306,8 @@ void MainWindow::on_getIntegerPathByValueButton_clicked()
     }
     else
     {
-        this->_console->printError("There is no [elem] with value = " + QString::number(value) + "!");
+        this->_console->printError("There is no [ elem ] with value = " + QString::number(value) + "!");
     }
-
 }
 
 void MainWindow::on_getIntegerPathInput_textEdited()
@@ -323,6 +322,13 @@ void MainWindow::on_removeIntegerSelectedButton_clicked()
     this->_console->newLine();
 
     std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+
+    if (path.size() == 0)
+    {
+        this->_console->printError("You are not able to delete [ root ]! To create new tree use [ New Tree ] button.");
+        return;
+    }
+
     this->_tree->removeSubtree(path);
 
     this->_tW->setTree(this->_tree);
@@ -338,12 +344,18 @@ void MainWindow::on_removeIntegerByValueButton_clicked()
     int removeValue = ui->removeIntegerInput->text().toInt();
 
     this->_console->newPar();
-    this->_console->printTech("Removing [elem] with value = " + QString::number(removeValue));
+    this->_console->printTech("Removing [ elem ] with value = " + QString::number(removeValue));
 
     if (!this->_tree->contains(removeValue))
     {
         this->_console->newLine();
-        this->_console->printError("There is no [elem] with value = " + QString::number(removeValue) + "!");
+        this->_console->printError("There is no [ elem ] with value = " + QString::number(removeValue) + "!");
+    }
+
+    if (this->_tree->getPath(removeValue).size() == 0)
+    {
+        this->_console->printError("You are not able to delete [ root ]! To create new tree use [ New Tree ] button.");
+        return;
     }
 
     this->_tree->removeSubtree(removeValue);
