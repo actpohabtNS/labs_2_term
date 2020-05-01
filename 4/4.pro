@@ -17,6 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     console.cpp \
+    filesystem.cpp \
+    filesystemelem.cpp \
     functs.cpp \
     main.cpp \
     mainwindow.cpp
@@ -24,6 +26,8 @@ SOURCES += \
 HEADERS += \
     binaryTree.h \
     console.h \
+    filesystem.h \
+    filesystemelem.h \
     functs.h \
     generalTree.h \
     interactivetreeview.h \

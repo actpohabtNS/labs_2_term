@@ -15,7 +15,7 @@
 template <typename T>
 class GeneralTree : public Tree<T> {
 
-private:
+protected:
     class Node : Tree<T>::Node {
 
         friend GeneralTree;
@@ -32,6 +32,7 @@ private:
         const T& data() const;
         const std::vector<Node*>& children() const;
         int childrenCount() const;
+        std::vector<T> preorderTravData() const;
 
         friend std::ostream& operator<<(std::ostream& ostream, const Node& node)
         {
@@ -48,6 +49,7 @@ private:
 
     std::vector<int> _getMaxChildrenMap() const;
     Node* _getNode(const std::vector<int>& path) const;
+    T& _get(const std::vector<int>& path) const;
 
 public:
     GeneralTree();
@@ -71,6 +73,7 @@ public:
 
     std::vector<int> childrenCount() const;
     std::vector<T> preorderTravData() const;
+    std::vector<T> preorderTravData(const std::vector<int>& path) const;
 
     const Node* root() const;
     virtual T get(const std::vector<int>& path) const;
@@ -121,6 +124,30 @@ int GeneralTree<T>::Node::childrenCount() const
     return this->_children.size();
 }
 
+template<typename T>
+std::vector<T> GeneralTree<T>::Node::preorderTravData() const
+{
+    std::stack<const Node*> nodes;
+    nodes.push(this);
+
+    std::vector<T> preorderTravData;
+
+    while (!nodes.empty())
+    {
+        const Node* current = nodes.top();
+        nodes.pop();
+
+        preorderTravData.push_back(current->_data);
+
+        if (current->_children.size() != 0)
+        {
+            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
+                nodes.push(current->_children[idx]);
+        }
+    }
+
+    return preorderTravData;
+}
 // --------------------------- Tree ------------------------------
 
 
@@ -218,6 +245,12 @@ typename GeneralTree<T>::Node* GeneralTree<T>::_getNode(const std::vector<int> &
     }
 
     return node;
+}
+
+template<typename T>
+T &GeneralTree<T>::_get(const std::vector<int> &path) const
+{
+    return this->_getNode(path)->_data;
 }
 
 template<typename T>
@@ -415,29 +448,19 @@ std::vector<int> GeneralTree<T>::childrenCount() const
 template<typename T>
 std::vector<T> GeneralTree<T>::preorderTravData() const
 {
-    if (!_root)
-        return {-1};
+    assert(this->_root != nullptr);
 
-    std::stack<Node*> nodes;
-    nodes.push(this->_root);
+    return this->_root->preorderTravData();
+}
 
-    std::vector<T> preorderTravData;
+template<typename T>
+std::vector<T> GeneralTree<T>::preorderTravData(const std::vector<int> &path) const
+{
+    assert(this->_root != nullptr);
 
-    while (!nodes.empty())
-    {
-        Node* current = nodes.top();
-        nodes.pop();
+    assert(this->_getNode(path) != nullptr);
 
-        preorderTravData.push_back(current->_data);
-
-        if (current->_children.size() != 0)
-        {
-            for (int idx = current->_children.size() - 1; idx >= 0; idx--)
-                nodes.push(current->_children[idx]);
-        }
-    }
-
-    return preorderTravData;
+    return this->_getNode(path)->preorderTravData();
 }
 
 template<typename T>

@@ -2161,13 +2161,13 @@ e</string>
        </column>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="SortBy">
+     <widget class="QGroupBox" name="FilterBy">
       <property name="geometry">
        <rect>
         <x>390</x>
-        <y>400</y>
+        <y>360</y>
         <width>351</width>
-        <height>361</height>
+        <height>401</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2198,17 +2198,17 @@ e</string>
 }</string>
        </property>
        <property name="text">
-        <string>Sort by</string>
+        <string>Filter by</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="nameSortElemInput">
+      <widget class="QLineEdit" name="nameFilterElemInput">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
+         <y>100</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2218,7 +2218,7 @@ e</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>100</y>
+         <y>150</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2236,7 +2236,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>200</y>
+         <y>250</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2254,7 +2254,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>310</y>
+         <y>350</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -2276,7 +2276,7 @@ font-family: Roboto;</string>
          <rect>
           <x>170</x>
           <y>10</y>
-          <width>171</width>
+          <width>181</width>
           <height>31</height>
          </rect>
         </property>
@@ -2286,13 +2286,13 @@ font-size: 13px;
 font-family: Roboto;</string>
         </property>
         <property name="text">
-         <string>Sorts file system by including elems with above properties</string>
+         <string>Filters file system by including elems with above properties</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QPushButton" name="sortElemButton">
+       <widget class="QPushButton" name="filterElemButton">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -2305,25 +2305,25 @@ font-family: Roboto;</string>
          </rect>
         </property>
         <property name="text">
-         <string>Sort</string>
+         <string>Filter</string>
         </property>
        </widget>
       </widget>
-      <widget class="QLineEdit" name="minSizeSortElemInput">
+      <widget class="QLineEdit" name="minSizeFilterElemInput">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>100</y>
+         <y>150</y>
          <width>141</width>
          <height>31</height>
         </rect>
        </property>
       </widget>
-      <widget class="QTimeEdit" name="minTimeSortElemInput">
+      <widget class="QTimeEdit" name="minTimeFilterElemInput">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>200</y>
+         <y>250</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2333,7 +2333,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>50</y>
+         <y>100</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2351,7 +2351,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>250</y>
+         <y>300</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2365,21 +2365,28 @@ font-family: Roboto;</string>
         <string>—   changed earlier</string>
        </property>
       </widget>
-      <widget class="QTimeEdit" name="maxTimeSortElemInput">
+      <widget class="QTimeEdit" name="maxTimeFilterElemInput">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>250</y>
+         <y>300</y>
          <width>141</width>
          <height>31</height>
         </rect>
        </property>
+       <property name="time">
+        <time>
+         <hour>23</hour>
+         <minute>59</minute>
+         <second>0</second>
+        </time>
+       </property>
       </widget>
-      <widget class="QLineEdit" name="maxSizeSortElemInput">
+      <widget class="QLineEdit" name="maxSizeFilterElemInput">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>200</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2389,7 +2396,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>150</y>
+         <y>200</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2402,6 +2409,69 @@ font-family: Roboto;</string>
        <property name="text">
         <string>—   max size (in kB)</string>
        </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_46">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_100">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>0</y>
+          <width>291</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #8f5050;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Note: filtering is done inside the folder [ Root ], thus it will always remain shown</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: red;
+font-size: 35px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>!</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QGroupBox" name="ManipulateFileSystem">
@@ -2951,7 +3021,7 @@ font-family: Roboto;</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QPushButton" name="clearSortElemButton">
+       <widget class="QPushButton" name="clearFilterElemButton">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -2964,7 +3034,7 @@ font-family: Roboto;</string>
          </rect>
         </property>
         <property name="text">
-         <string>Clear sort</string>
+         <string>Clear filter</string>
         </property>
        </widget>
       </widget>
@@ -3046,7 +3116,7 @@ p, li { white-space: pre-wrap; }
         <x>390</x>
         <y>20</y>
         <width>351</width>
-        <height>361</height>
+        <height>321</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -3087,7 +3157,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>51</y>
+         <y>41</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3104,8 +3174,8 @@ font-family: Roboto;</string>
       <widget class="QLabel" name="label_122">
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>53</y>
+         <x>170</x>
+         <y>43</y>
          <width>171</width>
          <height>31</height>
         </rect>
@@ -3126,7 +3196,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>110</y>
+         <y>90</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -3144,7 +3214,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>110</y>
+         <y>90</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3154,7 +3224,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>170</y>
+         <y>150</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -3172,7 +3242,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>170</y>
+         <y>150</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3182,7 +3252,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>230</y>
+         <y>210</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3192,7 +3262,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>230</y>
+         <y>210</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -3210,9 +3280,9 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>290</y>
+         <y>270</y>
          <width>351</width>
-         <height>71</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -3231,7 +3301,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>20</y>
+          <y>10</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -3255,7 +3325,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>20</y>
+          <y>10</y>
           <width>141</width>
           <height>31</height>
          </rect>
@@ -3278,7 +3348,7 @@ font-family: Roboto;</string>
      </widget>
      <zorder>ManipulateFileSystem</zorder>
      <zorder>FileSystem</zorder>
-     <zorder>SortBy</zorder>
+     <zorder>FilterBy</zorder>
      <zorder>FileSystemConsole</zorder>
      <zorder>AddNewElem</zorder>
     </widget>

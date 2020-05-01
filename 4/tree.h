@@ -14,6 +14,7 @@ protected:
         friend Tree;
     public:
         Node() = default;
+        Node(const T&);
         virtual ~Node() = default;
     };
 
