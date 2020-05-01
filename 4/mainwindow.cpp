@@ -27,6 +27,22 @@ void MainWindow::manageInputButtonEnabled(QLineEdit *input, QPushButton* button)
         button->setEnabled(false);
 }
 
+void MainWindow::manageInputButtonEnabled(QTreeWidget *widget, QPushButton *button)
+{
+    if (widget->selectedItems().size() == 0)
+        button->setEnabled(false);
+    else
+        button->setEnabled(true);
+}
+
+void MainWindow::manageInputButtonEnabled(QLineEdit *input, QTreeWidget *widget, QPushButton *button)
+{
+    if (widget->selectedItems().size() != 0)
+        this->manageInputButtonEnabled(input, button);
+    else
+        button->setEnabled(false);
+}
+
 void MainWindow::setupNumberInputButtons()
 {
     ui->newBinaryTreeInput->setValidator( new QIntValidator(0, 10000000, this) );
@@ -62,15 +78,15 @@ void MainWindow::setupTree()
 
     tree->insert({}, 2);
     tree->insert({}, 5);
-    tree->insert({}, 8);
-    tree->insert({}, 88);
-    tree->insert({}, 888);
-    tree->insert({}, 8888);
-    tree->insert({}, 88888);
-    tree->insert({}, 888888);
-    tree->insert({}, 8888888);
-    tree->insert({}, 88888888);
-    tree->insert({}, 888888888);
+    tree->insert({}, 100);
+    tree->insert({}, 101);
+    tree->insert({}, 102);
+    tree->insert({}, 103);
+    tree->insert({}, 104);
+    tree->insert({}, 105);
+    tree->insert({}, 106);
+    tree->insert({}, 107);
+    tree->insert({}, 108);
     tree->insert({0}, 3);
     tree->insert({0}, 4);
     tree->insert({0}, 9);
@@ -86,20 +102,25 @@ void MainWindow::setupTree()
 void MainWindow::setupBinaryTreeUI()
 {
     setupBinaryTree();
-    //Tree<int>* tree = this->_bTree;
     setTree(*this->_bTree, ui->binaryTree);
     updatePathBeforeElemText(*this->_bTree, ui->pathBeforeElemBinaryTextField);
-    _iBTW = new InteractiveTreeView<int>(this->_bTree, ui->toBinaryParentButton, ui->binaryElemLabel, ui->binaryChildrenTable);
-    _iBTW->toRoot();
+    this->_iBTV = new InteractiveTreeView<int>(this->_bTree, ui->toBinaryParentButton, ui->binaryElemLabel, ui->binaryChildrenTable);
+    this->_iBTV->toRoot();
 }
 
 void MainWindow::setupTreeUI()
 {
     setupTree();
-    setTree(*this->_tree, ui->integerTree);
+
+    this->_tW = new TreeWidget<int>(ui->integerTree, this->_tree);
+    this->_tW->render();
+
+    //setTree(*this->_tree, ui->integerTree);
     updatePathBeforeElemText(*this->_tree, ui->pathBeforeElemIntegerTextField);
-    _iTW = new InteractiveTreeView<int>(this->_tree, ui->toIntegerParentButton, ui->integerElemLabel, ui->integerChildrenTable);
-    _iTW->toRoot();
+    this->_iTV = new InteractiveTreeView<int>(this->_tree, ui->toIntegerParentButton, ui->integerElemLabel, ui->integerChildrenTable);
+    this->_iTV->toRoot();
+
+    this->_console = new Console(ui->integerConsole);
 }
 
 void MainWindow::on_addBinaryInput_textEdited(const QString &arg1)
@@ -136,7 +157,7 @@ void MainWindow::on_threadizeButton_clicked()
     ui->removeThreadsButton->setEnabled(true);
 
     ui->toBinaryRootButton->setEnabled(false);
-    this->_iBTW->setEnabled(false);
+    this->_iBTV->setEnabled(false);
 
     _bTree->toThreaded();
 }
@@ -150,7 +171,7 @@ void MainWindow::on_removeThreadsButton_clicked()
     ui->removeThreadsButton->setEnabled(false);
 
     ui->toBinaryRootButton->setEnabled(true);
-    this->_iBTW->setEnabled(true);
+    this->_iBTV->setEnabled(true);
 
     _bTree->removeThreads();
 }
@@ -171,7 +192,7 @@ void MainWindow::on_addBinaryChildButton_clicked()
 
     updatePathBeforeElemText(*_bTree, ui->pathBeforeElemBinaryTextField);
 
-    this->_iBTW->toRoot();
+    this->_iBTV->toRoot();
 }
 
 void MainWindow::on_newBinaryTreeButton_clicked()
@@ -186,18 +207,18 @@ void MainWindow::on_newBinaryTreeButton_clicked()
 
     updatePathBeforeElemText(*_bTree, ui->pathBeforeElemBinaryTextField);
 
-    this->_iBTW->setBinaryTree(this->_bTree);
-    this->_iBTW->toRoot();
+    this->_iBTV->setTree(this->_bTree);
+    this->_iBTV->toRoot();
 }
 
 void MainWindow::on_toBinaryRootButton_clicked()
 {
-    this->_iBTW->toRoot();
+    this->_iBTV->toRoot();
 }
 
 void MainWindow::on_toBinaryParentButton_clicked()
 {
-    this->_iBTW->toParent();
+    this->_iBTV->toParent();
 }
 
 void MainWindow::on_binaryChildrenTable_cellClicked(int row, int column)
@@ -205,12 +226,28 @@ void MainWindow::on_binaryChildrenTable_cellClicked(int row, int column)
     if (ui->binaryChildrenTable->item(row, column)->flags() == Qt::ItemFlag())
         return;
 
-    this->_iBTW->toChild(column);
+    this->_iBTV->toChild(column);
 }
 
 void MainWindow::on_newIntegerTreeButton_clicked()
 {
+    int newRoot = ui->newIntegerTreeInput->text().toInt();
 
+    _tree = new GeneralTree<int>(newRoot);
+
+    ui->newIntegerTreeInput->setText("");
+    ui->newIntegerTreeButton->setEnabled(false);
+
+    //updateTreeTable(setTree, *_tree, ui->integerTree);
+    this->_tW->setTree(this->_tree);
+    this->_tW->update();
+    updatePathBeforeElemText(*_tree, ui->pathBeforeElemIntegerTextField);
+
+    this->_iTV->setTree(this->_tree);
+    this->_iTV->toRoot();
+
+    this->_console->newPar();
+    this->_console->printTech("New tree with [root] = " + QString::number(newRoot) + " created!");
 }
 
 void MainWindow::on_newIntegerTreeInput_textEdited()
@@ -220,22 +257,57 @@ void MainWindow::on_newIntegerTreeInput_textEdited()
 
 void MainWindow::on_addIntegerChildButton_clicked()
 {
+    int value = ui->addIntegerInput->text().toInt();
 
+    this->_console->newPar();
+    this->_console->printTech("Adding child with [value] = " + QString::number(value) + " to selected item");
+    this->_console->newLine();
+
+    std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+
+    this->_tree->insert(path, value);
+
+    this->_tW->setTree(this->_tree);
+    this->_tW->update();
+    updatePathBeforeElemText(*_tree, ui->pathBeforeElemIntegerTextField);
+
+    this->_iTV->setTree(this->_tree);
+    this->_iTV->toRoot();
 }
 
 void MainWindow::on_addIntegerInput_textEdited()
 {
-
-    this->manageInputButtonEnabled(ui->addIntegerInput, ui->addIntegerChildButton);
+    this->manageInputButtonEnabled(ui->addIntegerInput, ui->integerTree, ui->addIntegerChildButton);
 }
 
 void MainWindow::on_getIntegerPathSelectedButton_clicked()
 {
+    this->_console->newPar();
+    this->_console->printTech("Path to selected elem:");
+    this->_console->newLine();
 
+    std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+
+    this->_console->print(pathToQStr(path));
 }
 
 void MainWindow::on_getIntegerPathByValueButton_clicked()
 {
+    int value = ui->getIntegerPathInput->text().toInt();
+
+    this->_console->newPar();
+    this->_console->printTech("Path to [elem] with value = " + QString::number(value) + ":");
+    this->_console->newLine();
+
+    if (this->_tree->contains(value))
+    {
+        std::vector<int> path = this->_tree->getPath(value);
+        this->_console->print(pathToQStr(path));
+    }
+    else
+    {
+        this->_console->printError("There is no [elem] with value = " + QString::number(value) + "!");
+    }
 
 }
 
@@ -246,15 +318,69 @@ void MainWindow::on_getIntegerPathInput_textEdited()
 
 void MainWindow::on_removeIntegerSelectedButton_clicked()
 {
+    this->_console->newPar();
+    this->_console->printTech("Removing selected item");
+    this->_console->newLine();
 
+    std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+    this->_tree->removeSubtree(path);
+
+    this->_tW->setTree(this->_tree);
+    this->_tW->update();
+    updatePathBeforeElemText(*_tree, ui->pathBeforeElemIntegerTextField);
+
+    this->_iTV->setTree(this->_tree);
+    this->_iTV->toRoot();
 }
 
 void MainWindow::on_removeIntegerByValueButton_clicked()
 {
+    int removeValue = ui->removeIntegerInput->text().toInt();
 
+    this->_console->newPar();
+    this->_console->printTech("Removing [elem] with value = " + QString::number(removeValue));
+
+    if (!this->_tree->contains(removeValue))
+    {
+        this->_console->newLine();
+        this->_console->printError("There is no [elem] with value = " + QString::number(removeValue) + "!");
+    }
+
+    this->_tree->removeSubtree(removeValue);
+
+    updateTreeTable(setTree, *_tree, ui->integerTree);
+    updatePathBeforeElemText(*_tree, ui->pathBeforeElemIntegerTextField);
+
+    this->_iTV->setTree(this->_tree);
+    this->_iTV->toRoot();
 }
 
 void MainWindow::on_removeIntegerInput_textEdited()
 {
     this->manageInputButtonEnabled(ui->removeIntegerInput, ui->removeIntegerByValueButton);
+}
+
+void MainWindow::on_toIntegerRootButton_clicked()
+{
+    this->_iTV->toRoot();
+}
+
+void MainWindow::on_toIntegerParentButton_clicked()
+{
+    this->_iTV->toParent();
+}
+
+void MainWindow::on_integerChildrenTable_cellClicked(int row, int column)
+{
+    if (row > 1)
+        return;
+
+    this->_iTV->toChild(column);
+}
+
+void MainWindow::on_integerTree_itemSelectionChanged()
+{
+    this->manageInputButtonEnabled(ui->addIntegerInput, ui->integerTree, ui->addIntegerChildButton);
+    this->manageInputButtonEnabled(ui->integerTree, ui->getIntegerPathSelectedButton);
+    this->manageInputButtonEnabled(ui->integerTree, ui->removeIntegerSelectedButton);
 }

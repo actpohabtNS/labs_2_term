@@ -22,7 +22,7 @@ QString pathToQStr(const std::vector<int>& path)
         resQStr += QString::number(path[pathIdx]);
 
         if (pathIdx != path.size()-1)
-            resQStr += ",";
+            resQStr += ", ";
     }
 
     resQStr += " )";
@@ -43,7 +43,7 @@ QString pathToQStr(const std::vector<int>& path, const std::vector<int>& maxMap)
         resQStr += QString::number(path[pathIdx]);
 
         if (pathIdx != path.size()-1)
-            resQStr += ",";
+            resQStr += ", ";
     }
 
     resQStr += " )";

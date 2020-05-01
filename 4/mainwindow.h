@@ -8,6 +8,7 @@
 
 #include "treewidget.h"
 #include "interactivetreeview.h"
+#include "console.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +22,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void manageInputButtonEnabled(QLineEdit *input, QPushButton* button);
+    void manageInputButtonEnabled(QLineEdit* input, QPushButton* button);
+    void manageInputButtonEnabled(QTreeWidget* widget, QPushButton* button);
+    void manageInputButtonEnabled(QLineEdit* input, QTreeWidget* widget, QPushButton* button);
+
     void setupNumberInputButtons();
     void setupBinaryTree();
     void setupTree();
@@ -81,12 +85,22 @@ private slots:
 
     void on_removeIntegerInput_textEdited();
 
+    void on_toIntegerRootButton_clicked();
+
+    void on_toIntegerParentButton_clicked();
+
+    void on_integerChildrenTable_cellClicked(int row, int column);
+
+    void on_integerTree_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
 
     BinaryTree<int>* _bTree;
     GeneralTree<int>* _tree;
-    InteractiveTreeView<int>* _iBTW;
-    InteractiveTreeView<int>* _iTW;
+    TreeWidget<int>* _tW;
+    InteractiveTreeView<int>* _iBTV;
+    InteractiveTreeView<int>* _iTV;
+    Console* _console;
 };
 #endif // MAINWINDOW_H

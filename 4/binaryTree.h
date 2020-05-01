@@ -58,6 +58,7 @@ private:
     bool _threaded;
 
     void _inorderTrav(Node* node, std::vector<Node*>* nodes) const;
+    std::vector<Node*> _preorderTrav() const;
     void _toThreaded(Node* node);
     void _removeThreads(Node* node);
 
@@ -76,16 +77,22 @@ public:
     void toThreaded();
     void removeThreads();
 
+    virtual bool nodeExists(const std::vector<int>& path) const;
+
+    virtual int childrenCount(const std::vector<int>& path) const;
+
     virtual std::vector<int> childrenCount() const;
     virtual std::vector<T> preorderTravData() const;
 
     bool hasLeftChild(const std::vector<int>& path) const;
     bool hasRightChild(const std::vector<int>& path) const;
 
-    T get(const std::vector<int>& path) const;
+    virtual T get(const std::vector<int>& path) const;
     std::vector<int> getPath(const T& data) const;
     QString getQStrPaths() const;
     void print() const;
+
+    virtual QString type() const;
 };
 
 
@@ -157,6 +164,8 @@ bool BinaryTree<T>::Node::_hasRightChild() const
 {
     return this->_right;
 }
+
+
 // ------------------------ Binary Tree ---------------------------
 
 template<typename T>
@@ -173,6 +182,31 @@ void BinaryTree<T>::_inorderTrav(BinaryTree::Node* node, std::vector<BinaryTree:
     nodes->emplace_back(node);
 
     this->_inorderTrav(node->_right, nodes);
+}
+
+template<typename T>
+std::vector<typename BinaryTree<T>::Node *> BinaryTree<T>::_preorderTrav() const
+{
+    std::stack<Node*> nodes;
+    nodes.push(this->_root);
+
+    std::vector<Node*> nodesVect;
+
+    while (!nodes.empty())
+    {
+        Node* current = nodes.top();
+        nodes.pop();
+
+        nodesVect.push_back(current);
+
+        if (current->_right)
+            nodes.push(current->_right);
+
+        if (current->_left)
+            nodes.push(current->_left);
+    }
+
+    return nodesVect;
 }
 
 template<typename T>
@@ -325,6 +359,48 @@ void BinaryTree<T>::removeThreads()
 }
 
 template<typename T>
+bool BinaryTree<T>::nodeExists(const std::vector<int> &path) const
+{
+    if (!this->_root)
+        return false;
+
+    Node* node = this->_root;
+
+    for (uint idx = 0; idx < path.size(); idx++)
+    {
+        if (path[idx] > 1)
+            return false;
+
+        if (path[idx] == 0)
+        {
+            if (!node->_hasLeftChild())
+                return false;
+
+            node = node->_left;
+        }
+
+        if (path[idx] == 1)
+        {
+            if (!node->_hasRightChild())
+                return false;
+
+            node = node->_right;
+        }
+    }
+
+    return true;
+}
+
+template<typename T>
+int BinaryTree<T>::childrenCount(const std::vector<int> &path) const
+{
+    if (this->_root)
+        return -1;
+
+    return this->_getNode(path)->_childrenCount();
+}
+
+template<typename T>
 std::vector<int> BinaryTree<T>::childrenCount() const
 {
     if (!this->_root)
@@ -377,6 +453,15 @@ std::vector<T> BinaryTree<T>::preorderTravData() const
             nodes.push(current->_left);
     }
 
+//    std::vector<Node*> nodes = this->_preorderTrav();
+
+//    std::vector<T> preorderTravData;
+
+//    for (Node* node : nodes)
+//        preorderTravData.push_back(node->_data);
+
+//    nodes = {};
+
     return preorderTravData;
 }
 
@@ -395,9 +480,6 @@ bool BinaryTree<T>::hasRightChild(const std::vector<int> &path) const
 template<typename T>
 T BinaryTree<T>::get(const std::vector<int> &path) const
 {
-    if (path[0] == -1)
-        return {};
-
     return this->_getNode(path)->_data;
 }
 
@@ -507,5 +589,11 @@ void BinaryTree<T>::print() const
         if (current->_left)
             nodes.push(current->_left);
     }
+}
+
+template<typename T>
+QString BinaryTree<T>::type() const
+{
+    return "Binary Tree";
 }
 #endif // BINARYTREE_H

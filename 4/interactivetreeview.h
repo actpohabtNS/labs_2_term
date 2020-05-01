@@ -13,8 +13,7 @@ template <typename T>
 class InteractiveTreeView
 {
 private:
-    BinaryTree<T>* _bTree;
-    GeneralTree<T>* _tree;
+    Tree<T>* _tree;
     QPushButton* _parentButton;
     QLabel* _elemLabel;
     QTableWidget* _childrenTable;
@@ -27,9 +26,9 @@ private:
     void _setParentButton(const std::vector<int>& path);
 
 public:
-    explicit InteractiveTreeView(BinaryTree<T>* bTree,QPushButton* parentButton, QLabel* elemLabel, QTableWidget* childrenTable);
-    explicit InteractiveTreeView(GeneralTree<T>* tree, QPushButton* parentButton, QLabel* elemLabel, QTableWidget* childrenTable);
-    virtual ~InteractiveTreeView(){};
+    explicit InteractiveTreeView(Tree<T>* tree,QPushButton* parentButton, QLabel* elemLabel, QTableWidget* childrenTable);
+    //explicit InteractiveTreeView(GeneralTree<T>* tree, QPushButton* parentButton, QLabel* elemLabel, QTableWidget* childrenTable);
+    virtual ~InteractiveTreeView();
 
     void setElem(const std::vector<int>& path);
     void toParent();
@@ -38,7 +37,7 @@ public:
     void setEnabled(const bool enabled);
 
     void setBinaryTree(BinaryTree<T>* bTree);
-    void setTree(GeneralTree<T>* tree);
+    void setTree(Tree<T>* tree);
 };
 
 
@@ -85,21 +84,22 @@ void InteractiveTreeView<T>::_setBinaryChildren(const std::vector<int>& path)
     QTableWidgetItem *leftItem = new QTableWidgetItem("left");
     leftItem->setTextAlignment(Qt::AlignCenter);
 
-    if (!_bTree->hasLeftChild(path))
-    {
-        leftItem->setFlags(disabledFlags); //check this
-    }
+    std::vector<int> childPath(path);
+    childPath.push_back(0);
+
+    if (!_tree->nodeExists(childPath))
+        leftItem->setFlags(disabledFlags);
 
     _childrenTable->setItem(0, 0, leftItem);
-
 
     QTableWidgetItem *rightItem = new QTableWidgetItem("right");
     rightItem->setTextAlignment(Qt::AlignCenter);
 
-    if (!_bTree->hasRightChild(path))
-    {
-        rightItem->setFlags(disabledFlags); //check this
-    }
+    childPath.pop_back();
+    childPath.push_back(1);
+
+    if (!_tree->nodeExists(childPath))
+        rightItem->setFlags(disabledFlags);
 
     _childrenTable->setItem(0, 1, rightItem);
 }
@@ -109,15 +109,25 @@ void InteractiveTreeView<T>::_setChildren(const std::vector<int>& path)
 {
     int size = this->_tree->childrenCount(path);
 
-    _childrenTable->setColumnCount(size);
-    _setEqualColumnWidths(size);
-    QTableWidgetItem *item;
-
-    for (int column = 0; column < size; column++)
+    if (size == 0)
     {
-       item = new QTableWidgetItem(QString::number(column));
-       item->setTextAlignment(Qt::AlignCenter);
-       _childrenTable->setItem(0, column, item);
+
+        _childrenTable->setColumnCount(0);
+        _childrenTable->setEnabled(false);
+    }
+    else
+    {
+        _childrenTable->setEnabled(true);
+        _childrenTable->setColumnCount(size);
+        _setEqualColumnWidths(size);
+        QTableWidgetItem *item;
+
+        for (int column = 0; column < size; column++)
+        {
+           item = new QTableWidgetItem(QString::number(column));
+           item->setTextAlignment(Qt::AlignCenter);
+           _childrenTable->setItem(0, column, item);
+        }
     }
 }
 
@@ -131,17 +141,18 @@ void InteractiveTreeView<T>::_setParentButton(const std::vector<int> &path)
 }
 
 template<typename T>
-InteractiveTreeView<T>::InteractiveTreeView(BinaryTree<T> *bTree, QPushButton* parentButton, QLabel *elemLabel, QTableWidget *childrenTable)
-    : _bTree(bTree), _parentButton(parentButton), _elemLabel(elemLabel), _childrenTable(childrenTable), _currElemPath({-1})
+InteractiveTreeView<T>::InteractiveTreeView(Tree<T>* tree, QPushButton* parentButton, QLabel *elemLabel, QTableWidget *childrenTable)
+    : _tree(tree), _parentButton(parentButton), _elemLabel(elemLabel), _childrenTable(childrenTable), _currElemPath({-1})
 {
     _setupChildrenTable();
 }
 
 template<typename T>
-InteractiveTreeView<T>::InteractiveTreeView(GeneralTree<T> *tree, QPushButton* parentButton, QLabel *elemLabel, QTableWidget *childrenTable)
-    : _tree(tree), _parentButton(parentButton), _elemLabel(elemLabel), _childrenTable(childrenTable), _currElemPath({-1})
+InteractiveTreeView<T>::~InteractiveTreeView()
 {
-    _setupChildrenTable();
+    delete this->_parentButton;
+    delete this->_elemLabel;
+    delete this->_childrenTable;
 }
 
 template<typename T>
@@ -149,9 +160,9 @@ void InteractiveTreeView<T>::setElem(const std::vector<int> &path)
 {
     this->_setParentButton(path);
 
-    if (this->_bTree)
+    if (this->_tree->type() == "Binary Tree")
     {
-        T data = this->_bTree->get(path);
+        T data = this->_tree->get(path);
 
         QString dataQStr;
         QTextStream *stream = new QTextStream(&dataQStr);
@@ -212,20 +223,8 @@ void InteractiveTreeView<T>::setEnabled(const bool enabled)
 }
 
 template<typename T>
-void InteractiveTreeView<T>::setBinaryTree(BinaryTree<T> *bTree)
+void InteractiveTreeView<T>::setTree(Tree<T> *tree)
 {
-    if (!this->_tree)
-        return;
-
-    this->_bTree = bTree;
-}
-
-template<typename T>
-void InteractiveTreeView<T>::setTree(GeneralTree<T> *tree)
-{
-    if (!this->_bTree)
-        return;
-
     this->_tree = tree;
 }
 
