@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QTextBrowser>
 
-#include "treewidget.h"
+#include "filesystemwidget.h"
 #include "interactivetreeview.h"
 #include "console.h"
 #include "filesystem.h"
@@ -89,6 +89,8 @@ private slots:
 
     void on_integerTree_itemSelectionChanged();
 
+    void on_fileSystem_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
 
@@ -96,7 +98,7 @@ private:
     GeneralTree<int>* _tree;
     TreeWidget<int>* _bTW;
     TreeWidget<int>* _tW;
-    TreeWidget<FileSystemElem>* _fsW;
+    FileSystemWidget* _fsW;
     InteractiveTreeView<int>* _iBTV;
     InteractiveTreeView<int>* _iTV;
     Console* _console;

@@ -10,7 +10,7 @@
 
 template <typename T>
 class TreeWidget : public QTreeWidget {
-private:
+protected:
     QTreeWidget* _widget;
     Tree<T>* _tree;
 
@@ -59,7 +59,10 @@ template<typename T>
 void TreeWidget<T>::render()
 {
     if (!this->_tree->root())
+    {
+        qDebug() << "No root!";
         return;
+    }
 
     std::vector<int> itemChildrenCount = this->_tree->childrenCount();
     std::vector<T> preorderData = this->_tree->preorderTravData();

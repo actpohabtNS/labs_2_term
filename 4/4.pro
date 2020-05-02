@@ -20,6 +20,7 @@ SOURCES += \
     console.cpp \
     filesystem.cpp \
     filesystemelem.cpp \
+    filesystemwidget.cpp \
     functs.cpp \
     main.cpp \
     mainwindow.cpp
@@ -29,6 +30,7 @@ HEADERS += \
     console.h \
     filesystem.h \
     filesystemelem.h \
+    filesystemwidget.h \
     functs.h \
     generalTree.h \
     interactivetreeview.h \

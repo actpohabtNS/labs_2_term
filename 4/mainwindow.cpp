@@ -156,7 +156,7 @@ void MainWindow::setupFSUI()
     ui->fileSystem->setColumnWidth(1, 150);
     ui->fileSystem->setColumnWidth(2, 50);
 
-    this->_fsW = new TreeWidget<FileSystemElem>(ui->fileSystem, this->_fs->fileTree());
+    this->_fsW = new FileSystemWidget(ui->fileSystem, this->_fs);
     this->_fsW->render();
 }
 
@@ -438,4 +438,12 @@ void MainWindow::on_integerTree_itemSelectionChanged()
     this->manageInputButtonEnabled(ui->addIntegerInput, ui->integerTree, ui->addIntegerChildButton);
     this->manageInputButtonEnabled(ui->integerTree, ui->getIntegerPathSelectedButton);
     this->manageInputButtonEnabled(ui->integerTree, ui->removeIntegerSelectedButton);
+}
+
+void MainWindow::on_fileSystem_itemSelectionChanged()
+{
+//    if (ui->fileSystem->selectedItems().size() == 0)
+//        return;
+
+//    qDebug() << ui->fileSystem->selectedItems()[0]->text(0);
 }
