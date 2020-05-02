@@ -6,6 +6,7 @@
 #include "binaryTree.h"
 #include "generalTree.h"
 #include "tree.h"
+#include "filesystemelem.h"
 
 template <typename T>
 class TreeWidget : public QTreeWidget {
@@ -13,8 +14,7 @@ private:
     QTreeWidget* _widget;
     Tree<T>* _tree;
 
-    std::vector<QTreeWidgetItem*> _parentItems(QTreeWidgetItem* item) const;
-    std::vector<int> _pathByItems(std::vector<QTreeWidgetItem*> items) const;
+    void _setupItem(QTreeWidgetItem* item, const T& data);
 
 public:
     explicit TreeWidget(QTreeWidget* widget, Tree<T>* tree);
@@ -33,35 +33,22 @@ public:
 // ------------------------ TreeWidget ---------------------------
 
 template<typename T>
-std::vector<QTreeWidgetItem *> TreeWidget<T>::_parentItems(QTreeWidgetItem *item) const
+void TreeWidget<T>::_setupItem(QTreeWidgetItem *item, const T& data)
 {
-    std::vector<QTreeWidgetItem*> parentItems;
-    parentItems.push_back(item);
+    QString itemText;
+    QTextStream *stream = new QTextStream(&itemText);
+    *stream << data;
 
-    while (this->_widget->itemAbove(item) != nullptr)
-    {
-        parentItems.push_back(this->_widget->itemAbove(item));
-    }
-
-    parentItems.pop_back();
-
-    return parentItems;
+    item->setText(0, itemText);
 }
 
-//template<typename T>
-//std::vector<int> TreeWidget<T>::_pathByItems(std::vector<QTreeWidgetItem *> items) const
-//{
-//    std::vector<int> path;
-
-//    QTreeWidgetItem* parent = this->_widget->topLevelItem(0);
-
-//    while (items.size() != 0)
-//    {
-
-//    }
-
-//    return path;
-//}
+template<>
+void TreeWidget<FileSystemElem>::_setupItem(QTreeWidgetItem *item, const FileSystemElem& fsElem)
+{
+    item->setText(0, fsElem.name());
+    item->setText(1, QString::number(fsElem.size()) + "kB");
+    item->setText(2, fsElem.lastChanged().toString());
+}
 
 template<typename T>
 TreeWidget<T>::TreeWidget(QTreeWidget *widget, Tree<T> *tree)
@@ -116,11 +103,13 @@ void TreeWidget<T>::render()
         {
             QTreeWidgetItem* item = new QTreeWidgetItem;
 
-            QString itemText;
-            QTextStream *stream = new QTextStream(&itemText);
-            *stream << preorderData[currParent + 1];
+            this->_setupItem(item, preorderData[currParent + 1]);
 
-            item->setText(0, itemText);
+//            QString itemText;
+//            QTextStream *stream = new QTextStream(&itemText);
+//            *stream << preorderData[currParent + 1];
+
+//            item->setText(0, itemText);
 
             items.top()->addChild(item);
 

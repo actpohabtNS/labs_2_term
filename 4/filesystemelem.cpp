@@ -1,68 +1,13 @@
 #include "filesystemelem.h"
 
 FileSystemElem::FileSystemElem(bool isFolder, QString name, int size, const QTime &lastEdited)
-    : _isFolder(isFolder), _name(name), _size(size), _lastEdited(lastEdited) {}
+    : _isFolder(isFolder), _name(name), _size(size), _lastChanged(lastEdited) {}
 
 FileSystemElem::~FileSystemElem() {}
 
-bool FileSystemElem::operator=(const QTime &time) const
+bool FileSystemElem::isInTimeInterval(const QTime& min, const QTime& max) const
 {
-    return this->_lastEdited == time;
-}
-
-bool FileSystemElem::operator<(const QTime &time) const
-{
-    return this->_lastEdited < time;
-}
-
-bool FileSystemElem::operator<=(const QTime &time) const
-{
-    return this->_lastEdited <= time;
-}
-
-bool FileSystemElem::operator>(const QTime &time) const
-{
-    return this->_lastEdited > time;
-}
-
-bool FileSystemElem::operator>=(const QTime &time) const
-{
-    return this->_lastEdited >= time;
-}
-
-bool FileSystemElem::operator=(int size) const
-{
-    return this->_size == size;
-}
-
-bool FileSystemElem::operator<(int size) const
-{
-    return this->_size < size;
-}
-
-bool FileSystemElem::operator<=(int size) const
-{
-    return this->_size <= size;
-}
-
-bool FileSystemElem::operator>(int size) const
-{
-    return this->_size > size;
-}
-
-bool FileSystemElem::operator>=(int size) const
-{
-    return this->_size >= size;
-}
-
-bool FileSystemElem::contains(QString str) const
-{
-    return this->_name.contains(str);
-}
-
-bool FileSystemElem::isInTimeInterval( QTime min,  QTime max) const
-{
-    if (min <= this->_lastEdited && this->_lastEdited <= max)
+    if (min <= this->_lastChanged && this->_lastChanged <= max)
         return true;
     else
         return false;
@@ -91,14 +36,19 @@ int FileSystemElem::size() const
     return this->_size;
 }
 
-QTime FileSystemElem::lastEdited() const
+QTime FileSystemElem::lastChanged() const
 {
-    return this->_lastEdited;
+    return this->_lastChanged;
 }
 
 void FileSystemElem::setSize(int size)
 {
     this->_size = size;
+}
+
+void FileSystemElem::setLastChanged(const QTime &lastChanged)
+{
+    this->_lastChanged = lastChanged;
 }
 
 bool containsStr(const FileSystemElem &elem, QString str)

@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setupBinaryTreeUI();
     setupTreeUI();
+    setupFSUI();
 }
 
 MainWindow::~MainWindow()
@@ -99,6 +100,26 @@ void MainWindow::setupTree()
     this->_tree = tree;
 }
 
+void MainWindow::setupFS()
+{
+    FileSystemElem root(true, "Root", 0, {12, 15});
+    FileSystem* fs = new FileSystem(root);
+
+    fs->insert({}, {true, "My files", 0, {12, 25}});
+    fs->insert({0}, {false, "ThinkingInC++.pdf", 1200, {13, 22}});
+    fs->insert({0}, {false, "DescreteMathHW.docx", 23, {23, 58}});
+    fs->insert({0}, {true, "Secrets", 0, {12, 42}});
+    fs->insert({0, 2}, {false, "whatWeCanUnderstandAboutGirls.txt", 0, {15, 35}});
+//    fs->insert({}, {true, "System", 0, {12, 15}});
+//    fs->insert({1}, {true, "Windows", 0, {12, 15}});
+//    fs->insert({1,0}, {false, "notACrack.exe", 1440, {12, 15}});
+//    fs->insert({}, {true, "Programs", 0, {13, 00}});
+//    fs->insert({2}, {false, "VisualStudio2020.exe", 25033, {13, 40}});
+//    fs->insert({2}, {false, "uTorrent.exe", 4532, {19, 11}});
+
+    this->_fs = fs;
+}
+
 void MainWindow::setupBinaryTreeUI()
 {
     setupBinaryTree();
@@ -125,6 +146,18 @@ void MainWindow::setupTreeUI()
     this->_iTV->toRoot();
 
     this->_console = new Console(ui->integerConsole);
+}
+
+void MainWindow::setupFSUI()
+{
+    setupFS();
+
+    ui->fileSystem->setColumnWidth(0, 150);
+    ui->fileSystem->setColumnWidth(1, 150);
+    ui->fileSystem->setColumnWidth(2, 150);
+
+    this->_fsW = new TreeWidget<FileSystemElem>(ui->fileSystem, this->_fs->fileTree());
+    this->_fsW->render();
 }
 
 void MainWindow::on_addBinaryInput_textEdited(const QString &arg1)

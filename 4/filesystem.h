@@ -10,11 +10,12 @@ class FileSystem : public GeneralTree<FileSystemElem> {
 
 private:
     GeneralTree<FileSystemElem>* _fileTree;
-
     int _elemsCount(const std::vector<int>& path, bool countingFolders) const;
-    QTime _timeEdited(const std::vector<int>& path, bool first) const;
+    FileSystemElem _timeEdited(const std::vector<int>& path, bool first) const;
     void _changeSize(const std::vector<int>& path, int shift);
     void _changeBranchSize(const std::vector<int>& path, int shift);
+    void _changeLastChanged(const std::vector<int>& path, const QTime& newTime);
+    void _changeBranchLastChanged(const std::vector<int>& path, const QTime& newTime);
 
     template <typename ...Types>
     void _filterByFunc(bool includesByFilter(const FileSystemElem&, Types ...Args), Types ...Args)
@@ -51,10 +52,17 @@ private:
                     nodes.push(current->children()[child]);
                     paths.push(childPath);
                 }
-
             }
         }
     }
+
+    template <typename ...Types>
+    void _filterByFunc(bool includesByFilter(const FileSystemElem&, const Types& ...Args), const Types& ...Args)
+    {
+        this->_filterByFunc(includesByFilter, Args...);
+    }
+
+
 
 public:
     explicit FileSystem(const FileSystemElem& root);
@@ -66,12 +74,14 @@ public:
     int size(const std::vector<int>& path) const;
     int filesCount(const std::vector<int>& path) const;
     int foldersCount(const std::vector<int>& path) const;
-    QTime firstEdited(const std::vector<int>& path) const;
-    QTime lastEdited(const std::vector<int>& path) const;
+    FileSystemElem firstEdited(const std::vector<int>& path) const;
+    FileSystemElem lastEdited(const std::vector<int>& path) const;
 
     void filterByName(QString name);
     void filterBySize(int min, int max);
-    void filterByLastEdited( QTime min,  QTime max);
+    void filterByLastEdited(const QTime& min, const QTime& max);
+
+    GeneralTree<FileSystemElem>* fileTree() const;
 };
 
 #endif // FILESYSTEM_H

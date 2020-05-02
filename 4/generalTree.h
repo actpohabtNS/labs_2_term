@@ -232,9 +232,12 @@ std::vector<int> GeneralTree<T>::_getMaxChildrenMap() const
 
 template<typename T>
 typename GeneralTree<T>::Node* GeneralTree<T>::_getNode(const std::vector<int> &path) const
-{
-    if (!_root)
+{   
+    if (!this->_root)
+    {
+        qDebug() << "no root";
         return nullptr;
+    }
 
     Node* node = this->_root;
 
@@ -471,7 +474,7 @@ void GeneralTree<T>::set(const std::vector<int> &path, const T &data)
 
     Node* node = this->_root;
 
-    for (int idx : path)
+    for (uint idx : path)
     {
         assert(idx <= node->_children.size() - 1);
         node = node->_children[idx];

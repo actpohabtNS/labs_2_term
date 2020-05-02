@@ -2080,8 +2080,8 @@ e</string>
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>351</width>
-        <height>741</height>
+        <width>721</width>
+        <height>521</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2098,7 +2098,7 @@ e</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>351</width>
+         <width>721</width>
          <height>31</height>
         </rect>
        </property>
@@ -2123,8 +2123,8 @@ e</string>
         <rect>
          <x>0</x>
          <y>30</y>
-         <width>351</width>
-         <height>711</height>
+         <width>721</width>
+         <height>491</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2139,24 +2139,40 @@ QHeaderView::section {
 	border: none;
 	padding-left: 30px;
 	font-size: 17px;
+	height: 22px;
 }
 
 QTreeView::item {
     border-top-color: transparent;
     border-bottom-color: transparent;
 	font-size: 17px;
+	height: 25px;
 }
 
 QTreeView::item::selected {
 	color: black;
 	background-color: #9fbfa0;
 }
-
-e</string>
+</string>
        </property>
        <column>
         <property name="text">
-         <string>Value</string>
+         <string>Name</string>
+        </property>
+        <property name="font">
+         <font>
+          <kerning>true</kerning>
+         </font>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Size</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Last edited</string>
         </property>
        </column>
       </widget>
@@ -2164,7 +2180,7 @@ e</string>
      <widget class="QGroupBox" name="FilterBy">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>760</x>
         <y>360</y>
         <width>351</width>
         <height>401</height>
@@ -2477,10 +2493,10 @@ font-weight: bold;</string>
      <widget class="QGroupBox" name="ManipulateFileSystem">
       <property name="geometry">
        <rect>
-        <x>760</x>
+        <x>1130</x>
         <y>20</y>
-        <width>721</width>
-        <height>521</height>
+        <width>351</width>
+        <height>741</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2497,7 +2513,7 @@ font-weight: bold;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>721</width>
+         <width>351</width>
          <height>31</height>
         </rect>
        </property>
@@ -2519,9 +2535,9 @@ font-weight: bold;</string>
       <widget class="QGroupBox" name="groupBox_50">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>390</y>
-         <width>341</width>
+         <x>0</x>
+         <y>350</y>
+         <width>351</width>
          <height>51</height>
         </rect>
        </property>
@@ -2577,10 +2593,10 @@ font-family: Roboto;</string>
       <widget class="QGroupBox" name="groupBox_51">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>150</y>
-         <width>341</width>
-         <height>51</height>
+         <x>0</x>
+         <y>120</y>
+         <width>351</width>
+         <height>191</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2631,32 +2647,27 @@ font-family: Roboto;</string>
          <string>Get total amount</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_53">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>230</y>
-         <width>341</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QGroupBox {
-	background-color: #f2f2f2;
-	color: #4a455c;
-	font-size: 17px;
-	padding-top: 5px;
-}</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
+       <widget class="QPushButton" name="getFilesAmountElemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get files amount</string>
+        </property>
+       </widget>
        <widget class="QLabel" name="label_128">
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>10</y>
+          <y>80</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -2673,48 +2684,11 @@ font-family: Roboto;</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QPushButton" name="getFilesAmountElemButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>141</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Get files amount</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_55">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>310</y>
-         <width>341</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QGroupBox {
-	background-color: #f2f2f2;
-	color: #4a455c;
-	font-size: 17px;
-	padding-top: 5px;
-}</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
        <widget class="QLabel" name="label_129">
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>10</y>
+          <y>150</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -2738,7 +2712,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>150</y>
           <width>141</width>
           <height>31</height>
          </rect>
@@ -2751,9 +2725,9 @@ font-family: Roboto;</string>
       <widget class="QGroupBox" name="groupBox_54">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>30</y>
-         <width>341</width>
+         <width>351</width>
          <height>51</height>
         </rect>
        </property>
@@ -2809,9 +2783,9 @@ font-family: Roboto;</string>
       <widget class="QGroupBox" name="groupBox_56">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>30</y>
-         <width>341</width>
+         <x>0</x>
+         <y>690</y>
+         <width>351</width>
          <height>51</height>
         </rect>
        </property>
@@ -2867,10 +2841,10 @@ font-family: Roboto;</string>
       <widget class="QGroupBox" name="groupBox_57">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>150</y>
-         <width>341</width>
-         <height>51</height>
+         <x>0</x>
+         <y>440</y>
+         <width>351</width>
+         <height>121</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2921,32 +2895,11 @@ font-family: Roboto;</string>
          <string>Get last edited</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_58">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>230</y>
-         <width>341</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QGroupBox {
-	background-color: #f2f2f2;
-	color: #4a455c;
-	font-size: 17px;
-	padding-top: 5px;
-}</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
        <widget class="QLabel" name="label_131">
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>10</y>
+          <y>80</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -2970,7 +2923,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>80</y>
           <width>141</width>
           <height>31</height>
          </rect>
@@ -2983,9 +2936,9 @@ font-family: Roboto;</string>
       <widget class="QGroupBox" name="groupBox_60">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>390</y>
-         <width>341</width>
+         <x>0</x>
+         <y>600</y>
+         <width>351</width>
          <height>51</height>
         </rect>
        </property>
@@ -3042,7 +2995,7 @@ font-family: Roboto;</string>
      <widget class="QGroupBox" name="FileSystemConsole">
       <property name="geometry">
        <rect>
-        <x>760</x>
+        <x>20</x>
         <y>560</y>
         <width>721</width>
         <height>201</height>
@@ -3113,7 +3066,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QGroupBox" name="AddNewElem">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>760</x>
         <y>20</y>
         <width>351</width>
         <height>321</height>

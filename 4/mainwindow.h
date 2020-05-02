@@ -9,6 +9,7 @@
 #include "treewidget.h"
 #include "interactivetreeview.h"
 #include "console.h"
+#include "filesystem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,8 +30,10 @@ public:
     void setupNumberInputButtons();
     void setupBinaryTree();
     void setupTree();
+    void setupFS();
     void setupBinaryTreeUI();
     void setupTreeUI();
+    void setupFSUI();
 
     template <typename treeType>
     void updatePathBeforeElemText(const treeType& tree, QTextBrowser* browser)
@@ -93,8 +96,10 @@ private:
     GeneralTree<int>* _tree;
     TreeWidget<int>* _bTW;
     TreeWidget<int>* _tW;
+    TreeWidget<FileSystemElem>* _fsW;
     InteractiveTreeView<int>* _iBTV;
     InteractiveTreeView<int>* _iTV;
     Console* _console;
+    FileSystem* _fs;
 };
 #endif // MAINWINDOW_H
