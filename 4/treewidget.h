@@ -43,12 +43,7 @@ void TreeWidget<T>::_setupItem(QTreeWidgetItem *item, const T& data)
 }
 
 template<>
-void TreeWidget<FileSystemElem>::_setupItem(QTreeWidgetItem *item, const FileSystemElem& fsElem)
-{
-    item->setText(0, fsElem.name());
-    item->setText(1, QString::number(fsElem.size()) + "kB");
-    item->setText(2, fsElem.lastChanged().toString());
-}
+void TreeWidget<FileSystemElem>::_setupItem(QTreeWidgetItem *item, const FileSystemElem& fsElem);
 
 template<typename T>
 TreeWidget<T>::TreeWidget(QTreeWidget *widget, Tree<T> *tree)
@@ -71,11 +66,8 @@ void TreeWidget<T>::render()
 
     QTreeWidgetItem* root = new QTreeWidgetItem;
 
-    QString itemText;
-    QTextStream *stream = new QTextStream(&itemText);
-    *stream << preorderData[0];
+    this->_setupItem(root, preorderData[0]);
 
-    root->setText(0, itemText);
     this->_widget->addTopLevelItem(root);
 
     int currParent = 0;

@@ -152,9 +152,9 @@ void MainWindow::setupFSUI()
 {
     setupFS();
 
-    ui->fileSystem->setColumnWidth(0, 150);
+    ui->fileSystem->setColumnWidth(0, 450);
     ui->fileSystem->setColumnWidth(1, 150);
-    ui->fileSystem->setColumnWidth(2, 150);
+    ui->fileSystem->setColumnWidth(2, 50);
 
     this->_fsW = new TreeWidget<FileSystemElem>(ui->fileSystem, this->_fs->fileTree());
     this->_fsW->render();

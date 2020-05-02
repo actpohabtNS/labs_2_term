@@ -65,6 +65,8 @@ void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QT
 
     while (!parentPath.empty())
     {
+        qDebug() << "papa time:" << this->_fileTree->get(path).lastChanged().toString() << "New time: " << newTime.toString();
+
         if (this->_fileTree->get(path).lastChanged() >= newTime)
             return;
 
@@ -75,6 +77,8 @@ void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QT
     if (this->_fileTree->get(path).lastChanged() >= newTime)
         return;
     this->_changeLastChanged(parentPath, newTime);
+
+    qDebug() << "done";
 }
 
 FileSystem::FileSystem(const FileSystemElem &root) {
@@ -88,8 +92,8 @@ void FileSystem::insert(const std::vector<int> &path, const FileSystemElem &elem
     if (!this->_fileTree->get(path).isFolder())
         return;
 
-
     this->_fileTree->insert(path, elem);
+
     this->_changeBranchSize(path, elem.size());
     this->_changeBranchLastChanged(path, elem.lastChanged());
 }
