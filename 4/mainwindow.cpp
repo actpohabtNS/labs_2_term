@@ -152,9 +152,10 @@ void MainWindow::setupFSUI()
 {
     setupFS();
 
-    ui->fileSystem->setColumnWidth(0, 450);
+    ui->fileSystem->setColumnWidth(0, 400);
     ui->fileSystem->setColumnWidth(1, 150);
-    ui->fileSystem->setColumnWidth(2, 50);
+    ui->fileSystem->setColumnWidth(2, 115);
+    ui->fileSystem->setColumnWidth(3, 25);
 
     this->_fsW = new FileSystemWidget(ui->fileSystem, this->_fs);
     this->_fsW->render();
@@ -446,4 +447,10 @@ void MainWindow::on_fileSystem_itemSelectionChanged()
 //        return;
 
 //    qDebug() << ui->fileSystem->selectedItems()[0]->text(0);
+}
+
+void MainWindow::on_filterElemButton_clicked()
+{
+    this->_fsW->filterByName("o");
+    //
 }

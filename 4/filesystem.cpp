@@ -15,7 +15,7 @@ int FileSystem::_elemsCount(const std::vector<int> &path, bool countingFolders) 
     return elems;
 }
 
-FileSystemElem FileSystem::_timeEdited(const std::vector<int> &path, bool first) const
+FileSystemElem FileSystem::_timeChanged(const std::vector<int> &path, bool first) const
 {
     std::vector<FileSystemElem> elems = this->_fileTree->preorderTravData(path);
 
@@ -122,12 +122,12 @@ int FileSystem::foldersCount(const std::vector<int> &path) const
 
 FileSystemElem FileSystem::firstEdited(const std::vector<int> &path) const
 {
-    return this->_timeEdited(path, true);
+    return this->_timeChanged(path, true);
 }
 
 FileSystemElem FileSystem::lastEdited(const std::vector<int> &path) const
 {
-    return this->_timeEdited(path, false);
+    return this->_timeChanged(path, false);
 }
 
 void FileSystem::filterByName(QString name)

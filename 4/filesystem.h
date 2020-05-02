@@ -12,7 +12,7 @@ private:
     GeneralTree<FileSystemElem>* _fileTree;
 
     int _elemsCount(const std::vector<int>& path, bool countingFolders) const;
-    FileSystemElem _timeEdited(const std::vector<int>& path, bool first) const;
+    FileSystemElem _timeChanged(const std::vector<int>& path, bool first) const;
 
     void _changeSize(const std::vector<int>& path, int shift);
     void _changeBranchSize(const std::vector<int>& path, int shift);

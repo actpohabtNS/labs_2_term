@@ -91,6 +91,8 @@ private slots:
 
     void on_fileSystem_itemSelectionChanged();
 
+    void on_filterElemButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

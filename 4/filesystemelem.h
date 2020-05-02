@@ -30,7 +30,7 @@ public:
 
     friend QTextStream& operator<<(QTextStream &ostream, const FileSystemElem& fsElem)
     {
-        return ostream << fsElem._name << "\t\t" << fsElem._size << "  kB\t\t" << fsElem._lastChanged.toString();
+        return ostream << fsElem._name << "\t\t" << fsElem._size << " kB\t\t" << fsElem._lastChanged.toString();
     }
 };
 

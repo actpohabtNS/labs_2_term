@@ -15,6 +15,9 @@ private:
     template <typename ...Types>
     void _filterByFunc(bool includesByFilter(const FileSystemElem&, const Types& ...Args), const Types& ...Args);
 
+    int _countElems(QTreeWidgetItem* item, bool files) const;
+    FileSystemElem _timeChanged(QTreeWidgetItem* item, bool first) const;
+
 public:
     explicit FileSystemWidget(QTreeWidget* widget, FileSystem* fs);
     virtual ~FileSystemWidget();
@@ -24,7 +27,14 @@ public:
     void filterByName(QString name);
     void filterBySize(int min, int max);
     void filterByLastEdited(const QTime& min, const QTime& max);
+
+    int filesCount(QTreeWidgetItem* item) const;
+    int foldersCount(QTreeWidgetItem* item) const;
+    FileSystemElem firstChanged(QTreeWidgetItem* item) const;
+    FileSystemElem lastChanged(QTreeWidgetItem* item) const;
 };
+
+FileSystemElem treeItemToFSElem(QTreeWidgetItem* item);
 
 template <typename ...Types>
 void FileSystemWidget::_filterByFunc(bool includesByFilter(const FileSystemElem&, Types ...Args), Types ...Args)
@@ -33,7 +43,7 @@ void FileSystemWidget::_filterByFunc(bool includesByFilter(const FileSystemElem&
 
     while (item != nullptr)
     {
-        FileSystemElem elem(false, item->text(0), item->text(1).toInt(), QTime().fromString(item->text(2), "HH:mm:ss"));
+        FileSystemElem elem = treeItemToFSElem(item);
 
         if (!includesByFilter(elem, Args...))
             item->setHidden(true);
