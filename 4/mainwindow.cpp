@@ -110,12 +110,12 @@ void MainWindow::setupFS()
     fs->insert({0}, {false, "DescreteMathHW.docx", 23, {23, 58}});
     fs->insert({0}, {true, "Secrets", 0, {12, 42}});
     fs->insert({0, 2}, {false, "whatWeCanUnderstandAboutGirls.txt", 0, {15, 35}});
-//    fs->insert({}, {true, "System", 0, {12, 15}});
-//    fs->insert({1}, {true, "Windows", 0, {12, 15}});
-//    fs->insert({1,0}, {false, "notACrack.exe", 1440, {12, 15}});
-//    fs->insert({}, {true, "Programs", 0, {13, 00}});
-//    fs->insert({2}, {false, "VisualStudio2020.exe", 25033, {13, 40}});
-//    fs->insert({2}, {false, "uTorrent.exe", 4532, {19, 11}});
+    fs->insert({}, {true, "System", 0, {12, 15}});
+    fs->insert({1}, {true, "Windows", 0, {12, 15}});
+    fs->insert({1,0}, {false, "notACrack.exe", 1440, {12, 15}});
+    fs->insert({}, {true, "Programs", 0, {13, 00}});
+    fs->insert({2}, {false, "VisualStudio2020.exe", 25033, {13, 40}});
+    fs->insert({2}, {false, "uTorrent.exe", 4532, {19, 11}});
 
     this->_fs = fs;
 }

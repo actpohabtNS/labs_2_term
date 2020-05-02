@@ -65,8 +65,6 @@ void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QT
 
     while (!parentPath.empty())
     {
-        qDebug() << "papa time:" << this->_fileTree->get(path).lastChanged().toString() << "New time: " << newTime.toString();
-
         if (this->_fileTree->get(path).lastChanged() >= newTime)
             return;
 
@@ -74,11 +72,9 @@ void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QT
         parentPath.pop_back();
     }
 
-    if (this->_fileTree->get(path).lastChanged() >= newTime)
+    if (this->_fileTree->get(parentPath).lastChanged() >= newTime)
         return;
     this->_changeLastChanged(parentPath, newTime);
-
-    qDebug() << "done";
 }
 
 FileSystem::FileSystem(const FileSystemElem &root) {
