@@ -36,7 +36,6 @@ public:
     void toRoot();
     void setEnabled(const bool enabled);
 
-    void setBinaryTree(BinaryTree<T>* bTree);
     void setTree(Tree<T>* tree);
 };
 

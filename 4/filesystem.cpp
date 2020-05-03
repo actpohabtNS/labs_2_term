@@ -4,7 +4,7 @@ int FileSystem::_elemsCount(const std::vector<int> &path, bool countingFolders) 
 {
     int elems = 0;
 
-    std::vector<FileSystemElem> elemsVec = this->_fileTree->preorderTravData(path);
+    std::vector<FileSystemElem> elemsVec = this->preorderTravData(path);
 
     for (FileSystemElem elem : elemsVec)
     {
@@ -17,7 +17,7 @@ int FileSystem::_elemsCount(const std::vector<int> &path, bool countingFolders) 
 
 FileSystemElem FileSystem::_timeChanged(const std::vector<int> &path, bool first) const
 {
-    std::vector<FileSystemElem> elems = this->_fileTree->preorderTravData(path);
+    std::vector<FileSystemElem> elems = this->preorderTravData(path);
 
     FileSystemElem timeElem = elems[0];
 
@@ -32,10 +32,10 @@ FileSystemElem FileSystem::_timeChanged(const std::vector<int> &path, bool first
 
 void FileSystem::_changeSize(const std::vector<int> &path, int shift)
 {
-    FileSystemElem elem = this->_fileTree->get(path);
+    FileSystemElem elem = this->get(path);
     elem.setSize(elem.size() + shift);
 
-    this->_fileTree->set(path, elem);
+    this->set(path, elem);
 }
 
 void FileSystem::_changeBranchSize(const std::vector<int> &path, int shift)
@@ -53,10 +53,10 @@ void FileSystem::_changeBranchSize(const std::vector<int> &path, int shift)
 
 void FileSystem::_changeLastChanged(const std::vector<int> &path, const QTime &newTime)
 {
-    FileSystemElem elem = this->_fileTree->get(path);
+    FileSystemElem elem = this->get(path);
     elem.setLastChanged(newTime);
 
-    this->_fileTree->set(path, elem);
+    this->set(path, elem);
 }
 
 void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QTime &newTime)
@@ -65,30 +65,29 @@ void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QT
 
     while (!parentPath.empty())
     {
-        if (this->_fileTree->get(path).lastChanged() >= newTime)
+        if (this->get(path).lastChanged() >= newTime)
             return;
 
         this->_changeLastChanged(parentPath, newTime);
         parentPath.pop_back();
     }
 
-    if (this->_fileTree->get(parentPath).lastChanged() >= newTime)
+    if (this->get(parentPath).lastChanged() >= newTime)
         return;
     this->_changeLastChanged(parentPath, newTime);
 }
 
-FileSystem::FileSystem(const FileSystemElem &root) {
-    this->_fileTree = new GeneralTree<FileSystemElem>(root);
-}
+FileSystem::FileSystem(const FileSystemElem &root)
+    : GeneralTree<FileSystemElem>(root) {}
 
 FileSystem::~FileSystem() {}
 
 void FileSystem::insert(const std::vector<int> &path, const FileSystemElem &elem)
 {
-    if (!this->_fileTree->get(path).isFolder())
+    if (!this->get(path).isFolder())
         return;
 
-    this->_fileTree->insert(path, elem);
+    this->GeneralTree<FileSystemElem>::insert(path, elem);
 
     this->_changeBranchSize(path, elem.size());
     this->_changeBranchLastChanged(path, elem.lastChanged());
@@ -96,9 +95,9 @@ void FileSystem::insert(const std::vector<int> &path, const FileSystemElem &elem
 
 void FileSystem::remove(const std::vector<int> &path)
 {
-    int size = this->_fileTree->get(path).size();
+    int size = this->get(path).size();
 
-    this->_fileTree->removeSubtree(path);
+    this->removeSubtree(path);
 
     std::vector<int> brenchPath(path);
     brenchPath.pop_back();
@@ -107,7 +106,7 @@ void FileSystem::remove(const std::vector<int> &path)
 
 int FileSystem::size(const std::vector<int> &path) const
 {
-    return this->_fileTree->get(path).size();
+    return this->get(path).size();
 }
 
 int FileSystem::filesCount(const std::vector<int> &path) const
@@ -143,9 +142,4 @@ void FileSystem::filterBySize(int min, int max)
 void FileSystem::filterByLastEdited(const QTime& min, const QTime& max)
 {
     this->_filterByFunc(isInTimeInterval, min, max);
-}
-
-GeneralTree<FileSystemElem> *FileSystem::fileTree() const
-{
-    return this->_fileTree;
 }

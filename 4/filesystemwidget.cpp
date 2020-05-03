@@ -56,7 +56,7 @@ FileSystemElem FileSystemWidget::_timeChanged(QTreeWidgetItem *item, bool first)
 }
 
 FileSystemWidget::FileSystemWidget(QTreeWidget *widget, FileSystem *fs)
-    : TreeWidget<FileSystemElem>(widget, fs->fileTree()), _isFiltered(false) {}
+    : TreeWidget<FileSystemElem>(widget, fs), _isFiltered(false) {}
 
 FileSystemWidget::~FileSystemWidget()
 {
@@ -157,7 +157,7 @@ std::vector<QTreeWidgetItem*> FileSystemWidget::preorderTravData(QTreeWidgetItem
 
 void FileSystemWidget::setFileSystem(FileSystem *fs)
 {
-    this->_tree = fs->fileTree();
+    this->setTree(fs);
 }
 
 FileSystemElem treeItemToFSElem(QTreeWidgetItem *item)

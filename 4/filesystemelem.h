@@ -33,6 +33,8 @@ public:
     {
         return ostream << fsElem._name << "\t\t" << fsElem._size << " kB\t\t" << fsElem._lastChanged.toString();
     }
+
+    bool operator == (const FileSystemElem& other) const;
 };
 
 bool containsStr(const FileSystemElem& elem, QString str);

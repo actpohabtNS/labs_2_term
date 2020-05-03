@@ -76,7 +76,7 @@ font-family: Roboto;</string>
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <property name="usesScrollButtons">
      <bool>true</bool>
@@ -2617,7 +2617,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>40</y>
+          <y>50</y>
           <width>171</width>
           <height>31</height>
          </rect>

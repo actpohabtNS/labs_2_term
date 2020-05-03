@@ -63,10 +63,10 @@ public:
     bool contains(const T& searchData) const;
     virtual bool nodeExists(const std::vector<int>& path) const;
 
-    void insert(const std::vector<int>& path, const T& data);
+    virtual void insert(const std::vector<int>& path, const T& data);
 
-    GeneralTree* removeSubtree(const std::vector<int>& path);
-    void removeSubtree(const T& removingData);
+    virtual GeneralTree* removeSubtree(const std::vector<int>& path);
+    virtual void removeSubtree(const T& removingData);
 
     std::vector<int> getPath(const T& searchData) const;
     virtual int childrenCount(const std::vector<int>& path) const;

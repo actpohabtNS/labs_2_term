@@ -10,6 +10,9 @@
 
 template <typename T>
 class TreeWidget : public QTreeWidget {
+
+    Q_OBJECT
+
 protected:
     QTreeWidget* _widget;
     Tree<T>* _tree;
@@ -17,7 +20,7 @@ protected:
     void _setupItem(QTreeWidgetItem* item, const T& data);
 
 public:
-    explicit TreeWidget(QTreeWidget* widget, Tree<T>* tree);
+    explicit TreeWidget(QTreeWidget* widget, Tree<T>* tree, QWidget* parent = nullptr);
     virtual ~TreeWidget();
 
     void render();
@@ -46,8 +49,8 @@ template<>
 void TreeWidget<FileSystemElem>::_setupItem(QTreeWidgetItem *item, const FileSystemElem& fsElem);
 
 template<typename T>
-TreeWidget<T>::TreeWidget(QTreeWidget *widget, Tree<T> *tree)
-    : _widget(widget), _tree(tree) {}
+TreeWidget<T>::TreeWidget(QTreeWidget *widget, Tree<T> *tree, QWidget* parent)
+    : QTreeWidget(parent), _widget(widget), _tree(tree) {}
 
 template<typename T>
 TreeWidget<T>::~TreeWidget()

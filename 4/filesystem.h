@@ -9,8 +9,6 @@
 class FileSystem : public GeneralTree<FileSystemElem> {
 
 private:
-    GeneralTree<FileSystemElem>* _fileTree;
-
     int _elemsCount(const std::vector<int>& path, bool countingFolders) const;
     FileSystemElem _timeChanged(const std::vector<int>& path, bool first) const;
 
@@ -30,7 +28,7 @@ public:
     explicit FileSystem(const FileSystemElem& root);
     virtual ~FileSystem();
 
-    void insert(const std::vector<int>& path, const FileSystemElem& elem);
+    virtual void insert(const std::vector<int>& path, const FileSystemElem& elem) override;
     void remove(const std::vector<int>& path);
 
     int size(const std::vector<int>& path) const;
@@ -42,8 +40,6 @@ public:
     void filterByName(QString name);
     void filterBySize(int min, int max);
     void filterByLastEdited(const QTime& min, const QTime& max);
-
-    GeneralTree<FileSystemElem>* fileTree() const;
 };
 
 template <typename ...Types>
@@ -73,7 +69,7 @@ void FileSystem::_filterByFunc(bool includesByFilter(const FileSystemElem&, Type
 
             if (!includesByFilter(current->children()[child]->data(), Args...))
             {
-                this->_fileTree->removeSubtree(childPath);
+                this->removeSubtree(childPath);
                 child--;
             }
             else

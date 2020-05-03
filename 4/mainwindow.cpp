@@ -382,7 +382,7 @@ void MainWindow::on_addIntegerChildButton_clicked()
     int value = ui->addIntegerInput->text().toInt();
 
     ui->addIntegerInput->clear();
-    ui->addIntegerInput->setEnabled(false);
+    ui->addIntegerChildButton->setEnabled(false);
 
     this->_console->newPar();
     this->_console->printTech("Adding child with [ value ] = " + QString::number(value) + " to selected item");
@@ -566,7 +566,7 @@ void MainWindow::on_removeSelectedElemButton_clicked()
         return;
     }
 
-    this->_fs->remove(path);
+    this->_fs->removeSubtree(path);
     this->_fsW->update();
 }
 
@@ -592,10 +592,12 @@ void MainWindow::on_addElemChildButton_clicked()
 
     std::vector<int> path = this->_fsW->getPath(ui->fileSystem->selectedItems()[0]);
 
-    this->_fsConsole->newPar();
-    this->_fsConsole->printTech("Adding child with [ name ] = { " + name + " } to selected item");
+    QString parentName = this->_fs->get(path).name();
 
-    if (!this->_fs->fileTree()->get(path).isFolder())
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Adding child with [ name ] = { " + name + " } to selected item { " + parentName + " }.");
+
+    if (!this->_fs->get(path).isFolder())
     {
         this->_fsConsole->newLine();
         this->_fsConsole->printError("Selected elem is not a folder! Child can be added only to a folder!");
@@ -674,7 +676,7 @@ void MainWindow::on_filterElemButton_clicked()
     if (minSize != 0)
     {
         if (maxSize == 0)
-            maxSize = this->_fs->fileTree()->get({}).size();
+            maxSize = this->_fs->get({}).size();
 
         this->_fsW->filterBySize(minSize, maxSize);
     }

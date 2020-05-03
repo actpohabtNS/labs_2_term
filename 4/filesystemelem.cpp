@@ -54,6 +54,14 @@ void FileSystemElem::setLastChanged(const QTime &lastChanged)
     this->_lastChanged = lastChanged;
 }
 
+bool FileSystemElem::operator ==(const FileSystemElem &other) const
+{
+    return (this->_isFolder == other.isFolder() &&
+        this->_name == other.name() &&
+        this->_size == other.size() &&
+        this->_lastChanged == other.lastChanged());
+}
+
 bool containsStr(const FileSystemElem &elem, QString str)
 {
     return elem.name().contains(str);

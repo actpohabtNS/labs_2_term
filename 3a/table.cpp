@@ -83,7 +83,7 @@ void table::setVisTable(int rowHeight, int columnCount)
 
 void table::setDateArray(Date arr[], int size)
 {
-    if(size > 50) size = 50;
+    if (size > 50) size = 50;
 
     m_table->setColumnCount(size);
     setEqualColumnWidths(size);
