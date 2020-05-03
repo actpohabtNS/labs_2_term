@@ -74,6 +74,8 @@ private slots:
 
     void on_binaryChildrenTable_cellClicked(int row, int column);
 
+    void on_binaryTreeDemoButton_clicked();
+
 
 
     //--------------- Integer Tree ------------------
@@ -105,6 +107,8 @@ private slots:
     void on_integerChildrenTable_cellClicked(int row, int column);
 
     void on_integerTree_itemSelectionChanged();
+
+    void on_integerTreeDemoButton_clicked();
 
 
 
@@ -147,6 +151,8 @@ private slots:
     void on_getFirstEditedElemButton_clicked();
 
     void on_getLastEditedElemButton_clicked();
+
+    void on_fileSystemDemoButton_clicked();
 
 private:
     Ui::MainWindow *ui;

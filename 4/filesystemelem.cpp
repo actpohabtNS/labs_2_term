@@ -64,7 +64,7 @@ bool FileSystemElem::operator ==(const FileSystemElem &other) const
 
 bool containsStr(const FileSystemElem &elem, QString str)
 {
-    return elem.name().contains(str);
+    return elem.name().toUpper().contains(str.toUpper());
 }
 
 bool isInTimeInterval(const FileSystemElem &elem, QTime min,  QTime max)

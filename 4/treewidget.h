@@ -11,8 +11,6 @@
 template <typename T>
 class TreeWidget : public QTreeWidget {
 
-    Q_OBJECT
-
 protected:
     QTreeWidget* _widget;
     Tree<T>* _tree;
