@@ -8,6 +8,7 @@
 #include <QTextBrowser>
 
 #include "filesystemwidget.h"
+#include "treewidget.h"
 #include "interactivetreeview.h"
 #include "console.h"
 #include "filesystem.h"
@@ -159,8 +160,8 @@ private:
 
     BinaryTree<int>* _bTree;
     GeneralTree<int>* _tree;
-    TreeWidget<int>* _bTW;
-    TreeWidget<int>* _tW;
+    TreeWidget* _bTW;
+    TreeWidget* _tW;
     FileSystemWidget* _fsW;
     InteractiveTreeView<int>* _iBTV;
     InteractiveTreeView<int>* _iTV;

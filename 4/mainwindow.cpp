@@ -125,7 +125,8 @@ void MainWindow::setupBinaryTreeUI()
 {
     setupBinaryTree();
 
-    this->_bTW = new TreeWidget<int>(ui->binaryTree, this->_bTree);
+    this->_bTW = ui->binaryTree;
+    this->_bTW->setTree(this->_bTree);
     this->_bTW->render();
 
     updatePathBeforeElemText(*this->_bTree, ui->pathBeforeElemBinaryTextField);
@@ -138,7 +139,8 @@ void MainWindow::setupTreeUI()
 {
     setupTree();
 
-    this->_tW = new TreeWidget<int>(ui->integerTree, this->_tree);
+    this->_tW = ui->integerTree;
+    this->_tW->setTree(this->_tree);
     this->_tW->render();
 
     updatePathBeforeElemText(*this->_tree, ui->pathBeforeElemIntegerTextField);
@@ -158,7 +160,8 @@ void MainWindow::setupFSUI()
     ui->fileSystem->setColumnWidth(2, 115);
     ui->fileSystem->setColumnWidth(3, 25);
 
-    this->_fsW = new FileSystemWidget(ui->fileSystem, this->_fs);
+    this->_fsW = ui->fileSystem;
+    this->_fsW->setTree(this->_fs);
     this->_fsW->render();
 
     this->_fsConsole = new Console(ui->fileConsole);
@@ -434,11 +437,13 @@ void MainWindow::on_addIntegerChildButton_clicked()
     ui->addIntegerInput->clear();
     ui->addIntegerChildButton->setEnabled(false);
 
-    this->_console->newPar();
-    this->_console->printTech("Adding child with [ value ] = " + QString::number(value) + " to selected item");
-    this->_console->newLine();
-
     std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+
+    int elem = this->_tree->get(path);
+
+    this->_console->newPar();
+    this->_console->printTech("Adding child with [ value ] = " + QString::number(value) + " to selected item { " + QString::number(elem) + " }");
+    this->_console->newLine();
 
     this->_tree->insert(path, value);
 
@@ -456,11 +461,13 @@ void MainWindow::on_addIntegerInput_textEdited()
 
 void MainWindow::on_getIntegerPathSelectedButton_clicked()
 {
-    this->_console->newPar();
-    this->_console->printTech("Path to selected elem:");
-    this->_console->newLine();
-
     std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+
+    int elem = this->_tree->get(path);
+
+    this->_console->newPar();
+    this->_console->printTech("Path to selected elem { " + QString::number(elem) + " } :");
+    this->_console->newLine();
 
     this->_console->print(pathToQStr(path));
 }
@@ -473,7 +480,7 @@ void MainWindow::on_getIntegerPathByValueButton_clicked()
     ui->getIntegerPathInput->setEnabled(false);
 
     this->_console->newPar();
-    this->_console->printTech("Path to [ elem ] with value = " + QString::number(value) + ":");
+    this->_console->printTech("Path to [ elem ] with value = { " + QString::number(value) + " } :");
     this->_console->newLine();
 
     if (this->_tree->contains(value))
@@ -494,11 +501,13 @@ void MainWindow::on_getIntegerPathInput_textEdited()
 
 void MainWindow::on_removeIntegerSelectedButton_clicked()
 {
-    this->_console->newPar();
-    this->_console->printTech("Removing selected item");
-    this->_console->newLine();
-
     std::vector<int> path = this->_tW->getPath(ui->integerTree->selectedItems()[0]);
+
+    int elem = this->_tree->get(path);
+
+    this->_console->newPar();
+    this->_console->printTech("Removing selected item { " + QString::number(elem) + " }");
+    this->_console->newLine();
 
     if (path.size() == 0)
     {

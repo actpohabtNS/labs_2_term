@@ -26,6 +26,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    TreeWidgetBase.h \
     binaryTree.h \
     console.h \
     filesystem.h \

@@ -1,10 +1,17 @@
 #include "treewidget.h"
 
-template<>
-void TreeWidget<FileSystemElem>::_setupItem(QTreeWidgetItem *item, const FileSystemElem &fsElem)
+//template<>
+//void TreeWidget<FileSystemElem>::_setupItem(QTreeWidgetItem *item, const FileSystemElem &fsElem)
+//{
+//    item->setText(0, fsElem.name());
+//    item->setText(1, QString::number(fsElem.size()) + " kB");
+//    item->setText(2, fsElem.lastChanged().toString());
+//    item->setText(3, fsElem.isFolder() ? "+" : "");
+//}
+
+TreeWidget::TreeWidget(QWidget *parent)
+    : TreeWidgetBase<int>(parent) {}
+
+TreeWidget::~TreeWidget()
 {
-    item->setText(0, fsElem.name());
-    item->setText(1, QString::number(fsElem.size()) + " kB");
-    item->setText(2, fsElem.lastChanged().toString());
-    item->setText(3, fsElem.isFolder() ? "+" : "");
 }

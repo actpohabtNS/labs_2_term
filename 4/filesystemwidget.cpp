@@ -1,5 +1,13 @@
 #include "filesystemwidget.h"
 
+void FileSystemWidget::_setupItem(QTreeWidgetItem *item, const FileSystemElem &fsElem)
+{
+    item->setText(0, fsElem.name());
+    item->setText(1, QString::number(fsElem.size()) + " kB");
+    item->setText(2, fsElem.lastChanged().toString("HH:mm"));
+    item->setText(3, fsElem.isFolder() ? "+" : "");
+}
+
 int FileSystemWidget::_countElems(QTreeWidgetItem *item, bool files) const
 {
     int elems = 0;
@@ -55,8 +63,8 @@ FileSystemElem FileSystemWidget::_timeChanged(QTreeWidgetItem *item, bool first)
     return mostElem;
 }
 
-FileSystemWidget::FileSystemWidget(QTreeWidget *widget, FileSystem *fs)
-    : TreeWidget<FileSystemElem>(widget, fs), _isFiltered(false) {}
+FileSystemWidget::FileSystemWidget(QWidget* parent)
+    : TreeWidgetBase<FileSystemElem>(parent), _isFiltered(false) {}
 
 FileSystemWidget::~FileSystemWidget()
 {
@@ -64,7 +72,7 @@ FileSystemWidget::~FileSystemWidget()
 
 void FileSystemWidget::setAllVisible()
 {
-    QTreeWidgetItem* item = this->_widget->topLevelItem(0);
+    QTreeWidgetItem* item = this->topLevelItem(0);
 
     std::stack<QTreeWidgetItem*> items;
     items.push(item);
@@ -165,7 +173,7 @@ FileSystemElem treeItemToFSElem(QTreeWidgetItem *item)
     bool isFolder = item->text(3) == "+";
     QString name = item->text(0);
     int size = item->text(1).split(" ")[0].toInt();
-    QTime lastChanged = QTime().fromString(item->text(2), "HH:mm:ss");
+    QTime lastChanged = QTime().fromString(item->text(2), "HH:mm");
 
     return FileSystemElem{isFolder, name, size, lastChanged};
 }

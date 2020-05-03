@@ -3,13 +3,17 @@
 
 #include <QTreeWidget>
 
-#include "treewidget.h"
+#include "TreeWidgetBase.h"
 #include "filesystem.h"
 
-class FileSystemWidget : public TreeWidget<FileSystemElem>
+class FileSystemWidget : public TreeWidgetBase<FileSystemElem>
 {
+    Q_OBJECT
+
 private:
     bool _isFiltered;
+
+    virtual void _setupItem(QTreeWidgetItem* item, const FileSystemElem& fsElem) override;
 
     template <typename ...Types>
     void _filterByFunc(bool includesByFilter(const FileSystemElem&, Types ...Args), Types ...Args);
@@ -21,7 +25,7 @@ private:
     FileSystemElem _timeChanged(QTreeWidgetItem* item, bool first) const;
 
 public:
-    explicit FileSystemWidget(QTreeWidget* widget, FileSystem* fs);
+    explicit FileSystemWidget(QWidget* parent = nullptr);
     virtual ~FileSystemWidget();
 
     void setAllVisible();
@@ -47,8 +51,8 @@ FileSystemElem treeItemToFSElem(QTreeWidgetItem* item);
 template <typename ...Types>
 void FileSystemWidget::_filterByFunc(bool includesByFilter(const FileSystemElem&, Types ...Args), Types ...Args)
 {
-    QTreeWidgetItem* item = this->_widget->topLevelItem(0);
-    item = this->_widget->itemBelow(item);
+    QTreeWidgetItem* item = this->topLevelItem(0);
+    item = this->itemBelow(item);
 
     while (item != nullptr)
     {
@@ -59,20 +63,20 @@ void FileSystemWidget::_filterByFunc(bool includesByFilter(const FileSystemElem&
             QTreeWidgetItem* temp;
 
             if (elem.isFolder())
-                temp = this->_widget->itemAbove(item);
+                temp = this->itemAbove(item);
             else
-                temp = this->_widget->itemBelow(item);
+                temp = this->itemBelow(item);
 
             item->setHidden(true);
 
             if (elem.isFolder())
-                temp = this->_widget->itemBelow(temp);
+                temp = this->itemBelow(temp);
 
             item = temp;
             continue;
         }
 
-        item = this->_widget->itemBelow(item);
+        item = this->itemBelow(item);
     }
 
     this->_isFiltered = true;
