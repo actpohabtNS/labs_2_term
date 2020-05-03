@@ -1,5 +1,8 @@
 #include "filesystemelem.h"
 
+FileSystemElem::FileSystemElem()
+    : _isFolder(false), _name(""), _size(0), _lastChanged(QTime(0,0)) {}
+
 FileSystemElem::FileSystemElem(bool isFolder, QString name, int size, const QTime &lastEdited)
     : _isFolder(isFolder), _name(name), _size(size), _lastChanged(lastEdited) {}
 

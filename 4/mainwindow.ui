@@ -2189,9 +2189,9 @@ QTreeView::item::selected {
       <property name="geometry">
        <rect>
         <x>760</x>
-        <y>360</y>
+        <y>370</y>
         <width>351</width>
-        <height>401</height>
+        <height>391</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2232,7 +2232,7 @@ QTreeView::item::selected {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>100</y>
+         <y>90</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2242,7 +2242,7 @@ QTreeView::item::selected {
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>150</y>
+         <y>140</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2260,7 +2260,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>250</y>
+         <y>240</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2278,7 +2278,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>350</y>
+         <y>340</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -2337,7 +2337,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>140</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2347,7 +2347,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>250</y>
+         <y>240</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2357,7 +2357,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>100</y>
+         <y>90</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2375,7 +2375,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>300</y>
+         <y>290</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2393,7 +2393,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>300</y>
+         <y>290</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2410,7 +2410,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>200</y>
+         <y>190</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -2420,7 +2420,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>200</y>
+         <y>190</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -2540,71 +2540,13 @@ font-weight: bold;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QGroupBox" name="groupBox_50">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>350</y>
-         <width>351</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QGroupBox {
-	background-color: #f2f2f2;
-	color: #4a455c;
-	font-size: 17px;
-	padding-top: 5px;
-}</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
-       <widget class="QLabel" name="label_117">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>10</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #7a7a7a;
-font-size: 13px;
-font-family: Roboto;</string>
-        </property>
-        <property name="text">
-         <string>Prints size of selected elem's subtree</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="getTotalSizeElemButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>141</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Get total size</string>
-        </property>
-       </widget>
-      </widget>
       <widget class="QGroupBox" name="groupBox_51">
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>120</y>
+         <y>230</y>
          <width>351</width>
-         <height>191</height>
+         <height>301</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2641,7 +2583,7 @@ font-family: Roboto;</string>
        </widget>
        <widget class="QPushButton" name="getTotalAmountElemButton">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -2657,12 +2599,12 @@ font-family: Roboto;</string>
        </widget>
        <widget class="QPushButton" name="getFilesAmountElemButton">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>80</y>
+          <y>50</y>
           <width>141</width>
           <height>31</height>
          </rect>
@@ -2675,7 +2617,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>80</y>
+          <y>40</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -2696,7 +2638,7 @@ font-family: Roboto;</string>
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>150</y>
+          <y>90</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -2715,7 +2657,44 @@ font-family: Roboto;</string>
        </widget>
        <widget class="QPushButton" name="getFoldersAmountElemButton">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get folders amount</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_117">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>150</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints size of selected elem's subtree</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getTotalSizeElemButton">
+        <property name="enabled">
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -2726,7 +2705,81 @@ font-family: Roboto;</string>
          </rect>
         </property>
         <property name="text">
-         <string>Get folders amount</string>
+         <string>Get total size</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getFirstEditedElemButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>210</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get first edited</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_131">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>210</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints elem that has been modificated the first</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="getLastEditedElemButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>260</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Get last edited</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_130">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>260</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Prints elem that has been modificated the last</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -2734,7 +2787,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>30</y>
+         <y>150</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -2846,106 +2899,11 @@ font-family: Roboto;</string>
         </property>
        </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_57">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>440</y>
-         <width>351</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QGroupBox {
-	background-color: #f2f2f2;
-	color: #4a455c;
-	font-size: 17px;
-	padding-top: 5px;
-}</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
-       <widget class="QLabel" name="label_130">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>10</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #7a7a7a;
-font-size: 13px;
-font-family: Roboto;</string>
-        </property>
-        <property name="text">
-         <string>Prints elem that has been modificated the last</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="getLastEditedElemButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>141</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Get last edited</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_131">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>80</y>
-          <width>171</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #7a7a7a;
-font-size: 13px;
-font-family: Roboto;</string>
-        </property>
-        <property name="text">
-         <string>Prints elem that has been modificated the first</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="getFirstEditedElemButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>80</y>
-          <width>141</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Get first edited</string>
-        </property>
-       </widget>
-      </widget>
       <widget class="QGroupBox" name="groupBox_60">
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>600</y>
+         <y>610</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -2996,6 +2954,155 @@ font-family: Roboto;</string>
         </property>
         <property name="text">
          <string>Clear filter</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_48">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>530</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_102">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>0</y>
+          <width>291</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #8f5050;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Note: selected elem is [ Root ] by default for the block above, though another can be selected</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: red;
+font-size: 35px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>!</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_55">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>351</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_142">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>50</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Creates new File system with root = [ Root ]</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="newFileSystemButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>New File system</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="newElemRootInput">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_143">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>10</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>—   new Root</string>
         </property>
        </widget>
       </widget>
@@ -3077,7 +3184,7 @@ p, li { white-space: pre-wrap; }
         <x>760</x>
         <y>20</y>
         <width>351</width>
-        <height>321</height>
+        <height>331</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -3118,25 +3225,27 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>41</y>
+         <y>88</y>
          <width>141</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: #4a455c;
-font-size: 18px;
-font-family: Roboto;</string>
+        <string notr="true">QCheckBox {
+	color: #4a455c;
+	font-size: 18px;
+	font-family: Roboto;
+}</string>
        </property>
        <property name="text">
-        <string>Is a [ Folder ]</string>
+        <string>  Is a [ Folder ]</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_122">
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>43</y>
+         <y>90</y>
          <width>171</width>
          <height>31</height>
         </rect>
@@ -3157,7 +3266,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>90</y>
+         <y>127</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -3175,7 +3284,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>90</y>
+         <y>127</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3185,7 +3294,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>150</y>
+         <y>178</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -3203,7 +3312,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>178</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3213,7 +3322,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>210</y>
+         <y>228</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -3223,7 +3332,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>210</y>
+         <y>228</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -3241,7 +3350,7 @@ font-family: Roboto;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>270</y>
+         <y>280</y>
          <width>351</width>
          <height>51</height>
         </rect>
@@ -3296,6 +3405,69 @@ font-family: Roboto;</string>
         </property>
        </widget>
       </widget>
+      <widget class="QGroupBox" name="groupBox_47">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>351</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="label_101">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>0</y>
+          <width>291</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #8f5050;
+font-size: 13px;
+font-family: Roboto;</string>
+        </property>
+        <property name="text">
+         <string>Note: adding elem's properties can be without filter range, thus before adding filter will be cleared</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: red;
+font-size: 35px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>!</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
       <zorder>groupBox_52</zorder>
       <zorder>label_126</zorder>
       <zorder>isFolderCheckBox</zorder>
@@ -3306,6 +3478,7 @@ font-family: Roboto;</string>
       <zorder>addElemSizeInput</zorder>
       <zorder>addElemTimeInput</zorder>
       <zorder>label_127</zorder>
+      <zorder>groupBox_47</zorder>
      </widget>
      <zorder>ManipulateFileSystem</zorder>
      <zorder>FileSystem</zorder>

@@ -159,6 +159,92 @@ void MainWindow::setupFSUI()
 
     this->_fsW = new FileSystemWidget(ui->fileSystem, this->_fs);
     this->_fsW->render();
+
+    this->_fsConsole = new Console(ui->fileConsole);
+}
+
+void MainWindow::resetAddElemInputs()
+{
+    ui->isFolderCheckBox->setChecked(false);
+    ui->addElemNameInput->clear();
+    ui->addElemSizeInput->clear();
+    ui->addElemTimeInput->setTime(QTime(0,0));
+}
+
+void MainWindow::manageInRangeInputs(QLineEdit *min, QLineEdit *max, QPushButton *button)
+{
+    button->setEnabled(min->text().toInt() <= max->text().toInt());
+}
+
+void MainWindow::manageInRangeInputs(QTimeEdit *min, QTimeEdit *max, QPushButton *button)
+{
+    button->setEnabled(min->time() <= max->time());
+}
+
+void MainWindow::printTotalAmountOfElems(int mode) // 0 - all elements, 1 - only files, 2 - only folders
+{
+    QTreeWidgetItem *item = this->getSelected();
+
+    int total;
+    QString elem;
+    QString name = item->text(0);
+
+    switch (mode) {
+    case 0:
+        total = this->_fsW->filesCount(item) + this->_fsW->foldersCount(item);
+        elem = "elem";
+        break;
+
+    case 1:
+        total = this->_fsW->filesCount(item);
+        elem = "file";
+        break;
+
+    case 2:
+        total = this->_fsW->foldersCount(item);
+        elem = "folder";
+        break;
+
+    default:
+        total = -1;
+        elem = "";
+        break;
+    }
+
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Total number of "+ elem + "s in [ " + name + " ] :");
+    this->_fsConsole->newLine();
+    this->_fsConsole->print(QString::number(total) + " " + elem + "(s)");
+
+}
+
+void MainWindow::printTimeElem(bool first)
+{
+    QTreeWidgetItem *item = this->getSelected();
+    FileSystemElem elem = first ? this->_fsW->firstChanged(item) : this->_fsW->lastChanged(item);
+
+    QString timeType = first ? "First" : "Last";
+    QString insideName = item->text(0);
+
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("[ " + insideName + " ] " + timeType + " element that was changed:");
+    this->_fsConsole->newLine();
+    this->_fsConsole->print("Name: " + elem.name());
+    this->_fsConsole->newLine();
+    this->_fsConsole->print("Size: " + QString::number(elem.size()) + " kB ");
+    this->_fsConsole->newLine();
+    this->_fsConsole->print("Last changed: " + elem.lastChanged().toString("HH:mm"));
+}
+
+QTreeWidgetItem *MainWindow::getSelected() const
+{
+    QTreeWidgetItem *item;
+    if (ui->fileSystem->selectedItems().size() != 0)
+        item = ui->fileSystem->selectedItems()[0];
+    else
+        item = ui->fileSystem->topLevelItem(0);
+
+    return item;
 }
 
 void MainWindow::on_addBinaryInput_textEdited(const QString &arg1)
@@ -443,14 +529,217 @@ void MainWindow::on_integerTree_itemSelectionChanged()
 
 void MainWindow::on_fileSystem_itemSelectionChanged()
 {
-//    if (ui->fileSystem->selectedItems().size() == 0)
-//        return;
+    this->manageInputButtonEnabled(ui->fileSystem, ui->addElemChildButton);
+    this->manageInputButtonEnabled(ui->fileSystem, ui->removeSelectedElemButton);
+}
 
-//    qDebug() << ui->fileSystem->selectedItems()[0]->text(0);
+void MainWindow::on_newElemRootInput_textEdited()
+{
+    this->manageInputButtonEnabled(ui->newElemRootInput, ui->newFileSystemButton);
+}
+
+void MainWindow::on_newFileSystemButton_clicked()
+{
+    FileSystemElem root(true, ui->newElemRootInput->text(), 0, QTime(0,0));
+    this->_fs = new FileSystem(root);
+    this->_fsW->setFileSystem(this->_fs);
+    this->_fsW->update();
+
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("New File System with [ Root ] = { " + root.name() + " } created!");
+
+    ui->newElemRootInput->clear();
+    ui->newFileSystemButton->setEnabled(false);
+}
+
+void MainWindow::on_removeSelectedElemButton_clicked()
+{
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Removing selected item");
+
+    std::vector<int> path = this->_fsW->getPath(ui->fileSystem->selectedItems()[0]);
+
+    if (path.size() == 0)
+    {
+        this->_fsConsole->newLine();
+        this->_fsConsole->printError("You are not able to delete [ Root ]! To create new Root use [ New root ] button.");
+        return;
+    }
+
+    this->_fs->remove(path);
+    this->_fsW->update();
+}
+
+void MainWindow::on_isFolderCheckBox_stateChanged(int arg1)
+{
+    if (arg1 > 0)
+        ui->addElemSizeInput->setText("0");
+}
+
+void MainWindow::on_addElemNameInput_textEdited()
+{
+    this->manageInputButtonEnabled(ui->addElemNameInput, ui->fileSystem, ui->addElemChildButton);
+}
+
+void MainWindow::on_addElemChildButton_clicked()
+{
+    bool isFolder = ui->isFolderCheckBox->isChecked();
+    QString name = ui->addElemNameInput->text();
+    int size = ui->addElemSizeInput->text().toInt();
+    QTime lastChanged = ui->addElemTimeInput->time();
+
+    FileSystemElem elem(isFolder, name, size, lastChanged);
+
+    std::vector<int> path = this->_fsW->getPath(ui->fileSystem->selectedItems()[0]);
+
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Adding child with [ name ] = { " + name + " } to selected item");
+
+    if (!this->_fs->fileTree()->get(path).isFolder())
+    {
+        this->_fsConsole->newLine();
+        this->_fsConsole->printError("Selected elem is not a folder! Child can be added only to a folder!");
+        return;
+    }
+
+    if (this->_fsW->isFiltered())
+    {
+        emit on_clearFilterElemButton_clicked();
+        this->_fsConsole->newLine();
+        this->_fsConsole->print("Filter was cleared to add new [ elem ] !");
+    }
+
+    this->_fs->insert(path, elem);
+    this->_fsW->update();
+
+    this->resetAddElemInputs();
+}
+
+void MainWindow::on_minSizeFilterElemInput_textEdited()
+{
+    this->manageInRangeInputs(ui->minSizeFilterElemInput, ui->maxSizeFilterElemInput, ui->filterElemButton);
+}
+
+void MainWindow::on_maxSizeFilterElemInput_textEdited()
+{
+    this->manageInRangeInputs(ui->minSizeFilterElemInput, ui->maxSizeFilterElemInput, ui->filterElemButton);
+}
+
+void MainWindow::on_minTimeFilterElemInput_userTimeChanged()
+{
+    this->manageInRangeInputs(ui->minTimeFilterElemInput, ui->maxTimeFilterElemInput, ui->filterElemButton);
+}
+
+void MainWindow::on_maxTimeFilterElemInput_userTimeChanged()
+{
+    this->manageInRangeInputs(ui->minTimeFilterElemInput, ui->maxTimeFilterElemInput, ui->filterElemButton);
 }
 
 void MainWindow::on_filterElemButton_clicked()
 {
-    this->_fsW->filterByName("o");
-    //
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Filtering file system with next parameters:");
+
+    QString name = ui->nameFilterElemInput->text();
+    int minSize = ui->minSizeFilterElemInput->text().toInt();
+    int maxSize = ui->maxSizeFilterElemInput->text().toInt();
+    QTime minTime = ui->minTimeFilterElemInput->time();
+    QTime maxTime = ui->maxTimeFilterElemInput->time();
+
+    if (name != "")
+    {
+        this->_fsConsole->newLine();
+        this->_fsConsole->print("Name: " + name);
+    }
+
+    if (minSize != 0)
+    {
+        this->_fsConsole->newLine();
+        this->_fsConsole->print("Min size: " + QString::number(minSize));
+    }
+
+    if (maxSize != 0)
+    {
+        this->_fsConsole->newLine();
+        this->_fsConsole->print("Max size: " + QString::number(maxSize));
+    }
+
+    this->_fsConsole->newLine();
+    this->_fsConsole->print("Min time: " + minTime.toString("HH:mm"));
+    this->_fsConsole->newLine();
+    this->_fsConsole->print("Max time: " + maxTime.toString("HH:mm"));
+
+    this->_fsW->filterByName(name);
+
+    if (minSize != 0)
+    {
+        if (maxSize == 0)
+            maxSize = this->_fs->fileTree()->get({}).size();
+
+        this->_fsW->filterBySize(minSize, maxSize);
+    }
+
+    if (minTime != QTime(0, 0) && maxTime != QTime(23, 59))
+        this->_fsW->filterByLastEdited(minTime, maxTime);
+
+    ui->clearFilterElemButton->setEnabled(true);
+}
+
+void MainWindow::on_clearFilterElemButton_clicked()
+{
+    this->_fsW->setAllVisible();
+    this->_fsW->update();
+    ui->clearFilterElemButton->setEnabled(false);
+}
+
+
+void MainWindow::on_getTotalAmountElemButton_clicked()
+{
+    QTreeWidgetItem *item = this->getSelected();
+
+    QString name = item->text(0);
+
+    int files = this->_fsW->filesCount(item);
+    int folders= this->_fsW->foldersCount(item);
+    int total = files + folders;
+
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Elements in [ " + name + " ] :");
+    this->_fsConsole->newLine();
+    this->_fsConsole->print(QString::number(total) + " elem(s): ");
+    this->_fsConsole->print(QString::number(files) + " file(s) and ");
+    this->_fsConsole->print( QString::number(folders) + " folder(s)");
+}
+
+void MainWindow::on_getFilesAmountElemButton_clicked()
+{
+    this->printTotalAmountOfElems(1);
+}
+
+void MainWindow::on_getFoldersAmountElemButton_clicked()
+{
+    this->printTotalAmountOfElems(2);
+}
+
+void MainWindow::on_getTotalSizeElemButton_clicked()
+{
+    QTreeWidgetItem *item = this->getSelected();
+
+    int size = this->_fsW->size(item);
+    QString name = item->text(0);
+
+    this->_fsConsole->newPar();
+    this->_fsConsole->printTech("Size of [ " + name + " ] :");
+    this->_fsConsole->newLine();
+    this->_fsConsole->print(QString::number(size) + " kBytes");
+}
+
+void MainWindow::on_getFirstEditedElemButton_clicked()
+{
+    this->printTimeElem(true);
+}
+
+void MainWindow::on_getLastEditedElemButton_clicked()
+{
+    this->printTimeElem(false);
 }

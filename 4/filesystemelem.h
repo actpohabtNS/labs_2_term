@@ -14,6 +14,7 @@ private:
     QTime _lastChanged;
 
 public:
+    FileSystemElem();
     FileSystemElem(bool isFolder, QString name, int size, const QTime& lastChanged);
     virtual ~FileSystemElem();
 

@@ -102,7 +102,7 @@ void FileSystem::remove(const std::vector<int> &path)
 
     std::vector<int> brenchPath(path);
     brenchPath.pop_back();
-    this->_changeBranchSize(brenchPath, size);
+    this->_changeBranchSize(brenchPath, -size);
 }
 
 int FileSystem::size(const std::vector<int> &path) const

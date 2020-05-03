@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QTimeEdit>
 #include <QTextBrowser>
 
 #include "filesystemwidget.h"
@@ -35,6 +36,16 @@ public:
     void setupTreeUI();
     void setupFSUI();
 
+    void resetAddElemInputs();
+
+    void manageInRangeInputs(QLineEdit* min, QLineEdit* max, QPushButton* button);
+    void manageInRangeInputs(QTimeEdit* min, QTimeEdit* max, QPushButton* button);
+
+    void printTotalAmountOfElems(int mode = 0);
+    void printTimeElem(bool first);
+
+    QTreeWidgetItem* getSelected() const;
+
     template <typename treeType>
     void updatePathBeforeElemText(const treeType& tree, QTextBrowser* browser)
     {
@@ -43,6 +54,8 @@ public:
     }
 
 private slots:
+    //---------------- Binary Tree ------------------
+
     void on_addBinaryInput_textEdited(const QString &arg1);
 
     void on_threadizeButton_clicked();
@@ -60,6 +73,10 @@ private slots:
     void on_toBinaryParentButton_clicked();
 
     void on_binaryChildrenTable_cellClicked(int row, int column);
+
+
+
+    //--------------- Integer Tree ------------------
 
     void on_newIntegerTreeButton_clicked();
 
@@ -89,9 +106,47 @@ private slots:
 
     void on_integerTree_itemSelectionChanged();
 
+
+
+    //--------------- File system ------------------
+
     void on_fileSystem_itemSelectionChanged();
 
+    void on_newElemRootInput_textEdited();
+
+    void on_newFileSystemButton_clicked();
+
+    void on_removeSelectedElemButton_clicked();
+
+    void on_isFolderCheckBox_stateChanged(int arg1);
+
+    void on_addElemNameInput_textEdited();
+
+    void on_addElemChildButton_clicked();
+
+    void on_minSizeFilterElemInput_textEdited();
+
+    void on_maxSizeFilterElemInput_textEdited();
+
+    void on_minTimeFilterElemInput_userTimeChanged();
+
+    void on_maxTimeFilterElemInput_userTimeChanged();
+
     void on_filterElemButton_clicked();
+
+    void on_clearFilterElemButton_clicked();
+
+    void on_getTotalAmountElemButton_clicked();
+
+    void on_getFilesAmountElemButton_clicked();
+
+    void on_getFoldersAmountElemButton_clicked();
+
+    void on_getTotalSizeElemButton_clicked();
+
+    void on_getFirstEditedElemButton_clicked();
+
+    void on_getLastEditedElemButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -105,5 +160,6 @@ private:
     InteractiveTreeView<int>* _iTV;
     Console* _console;
     FileSystem* _fs;
+    Console* _fsConsole;
 };
 #endif // MAINWINDOW_H

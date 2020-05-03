@@ -41,37 +41,48 @@ int FileSystemWidget::_countElems(QTreeWidgetItem *item, bool files) const
 
 FileSystemElem FileSystemWidget::_timeChanged(QTreeWidgetItem *item, bool first) const
 {
-    QTreeWidgetItem* curr = this->_widget->itemBelow(item);
     FileSystemElem mostElem = treeItemToFSElem(item);
+    std::vector<QTreeWidgetItem*> items = this->preorderTravData(item);
 
-    while (curr != nullptr)
+    for (QTreeWidgetItem* currItem : items)
     {
-        FileSystemElem currElem = treeItemToFSElem(curr);
+        FileSystemElem currElem = treeItemToFSElem(currItem);
 
-        if ( first ? mostElem.lastChanged() > currElem.lastChanged() : mostElem.lastChanged() < currElem.lastChanged() )
+        if ( first ? mostElem.lastChanged() >= currElem.lastChanged() : mostElem.lastChanged() <= currElem.lastChanged() )
             mostElem = currElem;
-
-        curr = this->_widget->itemBelow(item);
     }
 
     return mostElem;
 }
 
 FileSystemWidget::FileSystemWidget(QTreeWidget *widget, FileSystem *fs)
-    : TreeWidget<FileSystemElem>(widget, fs->fileTree()) {}
+    : TreeWidget<FileSystemElem>(widget, fs->fileTree()), _isFiltered(false) {}
 
 FileSystemWidget::~FileSystemWidget()
 {
 }
 
-void FileSystemWidget::showAll()
+void FileSystemWidget::setAllVisible()
 {
     QTreeWidgetItem* item = this->_widget->topLevelItem(0);
 
-    while (item != nullptr)
+    std::stack<QTreeWidgetItem*> items;
+    items.push(item);
+
+    while (!items.empty())
     {
+        QTreeWidgetItem* curr = items.top();
+        items.pop();
+
         item->setHidden(false);
+
+        for (int child = 0; child < curr->childCount(); child++)
+        {
+            items.push(curr->child(child));
+        }
     }
+
+    this->_isFiltered = false;
 }
 
 void FileSystemWidget::filterByName(QString name)
@@ -87,6 +98,11 @@ void FileSystemWidget::filterBySize(int min, int max)
 void FileSystemWidget::filterByLastEdited(const QTime &min, const QTime &max)
 {
     this->_filterByFunc(isInTimeInterval, min, max);
+}
+
+int FileSystemWidget::size(QTreeWidgetItem *item) const
+{
+    return item->text(1).split(" ")[0].toInt();
 }
 
 int FileSystemWidget::filesCount(QTreeWidgetItem *item) const
@@ -107,6 +123,41 @@ FileSystemElem FileSystemWidget::firstChanged(QTreeWidgetItem *item) const
 FileSystemElem FileSystemWidget::lastChanged(QTreeWidgetItem *item) const
 {
     return this->_timeChanged(item, false);
+}
+
+bool FileSystemWidget::isFiltered() const
+{
+    return this->_isFiltered;
+}
+
+std::vector<QTreeWidgetItem*> FileSystemWidget::preorderTravData(QTreeWidgetItem *item) const
+{
+    QTreeWidgetItem* curr = item;
+
+    std::stack<QTreeWidgetItem*> items;
+    items.push(item);
+
+    std::vector<QTreeWidgetItem*> elems;
+
+    while (!items.empty())
+    {
+        curr = items.top();
+        items.pop();
+
+        elems.emplace_back(curr);
+
+        for (int child = 0; child < curr->childCount(); child++)
+        {
+            items.push(curr->child(child));
+        }
+    }
+
+    return elems;
+}
+
+void FileSystemWidget::setFileSystem(FileSystem *fs)
+{
+    this->_tree = fs->fileTree();
 }
 
 FileSystemElem treeItemToFSElem(QTreeWidgetItem *item)
