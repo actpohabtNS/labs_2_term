@@ -1,5 +1,6 @@
 #include "filesystem.h"
 
+
 int FileSystem::_elemsCount(const std::vector<int> &path, bool countingFolders) const
 {
     int elems = 0;
@@ -74,13 +75,16 @@ void FileSystem::_changeBranchLastChanged(const std::vector<int> &path, const QT
 
     if (this->get(parentPath).lastChanged() >= newTime)
         return;
+
     this->_changeLastChanged(parentPath, newTime);
 }
 
 FileSystem::FileSystem(const FileSystemElem &root)
     : GeneralTree<FileSystemElem>(root) {}
 
-FileSystem::~FileSystem() {}
+FileSystem::~FileSystem()
+{
+}
 
 void FileSystem::insert(const std::vector<int> &path, const FileSystemElem &elem)
 {

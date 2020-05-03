@@ -3,6 +3,7 @@
 
 #include <QTimer>
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -49,10 +50,15 @@ void MainWindow::setupNumberInputButtons()
 {
     ui->newBinaryTreeInput->setValidator( new QIntValidator(0, 10000000, this) );
     ui->addBinaryInput->setValidator( new QIntValidator(0, 10000000, this) );
+
     ui->addIntegerInput->setValidator( new QIntValidator(0, 10000000, this) );
     ui->newIntegerTreeInput->setValidator( new QIntValidator(0, 10000000, this) );
     ui->getIntegerPathInput->setValidator( new QIntValidator(0, 10000000, this) );
     ui->removeIntegerInput->setValidator( new QIntValidator(0, 10000000, this) );
+
+    ui->addElemSizeInput->setValidator( new QIntValidator(0, 10000000, this) );
+    ui->minSizeFilterElemInput->setValidator( new QIntValidator(0, 10000000, this) );
+    ui->maxSizeFilterElemInput->setValidator( new QIntValidator(0, 10000000, this) );
 }
 
 void MainWindow::setupBinaryTree()
@@ -167,12 +173,42 @@ void MainWindow::setupFSUI()
     this->_fsConsole = new Console(ui->fileConsole);
 }
 
-void MainWindow::resetAddElemInputs()
+void MainWindow::clearAddElemInputs()
 {
     ui->isFolderCheckBox->setChecked(false);
     ui->addElemNameInput->clear();
     ui->addElemSizeInput->clear();
     ui->addElemTimeInput->setTime(QTime(0,0));
+}
+
+void MainWindow::clearAllFilterInputs()
+{
+    ui->nameFilterElemInput->clear();
+    ui->minSizeFilterElemInput->clear();
+    ui->maxSizeFilterElemInput->clear();
+    ui->minTimeFilterElemInput->setTime(QTime(0, 0));
+    ui->maxTimeFilterElemInput->setTime(QTime(23, 59));
+}
+
+void MainWindow::clearBinaryInputs()
+{
+    ui->newBinaryTreeInput->clear();
+    ui->addBinaryInput->clear();
+}
+
+void MainWindow::clearIntegerInputs()
+{
+    ui->newIntegerTreeInput->clear();
+    ui->addIntegerInput->clear();
+    ui->getIntegerPathInput->clear();
+    ui->removeIntegerInput->clear();
+}
+
+void MainWindow::clearFSInputs()
+{
+    this->clearAddElemInputs();
+    this->clearAllFilterInputs();
+    ui->newElemRootInput->clear();
 }
 
 void MainWindow::manageInRangeInputs(QLineEdit *min, QLineEdit *max, QPushButton *button)
@@ -222,7 +258,6 @@ void MainWindow::printTotalAmountOfElems(int mode) // 0 - all elements, 1 - only
     this->_fsConsole->printTech("Total number of "+ elem + "s in [ " + name + " ] :");
     this->_fsConsole->newLine();
     this->_fsConsole->print(QString::number(total) + " " + elem + "(s)");
-
 }
 
 void MainWindow::printTimeElem(bool first)
@@ -257,27 +292,19 @@ QTreeWidgetItem *MainWindow::getSelected() const
 void MainWindow::on_addBinaryInput_textEdited(const QString &arg1)
 {
     if (arg1 == "" || _bTree->isThreaded())
-    {
         ui->addBinaryChildButton->setEnabled(false);
-    }
 
     if (arg1 != "" && !_bTree->isThreaded())
-    {
         ui->addBinaryChildButton->setEnabled(true);
-    }
 }
 
 void MainWindow::on_newBinaryTreeInput_textEdited(const QString &arg1)
 {
     if (arg1 == "" || _bTree->isThreaded())
-    {
         ui->newBinaryTreeButton->setEnabled(false);
-    }
 
     if (arg1 != "" && !_bTree->isThreaded())
-    {
         ui->newBinaryTreeButton->setEnabled(true);
-    }
 }
 
 void MainWindow::on_threadizeButton_clicked()
@@ -364,6 +391,8 @@ void MainWindow::on_binaryTreeDemoButton_clicked()
 {
     ui->binaryTreeDemoButton->setEnabled(false);
     ui->tabWidget->setAttribute( Qt::WA_TransparentForMouseEvents );
+
+    this->clearBinaryInputs();
 
     QTimer::singleShot(1000, nullptr, [this] {
         ui->newBinaryTreeInput->setText("15"); });
@@ -591,6 +620,8 @@ void MainWindow::on_integerTreeDemoButton_clicked()
     ui->integerTreeDemoButton->setEnabled(false);
     ui->tabWidget->setAttribute( Qt::WA_TransparentForMouseEvents );
 
+    this->clearIntegerInputs();
+
     QTimer::singleShot(1000, nullptr, [this] {
         ui->newIntegerTreeInput->setText("50"); });
 
@@ -624,37 +655,37 @@ void MainWindow::on_integerTreeDemoButton_clicked()
     QTimer::singleShot(9000, nullptr, [this] {
         on_addIntegerChildButton_clicked(); });
 
-    QTimer::singleShot(10000, nullptr, [this] {
+    QTimer::singleShot(11000, nullptr, [this] {
         on_integerChildrenTable_cellClicked(1, 0);  });
 
-    QTimer::singleShot(11000, nullptr, [this] {
+    QTimer::singleShot(13000, nullptr, [this] {
         on_toIntegerParentButton_clicked(); });
 
-    QTimer::singleShot(12000, nullptr, [this] {
-        ui->integerTree->topLevelItem(0)->child(1)->setSelected(true); });
-
-    QTimer::singleShot(13000, nullptr, [this] {
-        on_getIntegerPathSelectedButton_clicked(); });
-
-    QTimer::singleShot(14000, nullptr, [this] {
-        ui->getIntegerPathInput->setText("75"); });
-
     QTimer::singleShot(15000, nullptr, [this] {
-        on_getIntegerPathByValueButton_clicked(); });
+        ui->integerTree->topLevelItem(0)->child(1)->setSelected(true); });
 
     QTimer::singleShot(16000, nullptr, [this] {
-        ui->integerTree->topLevelItem(0)->child(1)->setSelected(true); });
+        on_getIntegerPathSelectedButton_clicked(); });
 
     QTimer::singleShot(17000, nullptr, [this] {
-        on_removeIntegerSelectedButton_clicked(); });
+        ui->getIntegerPathInput->setText("75"); });
 
     QTimer::singleShot(18000, nullptr, [this] {
-        ui->removeIntegerInput->setText("25"); });
+        on_getIntegerPathByValueButton_clicked(); });
 
     QTimer::singleShot(19000, nullptr, [this] {
+        ui->integerTree->topLevelItem(0)->child(1)->setSelected(true); });
+
+    QTimer::singleShot(20000, nullptr, [this] {
+        on_removeIntegerSelectedButton_clicked(); });
+
+    QTimer::singleShot(21000, nullptr, [this] {
+        ui->removeIntegerInput->setText("25"); });
+
+    QTimer::singleShot(22000, nullptr, [this] {
         on_removeIntegerByValueButton_clicked(); });
 
-    QTimer::singleShot(19500, nullptr, [this] {
+    QTimer::singleShot(22500, nullptr, [this] {
         ui->integerTreeDemoButton->setEnabled(true);
         ui->tabWidget->setAttribute( Qt::WA_TransparentForMouseEvents, false ); });
 }
@@ -746,7 +777,7 @@ void MainWindow::on_addElemChildButton_clicked()
     this->_fs->insert(path, elem);
     this->_fsW->update();
 
-    this->resetAddElemInputs();
+    this->clearAddElemInputs();
 }
 
 void MainWindow::on_minSizeFilterElemInput_textEdited()
@@ -883,6 +914,9 @@ void MainWindow::on_fileSystemDemoButton_clicked()
     ui->fileSystemDemoButton->setEnabled(false);
     ui->tabWidget->setAttribute( Qt::WA_TransparentForMouseEvents );
 
+    ui->newElemRootInput->clearFocus();
+    this->clearFSInputs();
+
     QTimer::singleShot(1000, nullptr, [this] {
         ui->fileSystem->topLevelItem(0)->child(0)->setSelected(true); });
 
@@ -907,34 +941,35 @@ void MainWindow::on_fileSystemDemoButton_clicked()
     QTimer::singleShot(7000, nullptr, [this] {
         on_filterElemButton_clicked(); });
 
-    QTimer::singleShot(11000, nullptr, [this] {
+    QTimer::singleShot(10000, nullptr, [this] {
         on_clearFilterElemButton_clicked(); });
 
     QTimer::singleShot(12000, nullptr, [this] {
         on_getTotalAmountElemButton_clicked(); });
 
-    QTimer::singleShot(13000, nullptr, [this] {
+    QTimer::singleShot(14000, nullptr, [this] {
         ui->fileSystem->topLevelItem(0)->child(1)->setSelected(true); });
 
-    QTimer::singleShot(14000, nullptr, [this] {
+    QTimer::singleShot(16000, nullptr, [this] {
         on_getFirstEditedElemButton_clicked(); });
 
-    QTimer::singleShot(15000, nullptr, [this] {
+    QTimer::singleShot(18000, nullptr, [this] {
         on_getLastEditedElemButton_clicked(); });
 
-    QTimer::singleShot(16000, nullptr, [this] {
-        ui->fileSystem->topLevelItem(0)->child(2)->setSelected(true); });
+    QTimer::singleShot(20000, nullptr, [this] {
+        ui->fileSystem->topLevelItem(0)->child(1)->setSelected(true); });
 
-    QTimer::singleShot(17000, nullptr, [this] {
+    QTimer::singleShot(22000, nullptr, [this] {
         on_removeSelectedElemButton_clicked(); });
 
-    QTimer::singleShot(18000, nullptr, [this] {
+    QTimer::singleShot(24000, nullptr, [this] {
         ui->newElemRootInput->setText("New Root"); });
 
-    QTimer::singleShot(19000, nullptr, [this] {
+    QTimer::singleShot(26000, nullptr, [this] {
         on_newFileSystemButton_clicked(); });
 
-    QTimer::singleShot(19500, nullptr, [this] {
+    QTimer::singleShot(26500, nullptr, [this] {
         ui->fileSystemDemoButton->setEnabled(true);
-        ui->tabWidget->setAttribute( Qt::WA_TransparentForMouseEvents, false ); });
+        ui->tabWidget->setAttribute( Qt::WA_TransparentForMouseEvents, false );
+        ui->tabWidget->setAttribute( Qt::WA_KeyCompression, false ); });
 }

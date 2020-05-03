@@ -13,6 +13,7 @@
 #include "console.h"
 #include "filesystem.h"
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -30,6 +31,7 @@ public:
     void manageInputButtonEnabled(QLineEdit* input, QTreeWidget* widget, QPushButton* button);
 
     void setupNumberInputButtons();
+
     void setupBinaryTree();
     void setupTree();
     void setupFS();
@@ -37,7 +39,12 @@ public:
     void setupTreeUI();
     void setupFSUI();
 
-    void resetAddElemInputs();
+    void clearAddElemInputs();
+    void clearAllFilterInputs();
+
+    void clearBinaryInputs();
+    void clearIntegerInputs();
+    void clearFSInputs();
 
     void manageInRangeInputs(QLineEdit* min, QLineEdit* max, QPushButton* button);
     void manageInRangeInputs(QTimeEdit* min, QTimeEdit* max, QPushButton* button);

@@ -12,6 +12,7 @@
 #include "tree.h"
 #include <functs.h>
 
+
 template <typename T>
 class GeneralTree : public Tree<T> {
 
@@ -211,9 +212,7 @@ std::vector<int> GeneralTree<T>::_getMaxChildrenMap() const
         int levelDigits = getDigitsNum(current->_children.size() - 1);
 
         if (levelMaxDigits < levelDigits)
-        {
             levelMaxDigits = levelDigits;
-        }
 
         if (current->_children.size() != 0)
         {
@@ -234,10 +233,7 @@ template<typename T>
 typename GeneralTree<T>::Node* GeneralTree<T>::_getNode(const std::vector<int> &path) const
 {   
     if (!this->_root)
-    {
-        qDebug() << "no root";
         return nullptr;
-    }
 
     Node* node = this->_root;
 

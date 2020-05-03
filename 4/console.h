@@ -4,6 +4,7 @@
 #include <QTextBrowser>
 #include <QString>
 
+
 class Console
 {
 private:

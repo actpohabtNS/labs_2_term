@@ -7,6 +7,7 @@
 
 #include "tree.h"
 
+
 template <typename T>
 class TreeWidgetBase : public QTreeWidget {
 

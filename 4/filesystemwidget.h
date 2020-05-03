@@ -6,6 +6,7 @@
 #include "TreeWidgetBase.h"
 #include "filesystem.h"
 
+
 class FileSystemWidget : public TreeWidgetBase<FileSystemElem>
 {
     Q_OBJECT

@@ -3,6 +3,7 @@
 
 #include "TreeWidgetBase.h"
 
+
 class TreeWidget : public TreeWidgetBase<int> {
 
     Q_OBJECT

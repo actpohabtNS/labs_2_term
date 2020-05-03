@@ -1,5 +1,6 @@
 #include "filesystemwidget.h"
 
+
 void FileSystemWidget::_setupItem(QTreeWidgetItem *item, const FileSystemElem &fsElem)
 {
     item->setText(0, fsElem.name());

@@ -4,6 +4,7 @@
 #include <vector>
 #include <QString>
 
+
 int getDigitsNum(int num);
 
 QString pathToQStr(const std::vector<int>& path);

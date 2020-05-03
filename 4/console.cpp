@@ -5,6 +5,7 @@
 
 #include "functs.h"
 
+
 void Console::_print(const QString &str, const QColor &color) const
 {
     QString text = "<span style=\"color:" + color.name() + "\">";

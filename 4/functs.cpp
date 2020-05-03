@@ -1,5 +1,6 @@
 #include "functs.h"
 
+
 int getDigitsNum(int num)
 {
     int digitsNum = 0;

@@ -12,6 +12,7 @@
 #include "tree.h"
 #include <functs.h>
 
+
 template <typename T>
 class BinaryTree : public Tree<T> {
 
@@ -290,10 +291,12 @@ typename BinaryTree<T>::Node *BinaryTree<T>::_getNode(const std::vector<int> &pa
 }
 
 template <typename T>
-BinaryTree<T>::BinaryTree() : _root(nullptr), _threaded(false) {}
+BinaryTree<T>::BinaryTree()
+    : _root(nullptr), _threaded(false) {}
 
 template <typename T>
-BinaryTree<T>::BinaryTree(const T& _data) : _root(new Node(_data)), _threaded(false) {}
+BinaryTree<T>::BinaryTree(const T& _data)
+    : _root(new Node(_data)), _threaded(false) {}
 
 template <typename T>
 BinaryTree<T>::~BinaryTree()
@@ -472,15 +475,6 @@ std::vector<T> BinaryTree<T>::preorderTravData() const
             nodes.push(current->_left);
     }
 
-//    std::vector<Node*> nodes = this->_preorderTrav();
-
-//    std::vector<T> preorderTravData;
-
-//    for (Node* node : nodes)
-//        preorderTravData.push_back(node->_data);
-
-//    nodes = {};
-
     return preorderTravData;
 }
 
@@ -615,4 +609,5 @@ QString BinaryTree<T>::type() const
 {
     return "Binary Tree";
 }
+
 #endif // BINARYTREE_H

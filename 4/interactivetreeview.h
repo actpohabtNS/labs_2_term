@@ -9,6 +9,7 @@
 #include "binaryTree.h"
 #include "generalTree.h"
 
+
 template <typename T>
 class InteractiveTreeView
 {
@@ -27,7 +28,6 @@ private:
 
 public:
     explicit InteractiveTreeView(Tree<T>* tree,QPushButton* parentButton, QLabel* elemLabel, QTableWidget* childrenTable);
-    //explicit InteractiveTreeView(GeneralTree<T>* tree, QPushButton* parentButton, QLabel* elemLabel, QTableWidget* childrenTable);
     virtual ~InteractiveTreeView();
 
     void setElem(const std::vector<int>& path);
@@ -226,7 +226,5 @@ void InteractiveTreeView<T>::setTree(Tree<T> *tree)
 {
     this->_tree = tree;
 }
-
-
 
 #endif // INTERACTIVETREEVIEW_H
