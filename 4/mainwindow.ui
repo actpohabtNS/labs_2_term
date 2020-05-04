@@ -547,7 +547,7 @@ font-family: Roboto;</string>
        <widget class="QLabel" name="label_140">
         <property name="geometry">
          <rect>
-          <x>160</x>
+          <x>170</x>
           <y>10</y>
           <width>171</width>
           <height>31</height>
@@ -1584,7 +1584,7 @@ font-weight: bold;</string>
        <widget class="QLabel" name="label_141">
         <property name="geometry">
          <rect>
-          <x>160</x>
+          <x>170</x>
           <y>10</y>
           <width>171</width>
           <height>31</height>
