@@ -19,13 +19,17 @@ SOURCES += \
     benchwindow.cpp \
     graphswindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mgraph.cpp \
+    random.cpp
 
 HEADERS += \
     Graph.h \
     benchwindow.h \
     graphswindow.h \
-    mainwindow.h
+    mainwindow.h \
+    mgraph.h \
+    random.h
 
 FORMS += \
     benchwindow.ui \
