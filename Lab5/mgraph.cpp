@@ -138,6 +138,57 @@ std::vector<int> MGraph::_descendingNeighbours(int row) const
     return nodes;
 }
 
+void MGraph::_dfs(const int &snode, bool *visited, bool byWeight, std::vector<int> *trav) const
+{
+    if (visited[snode])
+        return;
+
+    std::stack<int> nodes;
+    nodes.push(snode);
+    visited[snode] = true;
+
+    while (!nodes.empty())
+    {
+        int current = nodes.top();
+        nodes.pop();
+
+        if (trav)
+            trav->emplace_back(current);
+
+        qDebug() << "Visiting: " << current;
+
+        if (!byWeight)
+        {
+            for (int idx = this->_nodes - 1; idx >= 0; idx--)
+                if (this->_matrix[current][idx] != nullptr)
+                    if (!visited[idx])
+                    {
+                        nodes.push(idx);
+                        visited[idx] = true;
+                    }
+        } else
+        {
+            auto descNeigh = this->_descendingNeighbours(current);
+
+            for (int idx : descNeigh)
+            {
+                if (!visited[idx])
+                {
+                    nodes.push(idx);
+                    visited[idx] = true;
+                }
+            }
+        }
+    }
+}
+
+void MGraph::_transpose() const
+{
+    for (int row = 0; row < this->_nodes; row++)
+        for (int idx = row + 1; idx < this->_nodes; idx++)
+            std::swap(this->_matrix[row][idx], this->_matrix[idx][row]);
+}
+
 MGraph::MGraph()
     : _nodes(0), _edges(0), _directed(false), _weighed(false) {}
 
@@ -252,42 +303,19 @@ void MGraph::weighted(const bool &weighted)
 
 void MGraph::dfs(const int &snode, bool *visited, bool byWeight) const
 {
-    std::fill_n(visited, this->_nodes, false);
+    this->_dfs(snode, visited, byWeight);
+}
 
-    std::stack<int> nodes;
-    nodes.push(snode);
-    visited[snode] = true;
+std::vector<int> MGraph::dfs(const int &snode) const
+{
+    std::vector<int> trav;
 
-    while (!nodes.empty())
-    {
-        int current = nodes.top();
-        nodes.pop();
+    bool* visited = new bool[this->_nodes];
+    this->_dfs(snode, visited, false, &trav);
 
-        qDebug() << "Visiting: " << current;
+    delete [] visited;
 
-        if (!byWeight)
-        {
-            for (int idx = this->_nodes - 1; idx >= 0; idx--)
-                if (this->_matrix[current][idx] != nullptr)
-                    if (!visited[idx])
-                    {
-                        nodes.push(idx);
-                        visited[idx] = true;
-                    }
-        } else
-        {
-            auto descNeigh = this->_descendingNeighbours(current);
-
-            for (int idx : descNeigh)
-            {
-                if (!visited[idx])
-                {
-                    nodes.push(idx);
-                    visited[idx] = true;
-                }
-            }
-        }
-    }
+    return trav;
 }
 
 void MGraph::bfs(const int &snode, bool *visited, bool byWeight) const
@@ -328,6 +356,102 @@ void MGraph::bfs(const int &snode, bool *visited, bool byWeight) const
             }
         }
     }
+}
+
+bool MGraph::connected() const
+{
+    bool connected = true;
+
+    auto* visited = new bool[this->_nodes];
+
+    std::fill_n(visited, this->_nodes, false);
+
+    this->dfs(0, visited);
+
+    for (int idx = 0; idx < this->_nodes; idx++)
+        if (!visited[idx])
+        {
+            connected = false;
+            break;
+        }
+
+    if (connected)
+    {
+        std::fill_n(visited, this->_nodes, false);
+
+        this->_transpose();
+
+        this->dfs(0, visited);
+
+        for (int idx = 0; idx < this->_nodes; idx++)
+            if (!visited[idx])
+            {
+                connected = false;
+                break;
+            }
+
+        this->_transpose();
+    }
+
+    delete [] visited;
+
+    return connected;
+}
+
+std::vector<std::vector<int> > MGraph::components() const
+{
+    std::vector<std::vector<int>> components;
+
+    std::vector<int> component;
+
+    bool* visited = new bool[this->_nodes];
+    std::fill_n(visited, this->_nodes, false);
+
+    if (!this->_directed)
+    {
+        for (int idx = 0; idx < this->_nodes; idx++)
+        {
+            if (!visited[idx])
+            {
+                component.clear();
+                this->_dfs(idx, visited, false, &component);
+                components.emplace_back(component);
+            }
+        }
+    } else                          // Kosaraju's algorithm
+    {
+        std::vector<int> trav;
+
+        for (int idx = 0; idx < this->_nodes; idx++)
+            this->_dfs(idx, visited, false, &trav);
+
+        std::reverse(trav.begin(), trav.end());
+
+        this->_transpose();
+
+        std::fill_n(visited, this->_nodes, false);
+
+        while (!trav.empty())
+        {
+            int current = trav.back();
+            trav.pop_back();
+
+            component.clear();
+
+            if (visited[current])
+                continue;
+
+            this->_dfs(current, visited, false, &component);
+
+            components.emplace_back(component);
+        }
+
+        this->_transpose();
+    }
+
+    delete [] visited;
+
+    return components;
 }
 
 int MGraph::nodes() const

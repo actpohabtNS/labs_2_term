@@ -12,7 +12,7 @@ class LGraph;
 class MGraph : Graph
 {
 private:
-    std::vector<std::vector<int*>> _matrix;
+    mutable std::vector<std::vector<int*>> _matrix;
     int _nodes;
     int _edges;
     bool _directed;
@@ -26,6 +26,10 @@ private:
     int _furthestNeighbour(int row, int max = -1) const;
     [[nodiscard]] std::vector<int> _neighboursWithWeight(int row, int weight) const;
     [[nodiscard]] std::vector<int> _descendingNeighbours(int row) const;
+
+    void _dfs(const int& snode, bool* visited, bool byWeight, std::vector<int>* trav = nullptr) const;
+
+    void _transpose() const;
 
 public:
     MGraph();
@@ -45,11 +49,14 @@ public:
     void directed(const bool& directed) override;
     void weighted(const bool &weighted) override;
 
-    void dfs(const int& snode) const;
-    void dfs(const int& snode, bool* visited, bool byWeight = false) const;
+    void dfs(const int& snode, bool* visited, bool byWeight = false) const override;
+    [[nodiscard]] std::vector<int> dfs(const int& snode) const;
 
     void bfs(const int& snode) const;
-    void bfs(const int& snode, bool* visited, bool byWeight = false) const;
+    void bfs(const int& snode, bool* visited, bool byWeight = false) const override;
+
+    bool connected() const override;
+    [[nodiscard]] std::vector<std::vector<int>> components() const;
 
     int nodes() const override;
     int edges() const override;

@@ -16,17 +16,32 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&_BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
     MGraph g1(8);
-    g1.weighted(true);
+    g1.directed(true);
     g1.addEdge(0, 1, 2);
     g1.addEdge(0, 2, 1);
-    g1.addEdge(1,3,1);
-    g1.addEdge(1,4,3);
-    g1.addEdge(1,5,2);
-    g1.addEdge(2,6,2);
-    g1.addEdge(2,7,1);
-    auto* visited = new bool[8];
 
-    g1.bfs(0, visited);
+    g1.addEdge(1,3,1);
+    g1.addEdge(3,4,2);
+    g1.addEdge(4,5,3);
+    g1.addEdge(5,1,1);
+    g1.addEdge(1,4,2);
+
+    g1.addEdge(2,6,2);
+    g1.addEdge(7,2,1);
+    g1.addEdge(6,2,1);
+
+    auto comps = g1.components();
+
+    for (auto comp : comps)
+    {
+        qDebug() << "Comp: ";
+
+        for (int node : comp)
+            qDebug() << node;
+
+        qDebug() << "\n";
+    }
+
 }
 
 MainWindow::~MainWindow()

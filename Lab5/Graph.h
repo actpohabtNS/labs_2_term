@@ -23,6 +23,8 @@ public:
 
     virtual void bfs(const int& snode, bool* visited, bool byWeight = false) const = 0;
 
+    virtual bool connected() const = 0;
+
     virtual int nodes() const = 0;
     virtual int edges() const = 0;
     virtual bool empty() const = 0;
