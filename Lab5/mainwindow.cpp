@@ -22,26 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     g1.addEdge(1,3,1);
     g1.addEdge(3,4,2);
-    g1.addEdge(4,5,3);
-    g1.addEdge(5,1,1);
-    g1.addEdge(1,4,2);
+
+    g1.addEdge(5,0,1);
+
+    g1.addEdge(4,5,1);
 
     g1.addEdge(2,6,2);
-    g1.addEdge(7,2,1);
-    g1.addEdge(6,2,1);
+    g1.addEdge(2,7,1);
 
-    auto comps = g1.components();
-
-    for (auto comp : comps)
-    {
-        qDebug() << "Comp: ";
-
-        for (int node : comp)
-            qDebug() << node;
-
-        qDebug() << "\n";
-    }
-
+    qDebug() << g1.cyclic();
 }
 
 MainWindow::~MainWindow()

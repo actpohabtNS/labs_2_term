@@ -24,6 +24,10 @@ public:
     virtual void bfs(const int& snode, bool* visited, bool byWeight = false) const = 0;
 
     virtual bool connected() const = 0;
+    virtual bool cyclic() const = 0;
+
+    [[nodiscard]] virtual std::vector<std::vector<int>> components() const = 0;
+    [[nodiscard]] virtual std::vector<int> topologicalSort() const = 0;
 
     virtual int nodes() const = 0;
     virtual int edges() const = 0;

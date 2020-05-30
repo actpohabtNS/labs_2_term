@@ -56,7 +56,9 @@ public:
     void bfs(const int& snode, bool* visited, bool byWeight = false) const override;
 
     bool connected() const override;
-    [[nodiscard]] std::vector<std::vector<int>> components() const;
+    bool cyclic() const override;
+    [[nodiscard]] std::vector<std::vector<int>> components() const override;
+    [[nodiscard]] std::vector<int> topologicalSort() const override;
 
     int nodes() const override;
     int edges() const override;

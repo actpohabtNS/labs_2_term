@@ -398,6 +398,49 @@ bool MGraph::connected() const
     return connected;
 }
 
+bool MGraph::cyclic() const
+{
+    std::vector<int> visited(this->_nodes, 0);
+
+    std::function<bool(int, int)> _dfs = [&](int snode, int parent) //white, grey, black (coloring) algorithm
+    {
+        visited[snode] = 1;
+
+        for (int node = 0; node < this->_nodes; node++)
+        {
+           if (!this->_matrix[snode][node])
+               continue;
+
+           if (visited[node] == 0)
+           {
+                if (_dfs(node, snode))
+                    return true;
+
+           } else if (visited[node] == 1)
+           {
+               if (!this->_directed && node == parent)
+                   continue;
+
+                return true;
+            }
+        }
+
+        visited[snode] = 2;
+        return false;
+    };
+
+    for (int node = 0; node < this->_nodes; node++)
+    {
+        if (visited[node])
+            continue;
+
+        if (_dfs(node, -1))
+            return true;
+    }
+
+    return false;
+}
+
 std::vector<std::vector<int> > MGraph::components() const
 {
     std::vector<std::vector<int>> components;
@@ -452,6 +495,62 @@ std::vector<std::vector<int> > MGraph::components() const
     delete [] visited;
 
     return components;
+}
+
+std::vector<int> MGraph::topologicalSort() const
+{
+    if (!this->_directed || this->cyclic())
+        return {};
+
+    std::vector<int> toporder;
+
+    bool* visited = new bool[this->_nodes];
+    std::fill_n(visited, this->_nodes, false);
+
+    std::function<void(int)> _dfs = [&](int snode)
+    {
+        std::stack<int> nodes;
+        nodes.push(snode);
+        visited[snode] = true;
+
+        while (!nodes.empty())
+        {
+            int current = nodes.top();
+
+            bool isDeadEnd = true;
+
+            for (int idx = this->_nodes - 1; idx >= 0; idx--)
+            {
+                if (this->_matrix[current][idx] != nullptr)
+                    if (!visited[idx])
+                    {
+                        nodes.push(idx);
+                        visited[idx] = true;
+                        isDeadEnd = false;
+                    }
+            }
+
+            if (isDeadEnd)
+            {
+                toporder.emplace_back(current);
+                nodes.pop();
+            }
+        }
+
+    };
+
+    for (int currIdx = 0; currIdx < this->_nodes; currIdx++)
+    {
+        if (visited[currIdx])
+            continue;
+
+        _dfs(currIdx);
+
+    }
+
+    delete [] visited;
+
+    return toporder;
 }
 
 int MGraph::nodes() const
