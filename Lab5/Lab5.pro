@@ -21,7 +21,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mgraph.cpp \
-    random.cpp
+    random.cpp \
+    spanningtree.cpp
 
 HEADERS += \
     Graph.h \
@@ -29,7 +30,8 @@ HEADERS += \
     graphswindow.h \
     mainwindow.h \
     mgraph.h \
-    random.h
+    random.h \
+    spanningtree.h
 
 FORMS += \
     benchwindow.ui \
