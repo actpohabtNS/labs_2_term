@@ -31,6 +31,8 @@ private:
 
     void _transpose() const;
 
+    [[nodiscard]] std::vector<int> _dijkstra(int snode) const;
+
 public:
     MGraph();
     explicit MGraph(int nodes, int edges = 0, bool directed = false, bool weighted = false);
@@ -64,6 +66,9 @@ public:
     [[nodiscard]] int dijkstra(int fnode, int tnode) const override;
     [[nodiscard]] std::vector<int> dijkstra(int snode) const override;
     [[nodiscard]] std::vector<std::vector<int>> floyd() const override;
+
+    [[nodiscard]] SpanningTree * SpanningTreeDFS(int snode, bool byWeight = false) const override;
+    [[nodiscard]] std::vector<SpanningTree *> SpanningForestDFS(bool byWeight = false) const override;
 
     int nodes() const override;
     int edges() const override;

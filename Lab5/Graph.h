@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "spanningtree.h"
+
 class Graph {
 public:
     Graph() = default;
@@ -32,6 +34,11 @@ public:
     [[nodiscard]] virtual int dijkstra(int fnode, int tnode) const = 0;
     [[nodiscard]] virtual std::vector<int> dijkstra(int snode) const = 0;
     [[nodiscard]] virtual std::vector<std::vector<int>> floyd() const = 0;
+
+    [[nodiscard]] virtual SpanningTree* SpanningTreeDFS(int snode, bool byWeight = false) const = 0;
+    [[nodiscard]] virtual std::vector<SpanningTree*> SpanningForestDFS(bool byWeight = false) const = 0;
+//    [[nodiscard]] virtual SpanningTree* SpanningTreeBFS(int snode, bool byWeight = false) const = 0;
+//    [[nodiscard]] virtual std::vector<SpanningTree*> SpanningForestBFS(bool byWeight = false) const = 0;
 
     virtual int nodes() const = 0;
     virtual int edges() const = 0;

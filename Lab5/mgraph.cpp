@@ -1,5 +1,7 @@
 #include <stack>
 #include <queue>
+#include <map>
+#include <functional>
 
 #include "mgraph.h"
 
@@ -388,9 +390,7 @@ bool MGraph::connected() const
 {
     bool connected = true;
 
-    auto* visited = new bool[this->_nodes];
-
-    std::fill_n(visited, this->_nodes, false);
+    auto* visited = new bool[this->_nodes]();
 
     this->dfs(0, visited);
 
@@ -473,8 +473,7 @@ std::vector<std::vector<int> > MGraph::components() const
 
     std::vector<int> component;
 
-    bool* visited = new bool[this->_nodes];
-    std::fill_n(visited, this->_nodes, false);
+    bool* visited = new bool[this->_nodes]();
 
     if (!this->_directed)
     {
@@ -530,8 +529,7 @@ std::vector<int> MGraph::topologicalSort() const
 
     std::vector<int> toporder;
 
-    bool* visited = new bool[this->_nodes];
-    std::fill_n(visited, this->_nodes, false);
+    bool* visited = new bool[this->_nodes]();
 
     std::function<void(int)> _dfs = [&](int snode)
     {
@@ -608,6 +606,60 @@ std::vector<std::vector<int>> MGraph::floyd() const
                     dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);
 
     return dist;
+}
+
+SpanningTree *MGraph::SpanningTreeDFS(int snode, bool byWeight) const
+{
+    std::map<int, SpanningTree::Node*> treeNodes = { { snode, new SpanningTree::Node(snode) } };
+    auto* tree = new SpanningTree(treeNodes[snode]);
+    bool* visited = new bool[this->_nodes]();
+
+    std::function<void(int)> _dfs = [&](int snode)
+    {
+        visited[snode] = true;
+
+        if (!byWeight)
+        {
+            for (int idx = 0; idx < this->_nodes; idx++)
+            {
+                if (!this->_matrix[snode][idx])
+                    continue;
+
+                if (!visited[idx])
+                {
+                    if (treeNodes.find(idx) == treeNodes.end())
+                        treeNodes[idx] = new SpanningTree::Node(idx);
+
+                    tree->link(treeNodes[snode], treeNodes[idx], *this->_matrix[snode][idx]);
+                    _dfs(idx);
+                }
+            }
+        } else
+        {
+            auto descNeigh = this->_descendingNeighbours(snode);
+
+            for (int idx = descNeigh.size()-1; idx >= 0; idx--)
+            {
+                if (!visited[descNeigh[idx]])
+                {
+                    if (treeNodes.find(descNeigh[idx]) == treeNodes.end())
+                        treeNodes[descNeigh[idx]] = new SpanningTree::Node(descNeigh[idx]);
+
+                    tree->link(treeNodes[snode], treeNodes[descNeigh[idx]], *this->_matrix[snode][descNeigh[idx]]);
+                    _dfs(descNeigh[idx]);
+                }
+            }
+        }
+    };
+
+    _dfs(snode);
+
+    return tree;
+}
+
+std::vector<SpanningTree *> MGraph::SpanningForestDFS(bool byWeight) const
+{
+
 }
 
 int MGraph::nodes() const

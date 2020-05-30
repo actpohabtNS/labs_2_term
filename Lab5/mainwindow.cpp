@@ -21,16 +21,14 @@ MainWindow::MainWindow(QWidget *parent)
     g1.addEdge(0, 2, 1);
 
     g1.addEdge(1,3,1);
-    g1.addEdge(3,4,2);
+    g1.addEdge(1,4,2);
 
-    g1.addEdge(5,0,1);
-
-    g1.addEdge(4,5,1);
+    g1.addEdge(1,5,1);
 
     g1.addEdge(2,6,2);
     g1.addEdge(2,7,1);
 
-    qDebug() << g1.cyclic();
+    g1.SpanningTreeDFS(0, true)->print();
 }
 
 MainWindow::~MainWindow()
