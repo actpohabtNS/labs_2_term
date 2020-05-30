@@ -29,6 +29,10 @@ public:
     [[nodiscard]] virtual std::vector<std::vector<int>> components() const = 0;
     [[nodiscard]] virtual std::vector<int> topologicalSort() const = 0;
 
+    [[nodiscard]] virtual int dijkstra(int fnode, int tnode) const = 0;
+    [[nodiscard]] virtual std::vector<int> dijkstra(int snode) const = 0;
+    [[nodiscard]] virtual std::vector<std::vector<int>> floyd() const = 0;
+
     virtual int nodes() const = 0;
     virtual int edges() const = 0;
     virtual bool empty() const = 0;

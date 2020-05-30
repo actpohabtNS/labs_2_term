@@ -189,6 +189,32 @@ void MGraph::_transpose() const
             std::swap(this->_matrix[row][idx], this->_matrix[idx][row]);
 }
 
+std::vector<int> MGraph::_dijkstra(int snode) const
+{
+    std::vector<int> distance(this->_nodes, -1);
+    std::priority_queue<std::pair<int, int>> pqueue;
+
+    distance[snode] = 0;
+    pqueue.emplace(0, snode);
+
+    while (!pqueue.empty())
+    {
+        snode = pqueue.top().second;
+        pqueue.pop();
+
+        for (int node = 0; node < this->_nodes; node++)
+        {
+            if (this->_matrix[snode][node] && (distance[node] == -1 || distance[node] > distance[snode] + *this->_matrix[snode][node]))
+            {
+                distance[node] = distance[snode] + *this->_matrix[snode][node];
+                pqueue.emplace(-distance[node], node);
+            }
+        }
+    }
+
+    return distance;
+}
+
 MGraph::MGraph()
     : _nodes(0), _edges(0), _directed(false), _weighed(false) {}
 
@@ -545,12 +571,43 @@ std::vector<int> MGraph::topologicalSort() const
             continue;
 
         _dfs(currIdx);
-
     }
 
     delete [] visited;
 
     return toporder;
+}
+
+int MGraph::dijkstra(int fnode, int tnode) const
+{
+    int f_t = this->_dijkstra(fnode)[tnode];
+    int t_f = this->_dijkstra(tnode)[fnode];
+
+    return std::min(f_t, t_f);
+}
+
+std::vector<int> MGraph::dijkstra(int snode) const
+{
+    return this->_dijkstra(snode);
+}
+
+std::vector<std::vector<int>> MGraph::floyd() const
+{
+    static const int inf = INT_MAX;
+
+    std::vector<std::vector<int>> dist(this->_nodes, std::vector<int>(this->_nodes, 0));
+
+    for (int i = 0; i < this->_nodes; i++)
+            for (int j = 0; j < this->_nodes; j++)
+                dist[i][j] = (i == j) ? 0 : this->_matrix[i][j] ? *this->_matrix[i][j] : inf;
+
+    for (int k = 0; k < this->_nodes; k++)
+        for (int i = 0; i < this->_nodes; i++)
+            for (int j = 0; j < this->_nodes; j++)
+                if (dist[i][k] != inf && dist[k][j] != inf)
+                    dist[i][j] = std::min(dist[i][j], dist[i][k] + dist[k][j]);
+
+    return dist;
 }
 
 int MGraph::nodes() const

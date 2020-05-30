@@ -57,8 +57,13 @@ public:
 
     bool connected() const override;
     bool cyclic() const override;
+
     [[nodiscard]] std::vector<std::vector<int>> components() const override;
     [[nodiscard]] std::vector<int> topologicalSort() const override;
+
+    [[nodiscard]] int dijkstra(int fnode, int tnode) const override;
+    [[nodiscard]] std::vector<int> dijkstra(int snode) const override;
+    [[nodiscard]] std::vector<std::vector<int>> floyd() const override;
 
     int nodes() const override;
     int edges() const override;
