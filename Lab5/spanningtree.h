@@ -2,6 +2,7 @@
 #define SPANNINGTREE_H
 
 #include <vector>
+#include <QString>
 
 class SpanningTree
 {    
@@ -24,6 +25,9 @@ public:
         [[nodiscard]] int index() const;
         [[nodiscard]] int weight() const;
         [[nodiscard]] std::vector<Node*> children() const;
+
+        void print() const;
+        QString QStr() const;
     };
 
     explicit SpanningTree(Node* root = nullptr);
@@ -34,11 +38,14 @@ public:
     [[nodiscard]] const Node* root() const;
     [[nodiscard]] int weight() const;
 
+    void print() const;
+    QString QStr() const;
 
 private:
     Node* _root;
 
     int _weight(Node* node) const;
+    void _QStr(Node* node, int level, QString& QStr) const;
 
 };
 

@@ -1,3 +1,6 @@
+#include <QDebug>
+#include <stack>
+
 #include "spanningtree.h"
 
 // ---------------------------- Node ----------------------------------
@@ -26,6 +29,16 @@ std::vector<SpanningTree::Node *> SpanningTree::Node::children() const
     return this->_children;
 }
 
+void SpanningTree::Node::print() const
+{
+    qDebug() << this->QStr();
+}
+
+QString SpanningTree::Node::QStr() const
+{
+    return QString::number(this->_weight) + " -> [ " + QString::number(this->_index) + " ]";
+}
+
 
 
 // ---------------------------- Spanning Tree ----------------------------------
@@ -45,6 +58,28 @@ int SpanningTree::_weight(SpanningTree::Node *node) const
     return weight;
 }
 
+void SpanningTree::_QStr(SpanningTree::Node *node, int level, QString& QStr) const
+{
+    if (!node)
+        return;
+
+    QStr += node->QStr();
+
+    if (!node->_children.empty())
+    {
+        QStr += "\n";
+
+        for (uint i = 0; i < node->_children.size(); i++)
+        {
+            for (int j = 0; j <= level; j++)
+                 QStr += "  ";
+
+            this->_QStr(node->_children[i], level + 1, QStr);
+        }
+    } else
+        QStr += "\n";
+}
+
 SpanningTree::SpanningTree(SpanningTree::Node *root)
     : _root(root) {}
 
@@ -58,14 +93,32 @@ void SpanningTree::link(SpanningTree::Node *fnode, SpanningTree::Node *tnode, co
     if (!this->_root)
         return;
 
+    //qDebug() << "start";
+
     fnode->_children.emplace_back(tnode);
     tnode->_parent = fnode;
     tnode->_weight = weight;
+
+    //qDebug() << "finish";
 }
 
 int SpanningTree::weight() const
 {
     return this->_weight(this->_root);
+}
+
+void SpanningTree::print() const
+{
+    qDebug().noquote() << this->QStr();
+}
+
+QString SpanningTree::QStr() const
+{
+    QString QStr = "";
+
+    this->_QStr(this->_root, 0, QStr);
+
+    return QStr;
 }
 
 const SpanningTree::Node *SpanningTree::root() const
