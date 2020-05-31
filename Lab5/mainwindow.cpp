@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&_BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
 
     MGraph g1(8);
-    g1.directed(true);
+    g1.weighted(true);
     g1.addEdge(0, 1, 2);
     g1.addEdge(0, 2, 1);
 
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     g1.addEdge(2,6,2);
     g1.addEdge(2,7,1);
 
-    g1.SpanningTreeDFS(0, true)->print();
+    g1.kruskal()->print();
 }
 
 MainWindow::~MainWindow()

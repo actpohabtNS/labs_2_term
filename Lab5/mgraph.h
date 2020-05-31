@@ -69,6 +69,10 @@ public:
 
     [[nodiscard]] SpanningTree * SpanningTreeDFS(int snode, bool byWeight = false) const override;
     [[nodiscard]] std::vector<SpanningTree *> SpanningForestDFS(bool byWeight = false) const override;
+    [[nodiscard]] SpanningTree * SpanningTreeBFS(int snode, bool byWeight = false) const override;
+    [[nodiscard]] std::vector<SpanningTree *> SpanningForestBFS(bool byWeight = false) const override;
+
+    [[nodiscard]] SpanningTree * kruskal() const override;
 
     int nodes() const override;
     int edges() const override;

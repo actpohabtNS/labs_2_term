@@ -37,8 +37,10 @@ public:
 
     [[nodiscard]] virtual SpanningTree* SpanningTreeDFS(int snode, bool byWeight = false) const = 0;
     [[nodiscard]] virtual std::vector<SpanningTree*> SpanningForestDFS(bool byWeight = false) const = 0;
-//    [[nodiscard]] virtual SpanningTree* SpanningTreeBFS(int snode, bool byWeight = false) const = 0;
-//    [[nodiscard]] virtual std::vector<SpanningTree*> SpanningForestBFS(bool byWeight = false) const = 0;
+    [[nodiscard]] virtual SpanningTree* SpanningTreeBFS(int snode, bool byWeight = false) const = 0;
+    [[nodiscard]] virtual std::vector<SpanningTree*> SpanningForestBFS(bool byWeight = false) const = 0;
+
+    [[nodiscard]] virtual SpanningTree* kruskal() const = 0;
 
     virtual int nodes() const = 0;
     virtual int edges() const = 0;

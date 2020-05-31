@@ -93,13 +93,9 @@ void SpanningTree::link(SpanningTree::Node *fnode, SpanningTree::Node *tnode, co
     if (!this->_root)
         return;
 
-    //qDebug() << "start";
-
     fnode->_children.emplace_back(tnode);
     tnode->_parent = fnode;
     tnode->_weight = weight;
-
-    //qDebug() << "finish";
 }
 
 int SpanningTree::weight() const
