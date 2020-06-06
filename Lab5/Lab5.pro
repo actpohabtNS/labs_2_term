@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     benchwindow.cpp \
     graphswindow.cpp \
+    lgraph.cpp \
     main.cpp \
     mainwindow.cpp \
     mgraph.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     Graph.h \
     benchwindow.h \
     graphswindow.h \
+    lgraph.h \
     mainwindow.h \
     mgraph.h \
     random.h \

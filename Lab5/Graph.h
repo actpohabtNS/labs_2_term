@@ -19,7 +19,7 @@ public:
     virtual void print() const = 0;
 
     virtual void directed(const bool& directed) = 0;
-    virtual void weighted(const bool& weighted) = 0;
+    virtual void weighed(const bool& weighed) = 0;
 
     virtual void dfs(const int& snode, bool* visited, bool byWeight = false) const = 0;
 
@@ -46,7 +46,7 @@ public:
     virtual int edges() const = 0;
     virtual bool empty() const = 0;
     virtual bool directed() const = 0;
-    virtual bool weighted() const = 0;
+    virtual bool weighed() const = 0;
 };
 
 #endif // GRAPH_H
