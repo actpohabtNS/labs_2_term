@@ -35,26 +35,27 @@ private:
 
 public:
     MGraph();
-    explicit MGraph(int nodes, int edges = 0, bool directed = false, bool weighted = false);
+    explicit MGraph(int nodes, int edges = 0, bool directed = false, bool weighed = false);
     explicit MGraph(const LGraph& lGraph);
     ~MGraph();
 
-//    void build(const LGraph& lgraph);
+//    void build(const LGraph& lGraph);
     void addNode() override;
     void addEdge(const int& fnode, const int& tnode) override;
     void addEdge(const int& fnode, const int& tnode, const int& weight) override;
     void eraseEdge(const int& fnode, const int& tnode) override;
     void eraseEdges() override;
 
+    QString QStr() const;
     void print() const override;
 
     void directed(const bool& directed) override;
-    void weighted(const bool &weighted) override;
+    void weighed(const bool &weighed) override;
 
     void dfs(const int& snode, bool* visited, bool byWeight = false) const override;
     [[nodiscard]] std::vector<int> dfs(const int& snode) const;
 
-    void bfs(const int& snode) const;
+    void bfs(const int& snode) const; //what for?
     void bfs(const int& snode, bool* visited, bool byWeight = false) const override;
 
     bool connected() const override;
@@ -77,7 +78,7 @@ public:
     int nodes() const override;
     int edges() const override;
     bool directed() const override;
-    bool weighted() const override;
+    bool weighed() const override;
     bool empty() const override;
 
 };

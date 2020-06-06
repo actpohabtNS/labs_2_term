@@ -229,10 +229,11 @@ MGraph::MGraph(int nodes, int edges, bool directed, bool weighted)
 
     this->_matrix.resize(this->_nodes);
 
-        for (auto& row : this->_matrix)
-            row.resize(this->_nodes, nullptr);
+    for (auto& row : this->_matrix)
+         row.resize(this->_nodes, nullptr);
 
-    this->_fill();
+    if (edges != 0)
+        this->_fill();
 }
 
 MGraph::~MGraph()
@@ -290,19 +291,31 @@ void MGraph::eraseEdges()
             delete this->_matrix[i][j], this->_matrix[i][j] = nullptr;
 }
 
-void MGraph::print() const
+QString MGraph::QStr() const
 {
-    QString oArr = "-----", cArr = "---->";
+    QString QStr;
+
+    QString oArr = " ----- ", cArr = " ----> ";
 
     if (!this->_directed)
-        oArr = "<----";
+        oArr = " <---- ";
 
     for (int row = 0; row < this->_nodes; row++)
         for (int elem = (this->_directed ? 0 : row); elem < this->_nodes; elem++)
         {
             if (this->_matrix[row][elem] != nullptr)
-                qDebug().noquote() << "(" << row << ")" << oArr << *this->_matrix[row][elem] << cArr << "(" << elem << ")";
+            {
+                QStr += "( " + QString::number(row) + " )" + oArr + *this->_matrix[row][elem] + cArr + "( " + QString::number(elem) + " )";
+                QStr += "\n";
+            }
         }
+
+    return QStr;
+}
+
+void MGraph::print() const
+{
+    qDebug().noquote() << this->QStr();
 }
 
 void MGraph::directed(const bool &directed)
@@ -319,7 +332,7 @@ void MGraph::directed(const bool &directed)
     this->_directed = directed;
 }
 
-void MGraph::weighted(const bool &weighted)
+void MGraph::weighed(const bool &weighted)
 {
     if (this->_weighed && !weighted)
         this->_equateWeights();
@@ -539,7 +552,7 @@ std::vector<int> MGraph::topologicalSort() const
 
             bool isDeadEnd = true;
 
-            for (int idx = this->_nodes - 1; idx >= 0; idx--)
+            for (int idx = 0; idx < this->_nodes; idx++)
             {
                 if (this->_matrix[current][idx] != nullptr)
                     if (!visited[idx])
@@ -568,6 +581,8 @@ std::vector<int> MGraph::topologicalSort() const
     }
 
     delete [] visited;
+
+    std::reverse(toporder.begin(), toporder.end());
 
     return toporder;
 }
@@ -806,7 +821,7 @@ bool MGraph::directed() const
     return this->_directed;
 }
 
-bool MGraph::weighted() const
+bool MGraph::weighed() const
 {
     return this->_weighed;
 }
