@@ -4,6 +4,7 @@
 #include <functional>
 
 #include "mgraph.h"
+#include "lgraph.h"
 
 void MGraph::_addEdge(const int &fnode, const int &tnode, const int &weight, const bool& increment)
 {
@@ -236,11 +237,41 @@ MGraph::MGraph(int nodes, int edges, bool directed, bool weighted)
         this->_fill();
 }
 
+MGraph::MGraph(const LGraph &lGraph)
+    : _nodes(lGraph._nodes), _edges(lGraph._edges), _directed(lGraph._directed), _weighed(lGraph._weighed) {
+
+    this->_matrix.resize(this->_nodes);
+
+    for (auto& row : this->_matrix)
+        row.resize(this->_nodes, nullptr);
+
+    for (int node = 0; node < this->_nodes; node++)
+        for (const auto& edge : lGraph._list[node])
+            this->_matrix[node][edge.toNode] = new int(edge.weight);
+}
+
 MGraph::~MGraph()
 {
     for (auto& row : this->_matrix)
             for (int* elem : row)
                 delete elem;
+}
+
+void MGraph::build(const LGraph &lGraph)
+{
+    this->_nodes = lGraph._nodes;
+    this->_edges = lGraph._edges;
+    this->_directed = lGraph._directed;
+    this->_weighed = lGraph._weighed;
+
+    this->_matrix.resize(this->_nodes);
+
+    for (auto& row : this->_matrix)
+        row.resize(5, nullptr);
+
+    for (int i = 0; i < this->_nodes; i++)
+        for (const auto& edge : lGraph._list[i])
+            this->_matrix[i][edge.toNode] = new int(edge.weight);
 }
 
 void MGraph::addNode()
@@ -700,8 +731,6 @@ SpanningTree *MGraph::SpanningTreeBFS(int snode, bool byWeight) const
         {
             int current = nodes.front();
             nodes.pop();
-
-            qDebug() << "Visiting: " << current;
 
             if (!byWeight)
             {

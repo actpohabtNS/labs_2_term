@@ -11,6 +11,8 @@ class LGraph;
 
 class MGraph : Graph
 {
+    friend LGraph;
+
 private:
     mutable std::vector<std::vector<int*>> _matrix;
     int _nodes;
@@ -39,7 +41,7 @@ public:
     explicit MGraph(const LGraph& lGraph);
     ~MGraph();
 
-//    void build(const LGraph& lGraph);
+    void build(const LGraph& lGraph);
     void addNode() override;
     void addEdge(const int& fnode, const int& tnode) override;
     void addEdge(const int& fnode, const int& tnode, const int& weight) override;
