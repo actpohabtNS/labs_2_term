@@ -46,11 +46,11 @@ private:
 public:
     LGraph();
     explicit LGraph(int nodes, int edges = 0, bool directed = false, bool weighed = false);
-//    explicit LGraph(MGraph* mGraph);
+    explicit LGraph(const MGraph& mGraph);
 
     ~LGraph() override = default;
 
-//    void build(const MGraph& mGraph);
+    void build(const MGraph& mGraph);
     void addNode() override;
     void addEdge(const int& fnode, const int& tnode) override;
     void addEdge(const int& fnode, const int& tnode, const int& weight) override;
@@ -66,7 +66,6 @@ public:
     void dfs(const int& snode, bool* visited, bool byWeight = false) const override;
     [[nodiscard]] std::vector<int> dfs(const int& snode) const;
 
-    void bfs(const int& snode) const;//what for?
     void bfs(const int& snode, bool* visited, bool byWeight = false) const override;
 
     bool connected() const override;

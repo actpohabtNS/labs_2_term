@@ -57,7 +57,6 @@ public:
     void dfs(const int& snode, bool* visited, bool byWeight = false) const override;
     [[nodiscard]] std::vector<int> dfs(const int& snode) const;
 
-    void bfs(const int& snode) const; //what for?
     void bfs(const int& snode, bool* visited, bool byWeight = false) const override;
 
     bool connected() const override;
