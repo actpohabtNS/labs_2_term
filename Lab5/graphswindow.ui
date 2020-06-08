@@ -158,7 +158,7 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="getTotalAmountElemButton">
+    <widget class="QPushButton" name="minDist2Button">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -192,7 +192,7 @@ font-family: Roboto;</string>
       <string>—   to node</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_6">
+    <widget class="QSpinBox" name="minDist2FromInput">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -229,7 +229,7 @@ font-family: Roboto;</string>
       <string>—   from node</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_7">
+    <widget class="QSpinBox" name="minDist2ToInput">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -290,7 +290,7 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="fileSystemDemoButton">
+    <widget class="QPushButton" name="demoButton">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -348,9 +348,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="clearFilterElemButton">
+    <widget class="QPushButton" name="minDistAllButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -406,9 +406,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="removeSelectedElemButton_2">
+    <widget class="QPushButton" name="isConnectedButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -422,9 +422,9 @@ font-family: Roboto;</string>
       <string>Is connected</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="removeSelectedElemButton_3">
+    <widget class="QPushButton" name="printComponentsButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -459,9 +459,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="removeSelectedElemButton_4">
+    <widget class="QPushButton" name="isCyclicButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -538,7 +538,7 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="getTotalAmountElemButton_2">
+    <widget class="QPushButton" name="minDist1AllButton">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -554,7 +554,7 @@ font-family: Roboto;</string>
       <string>Min distance</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_8">
+    <widget class="QSpinBox" name="minDist1AllFromInput">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -633,9 +633,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="clearFilterElemButton_2">
+    <widget class="QPushButton" name="topSortButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -715,7 +715,7 @@ font-family: Roboto;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="filterElemButton">
+   <widget class="QPushButton" name="addNodeButton">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -752,7 +752,7 @@ font-family: Roboto;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="filterElemButton_2">
+   <widget class="QPushButton" name="printGraphButton">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -789,7 +789,7 @@ font-family: Roboto;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="filterElemButton_3">
+   <widget class="QPushButton" name="toAnotherGraphTypeButton">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -812,7 +812,7 @@ font-family: Roboto;</string>
      <x>760</x>
      <y>90</y>
      <width>351</width>
-     <height>301</height>
+     <height>271</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -849,11 +849,11 @@ font-family: Roboto;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_5">
+   <widget class="QSpinBox" name="newGraphNodesInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>40</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -872,7 +872,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>250</y>
+      <y>230</y>
       <width>351</width>
       <height>51</height>
      </rect>
@@ -910,9 +910,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="addElemChildButton_2">
+    <widget class="QPushButton" name="createNewGraphButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -931,7 +931,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>50</y>
+      <y>40</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -945,11 +945,11 @@ font-family: Roboto;</string>
      <string>—   nodes</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_4">
+   <widget class="QSpinBox" name="newGraphEdgesInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>100</y>
+      <y>90</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -968,7 +968,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>100</y>
+      <y>90</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -982,11 +982,11 @@ font-family: Roboto;</string>
      <string>—   edges</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="isFolderCheckBox">
+   <widget class="QCheckBox" name="newGraphIsDirectedInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>200</y>
+      <y>190</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -1002,11 +1002,11 @@ font-family: Roboto;</string>
      <string>  Is [ directed ]</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="isFolderCheckBox_2">
+   <widget class="QCheckBox" name="newGraphIsWeighedInput">
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>200</y>
+      <y>190</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -1026,7 +1026,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>130</y>
+      <y>120</y>
       <width>291</width>
       <height>51</height>
      </rect>
@@ -1037,7 +1037,7 @@ font-size: 13px;
 font-family: Roboto;</string>
     </property>
     <property name="text">
-     <string>Note: if edges are not set to [ 0 ], created graph is randomized with set amount of edges</string>
+     <string>Note: if edges are NOT set to [ 0 ], created graph is randomized with set amount of edges</string>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -1047,7 +1047,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>140</y>
+      <y>130</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -1069,9 +1069,9 @@ font-weight: bold;</string>
    <property name="geometry">
     <rect>
      <x>760</x>
-     <y>410</y>
+     <y>380</y>
      <width>351</width>
-     <height>251</height>
+     <height>281</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1112,7 +1112,7 @@ font-weight: bold;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>200</y>
+      <y>230</y>
       <width>351</width>
       <height>51</height>
      </rect>
@@ -1150,7 +1150,7 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="addElemChildButton">
+    <widget class="QPushButton" name="addEdgeButton">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -1167,11 +1167,11 @@ font-family: Roboto;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QSpinBox" name="newEdgeFromInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>40</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -1190,7 +1190,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>50</y>
+      <y>40</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -1204,11 +1204,11 @@ font-family: Roboto;</string>
      <string>—   from node</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_2">
+   <widget class="QSpinBox" name="newEdgeToInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>100</y>
+      <y>90</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -1227,7 +1227,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>100</y>
+      <y>90</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -1241,11 +1241,11 @@ font-family: Roboto;</string>
      <string>—   to node</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_3">
+   <widget class="QSpinBox" name="newEdgeWeightInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>190</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -1258,7 +1258,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>150</y>
+      <y>190</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -1272,93 +1272,66 @@ font-family: Roboto;</string>
      <string>—   weight</string>
     </property>
    </widget>
-   <zorder>groupBox_52</zorder>
-   <zorder>label_126</zorder>
-   <zorder>spinBox</zorder>
-   <zorder>label_122</zorder>
-   <zorder>spinBox_2</zorder>
-   <zorder>label_125</zorder>
-   <zorder>spinBox_3</zorder>
-   <zorder>label_127</zorder>
-  </widget>
-  <widget class="QGroupBox" name="FileSystemConsole">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>90</y>
-     <width>721</width>
-     <height>441</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QGroupBox {
-	border: 1px solid black;
-}
-</string>
-   </property>
-   <property name="title">
-    <string/>
-   </property>
-   <widget class="QLabel" name="label_113">
+   <widget class="QLabel" name="label_93">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>721</width>
+      <x>40</x>
+      <y>120</y>
+      <width>291</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #8f5050;
+font-size: 13px;
+font-family: Roboto;</string>
+    </property>
+    <property name="text">
+     <string>Self-loops are NOT implemented, thus [ from ] and [ to ] nodes must be different</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>31</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QLabel {
-	color: #4a455c;
-	font-size: 19px;
-	background-color: #d1d1d1;
-	padding: 2px;
-
-}</string>
+     <string notr="true">color: red;
+font-size: 35px;
+font-weight: bold;</string>
     </property>
     <property name="text">
-     <string>Console</string>
+     <string>!</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="fileConsole">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>721</width>
-      <height>411</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QTextBrowser {
-	background-color: #f2f2f2;
-	border: 1px solid #c9c9c9;
-	color: #4a455c;
-	font-size: 15px;
-	font-family: monospace;
-	padding: 5px;
-}</string>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'monospace'; font-size:15px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:19px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
+   <zorder>groupBox_52</zorder>
+   <zorder>label_126</zorder>
+   <zorder>newEdgeFromInput</zorder>
+   <zorder>label_122</zorder>
+   <zorder>newEdgeToInput</zorder>
+   <zorder>label_125</zorder>
+   <zorder>newEdgeWeightInput</zorder>
+   <zorder>label_127</zorder>
+   <zorder>label_93</zorder>
+   <zorder>label_5</zorder>
   </widget>
-  <widget class="QGroupBox" name="CreateNewGraph_2">
+  <widget class="QGroupBox" name="SpanningTrees">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>590</y>
+     <y>630</y>
      <width>721</width>
-     <height>291</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1399,8 +1372,8 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>240</y>
-      <width>351</width>
+      <y>200</y>
+      <width>361</width>
       <height>51</height>
      </rect>
     </property>
@@ -1437,9 +1410,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="addElemChildButton_3">
+    <widget class="QPushButton" name="spanningTreeButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -1454,11 +1427,11 @@ font-family: Roboto;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QCheckBox" name="isFolderCheckBox_4">
+   <widget class="QCheckBox" name="spanningByWeightInput">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>150</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -1480,7 +1453,7 @@ font-family: Roboto;</string>
       <x>355</x>
       <y>30</y>
       <width>5</width>
-      <height>261</height>
+      <height>220</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1490,11 +1463,11 @@ font-family: Roboto;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="spanningBydfsRadioButton">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>100</y>
       <width>181</width>
       <height>22</height>
      </rect>
@@ -1510,11 +1483,11 @@ font-family: Roboto;</string>
      <string>DFS</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="spanningBybfsRadioButton">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
+      <y>50</y>
       <width>201</width>
       <height>22</height>
      </rect>
@@ -1529,12 +1502,15 @@ font-family: Roboto;</string>
     <property name="text">
      <string>BFS</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="label_147">
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>190</y>
+      <y>150</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -1555,7 +1531,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>70</y>
+      <y>50</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -1576,7 +1552,7 @@ font-family: Roboto;</string>
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>240</y>
+      <y>200</y>
       <width>361</width>
       <height>51</height>
      </rect>
@@ -1614,9 +1590,9 @@ font-family: Roboto;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="addElemChildButton_4">
+    <widget class="QPushButton" name="minSpanningTreeButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -1632,11 +1608,11 @@ font-family: Roboto;</string>
     </widget>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_58">
+  <widget class="QGroupBox" name="GraphCharacteristics">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>530</y>
+     <y>570</y>
      <width>721</width>
      <height>41</height>
     </rect>
@@ -1674,7 +1650,7 @@ font-family: Roboto;</string>
      <string>Nodes:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="nodesLabel">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -1716,7 +1692,7 @@ font-family: Roboto;</string>
      <string>Edges:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="edgesLabel">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -1758,7 +1734,7 @@ font-family: Roboto;</string>
      <string>Is directed:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLabel" name="isDirectedLabel">
     <property name="geometry">
      <rect>
       <x>440</x>
@@ -1779,7 +1755,7 @@ font-family: Roboto;</string>
      <string>false</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_10">
+   <widget class="QLabel" name="isWeighedLabel">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -1832,11 +1808,180 @@ font-family: Roboto;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: #ffffff;</string>
+    <string notr="true">QGroupBox {
+background-color: #ffffff;
+}</string>
    </property>
    <property name="title">
     <string/>
    </property>
+   <widget class="QGroupBox" name="FileSystemConsole">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>721</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	border: 1px solid black;
+}
+</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="label_113">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>721</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Console</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="fileConsole">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>30</y>
+       <width>721</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextBrowser {
+	background-color: #f2f2f2;
+	border: 1px solid #c9c9c9;
+	color: #4a455c;
+	font-size: 15px;
+	font-family: monospace;
+	padding: 5px;
+}</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'monospace'; font-size:15px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:19px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="GraphCharacteristics_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>721</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	background-color: #d1d1d1;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+	border: none;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	padding: 2px;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>Current graph type:</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="spanningBybfsRadioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>201</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton {
+	color: #8b8796;
+	font-size: 18px;
+	font-family: Roboto;
+}
+
+QRadioButton::checked {
+	color: #4a455c;
+}</string>
+     </property>
+     <property name="text">
+      <string>Adjacency matrix</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="spanningBybfsRadioButton_3">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>10</y>
+       <width>201</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton {
+	color: #8b8796;
+	font-size: 18px;
+	font-family: Roboto;
+}
+
+QRadioButton::checked {
+	color: #4a455c;
+}</string>
+     </property>
+     <property name="text">
+      <string>Adjacency list</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>GraphCharacteristics_2</zorder>
+   <zorder>FileSystemConsole</zorder>
   </widget>
   <zorder>groupBox</zorder>
   <zorder>groupBox_13</zorder>
@@ -1844,9 +1989,8 @@ font-family: Roboto;</string>
   <zorder>AffectGraph</zorder>
   <zorder>CreateNewGraph</zorder>
   <zorder>AddNewEdge</zorder>
-  <zorder>FileSystemConsole</zorder>
-  <zorder>CreateNewGraph_2</zorder>
-  <zorder>groupBox_58</zorder>
+  <zorder>SpanningTrees</zorder>
+  <zorder>GraphCharacteristics</zorder>
  </widget>
  <resources/>
  <connections/>
