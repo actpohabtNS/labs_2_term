@@ -9,7 +9,7 @@
 
 class LGraph;
 
-class MGraph : Graph
+class MGraph : public Graph
 {
     friend LGraph;
 
@@ -48,8 +48,10 @@ public:
     void eraseEdge(const int& fnode, const int& tnode) override;
     void eraseEdges() override;
 
-    QString QStr() const;
+    QString QStr() const override;
     void print() const override;
+
+    QString type() const override;
 
     void directed(const bool& directed) override;
     void weighed(const bool &weighed) override;

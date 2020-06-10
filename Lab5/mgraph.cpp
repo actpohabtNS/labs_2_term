@@ -291,6 +291,9 @@ void MGraph::addEdge(const int &fnode, const int &tnode)
 
 void MGraph::addEdge(const int &fnode, const int &tnode, const int &weight)
 {
+    if (!this->_weighed)
+        this->_weighed = true;
+
     this->_addEdge(fnode, tnode, weight);
 }
 
@@ -336,7 +339,7 @@ QString MGraph::QStr() const
         {
             if (this->_matrix[row][elem] != nullptr)
             {
-                QStr += "( " + QString::number(row) + " )" + oArr + *this->_matrix[row][elem] + cArr + "( " + QString::number(elem) + " )";
+                QStr += "( " + QString::number(row) + " )" + oArr + (this->_weighed ? QString::number(*this->_matrix[row][elem]) : "") + cArr + "( " + QString::number(elem) + " )";
                 QStr += "\n";
             }
         }
@@ -347,6 +350,11 @@ QString MGraph::QStr() const
 void MGraph::print() const
 {
     qDebug().noquote() << this->QStr();
+}
+
+QString MGraph::type() const
+{
+    return "MGraph";
 }
 
 void MGraph::directed(const bool &directed)

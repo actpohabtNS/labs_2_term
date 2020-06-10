@@ -3,7 +3,6 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "mgraph.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,21 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->insertWidget(2, &_BW);
     connect(&_GW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
     connect(&_BW, SIGNAL(backButtonClicked()), this, SLOT(toMainMenu()));
-
-    MGraph g1(8);
-    g1.weighted(true);
-    g1.addEdge(0, 1, 2);
-    g1.addEdge(0, 2, 1);
-
-    g1.addEdge(1,3,1);
-    g1.addEdge(1,4,2);
-
-    g1.addEdge(1,5,1);
-
-    g1.addEdge(2,6,2);
-    g1.addEdge(2,7,1);
-
-    g1.kruskal()->print();
 }
 
 MainWindow::~MainWindow()

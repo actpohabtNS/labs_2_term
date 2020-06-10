@@ -31,5 +31,6 @@ private:
     Ui::MainWindow *ui;
     GraphsWindow _GW;
     BenchWindow _BW;
+
 };
 #endif // MAINWINDOW_H

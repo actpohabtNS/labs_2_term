@@ -72,7 +72,7 @@ void SpanningTree::_QStr(SpanningTree::Node *node, int level, QString& QStr) con
         for (uint i = 0; i < node->_children.size(); i++)
         {
             for (int j = 0; j <= level; j++)
-                 QStr += "  ";
+                 QStr += "\t";
 
             this->_QStr(node->_children[i], level + 1, QStr);
         }

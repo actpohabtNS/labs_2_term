@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include <vector>
+#include <QString>
 
 #include "spanningtree.h"
 
@@ -16,7 +17,10 @@ public:
     virtual void eraseEdge(const int& fnode, const int& tnode) = 0;
     virtual void eraseEdges() = 0;
 
+    virtual QString QStr() const = 0;
     virtual void print() const = 0;
+
+    virtual QString type() const = 0;
 
     virtual void directed(const bool& directed) = 0;
     virtual void weighed(const bool& weighed) = 0;

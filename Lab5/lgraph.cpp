@@ -345,7 +345,7 @@ QString LGraph::QStr() const
     for (int node = 0; node < this->_nodes; node++)
         for (const auto& edge : this->_list[node])
         {
-            QStr += "( " + QString::number(node) + " )" + oArr + QString::number(edge.weight) + cArr + "( " + QString::number(edge.toNode) + " )";
+            QStr += "( " + QString::number(node) + " )" + oArr + (this->_weighed ? QString::number(edge.weight) : " ") + cArr + "( " + QString::number(edge.toNode) + " )";
             QStr += "\n";
         }
 
@@ -355,6 +355,11 @@ QString LGraph::QStr() const
 void LGraph::print() const
 {
     qDebug().noquote() << this->QStr();
+}
+
+QString LGraph::type() const
+{
+    return "LGraph";
 }
 
 void LGraph::directed(const bool &directed)
