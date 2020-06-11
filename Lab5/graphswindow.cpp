@@ -23,11 +23,6 @@ void GraphsWindow::setGraphValues(const Graph &graph)
     ui->isWeighedLabel->setText(graph.weighed() ? "true" : "false");
 }
 
-void GraphsWindow::on_backButton_clicked()
-{
-    emit backButtonClicked();
-}
-
 void GraphsWindow::on_createNewGraphButton_clicked()
 {
     int nodes = ui->newGraphNodesInput->value();
@@ -210,7 +205,7 @@ void GraphsWindow::on_isCyclicButton_clicked()
     this->_console->print(this->_currGraph->cyclic() ? "true" : "false");
 }
 
-void GraphsWindow::on_printComponentsButton_clicked()
+void GraphsWindow::on_getComponentsButton_clicked()
 {
     this->_console->newPar();
     this->_console->printTech(this->_currGraph->type() + ": ");
@@ -416,7 +411,6 @@ void GraphsWindow::on_demoButton_clicked()
 {
     this->_clearAllInputs();
 
-    ui->backButton->setEnabled(false);
     ui->demoButton->setEnabled(false);
     ui->graphsBox->setAttribute( Qt::WA_TransparentForMouseEvents );
 
@@ -465,7 +459,7 @@ void GraphsWindow::on_demoButton_clicked()
         on_isConnectedButton_clicked(); });
 
     QTimer::singleShot(19000, nullptr, [this] {
-        on_printComponentsButton_clicked(); });
+        on_getComponentsButton_clicked(); });
 
     QTimer::singleShot(21000, nullptr, [this] {
         on_isCyclicButton_clicked(); });
@@ -495,7 +489,6 @@ void GraphsWindow::on_demoButton_clicked()
         on_toTheOtherGraphTypeButton_clicked(); });
 
     QTimer::singleShot(34500, nullptr, [this] {
-        ui->backButton->setEnabled(true);
         ui->demoButton->setEnabled(true);
         ui->graphsBox->setAttribute( Qt::WA_TransparentForMouseEvents, false );
         ui->graphsBox->setAttribute( Qt::WA_KeyCompression, false ); });

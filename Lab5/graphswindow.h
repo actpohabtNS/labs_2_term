@@ -22,12 +22,7 @@ public:
 
     void setGraphValues(const Graph& graph);
 
-signals:
-    void backButtonClicked();
-
 private slots:
-    void on_backButton_clicked();
-
     void on_createNewGraphButton_clicked();
 
     void on_adjMatrixRadioButton_clicked();
@@ -50,7 +45,7 @@ private slots:
 
     void on_isCyclicButton_clicked();
 
-    void on_printComponentsButton_clicked();
+    void on_getComponentsButton_clicked();
 
     void on_minDist2Button_clicked();
 
