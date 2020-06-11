@@ -26,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     Graph.h \
+    benchmark.h \
     console.h \
     graphswindow.h \
     lgraph.h \

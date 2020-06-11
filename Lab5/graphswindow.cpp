@@ -30,6 +30,9 @@ void GraphsWindow::on_createNewGraphButton_clicked()
     bool isDirected = ui->newGraphIsDirectedInput->isChecked();
     bool isWeighed = ui->newGraphIsWeighedInput->isChecked();
 
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
     if (ui->adjMatrixRadioButton->isChecked())
     {
         this->_mgr = new MGraph(nodes, edges, isDirected, isWeighed);
@@ -40,6 +43,10 @@ void GraphsWindow::on_createNewGraphButton_clicked()
         this->_currGraph = this->_lgr;
     }
 
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
     this->setGraphValues(*this->_currGraph);
 
     this->_setMaxValues();
@@ -48,6 +55,19 @@ void GraphsWindow::on_createNewGraphButton_clicked()
     this->_console->printTech(this->_currGraph->type() + ": ");
     this->_console->newLine();
     this->_console->print("Created new graph with " + QString::number(nodes) + " nodes and " + QString::number(edges) + " edges!");
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for creating graph ");
+
+        if (edges != 0)
+            this->_console->print("with filling ");
+
+        this->_console->print(": " + QString::number(dur.count()) + " microseconds!");
+    }
 }
 
 void GraphsWindow::on_adjMatrixRadioButton_clicked()
@@ -62,11 +82,6 @@ void GraphsWindow::on_adjListRadioButton_clicked()
     this->setGraphValues(*this->_lgr);
     this->_currGraph = this->_lgr;
     this->_setToOtherTypeButton();
-}
-
-void GraphsWindow::on_addEdgeButton_clicked()
-{
-    this->_currGraph->addEdge(ui->newEdgeFromInput->value(), ui->newEdgeToInput->value(), ui->newEdgeWeightInput->value());
 }
 
 void GraphsWindow::_manageNewEdgeInputs()
@@ -134,6 +149,8 @@ void GraphsWindow::_clearAllInputs()
 
     ui->minDist1AllFromInput->setValue(0);
 
+    ui->isBenchmarkInput->setChecked(false);
+
     ui->spanningBybfsRadioButton->setChecked(true);
 
     ui->spanningByWeightInput->setChecked(false);
@@ -155,10 +172,17 @@ void GraphsWindow::on_newEdgeButton_clicked()
     int tnode = ui->newEdgeToInput->value();
     int weight = ui->newEdgeWeightInput->value();
 
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
     if (weight == 1)
         this->_currGraph->addEdge(fnode, tnode);
     else
         this->_currGraph->addEdge(fnode, tnode, weight);
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
     this->setGraphValues(*this->_currGraph);
 
@@ -166,13 +190,42 @@ void GraphsWindow::on_newEdgeButton_clicked()
     this->_console->printTech(this->_currGraph->type() + ": ");
     this->_console->newLine();
     this->_console->print("Added edge between " + QString::number(fnode) + " and " + QString::number(tnode) + " with weight " + QString::number(weight) + "!");
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for adding edge: " + QString::number(dur.count()) + " microseconds!");
+    }
 }
 
 void GraphsWindow::on_addNodeButton_clicked()
 {
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
     this->_currGraph->addNode();
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    this->_console->newPar();
+    this->_console->printTech(this->_currGraph->type() + ": ");
+    this->_console->newLine();
+    this->_console->print("Added new node!");
+
     this->_setMaxValues();
     this->setGraphValues(*this->_currGraph);
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for adding node: " + QString::number(dur.count()) + " microseconds!");
+    }
 }
 
 void GraphsWindow::on_printGraphButton_clicked()
@@ -189,52 +242,115 @@ void GraphsWindow::on_printGraphButton_clicked()
 
 void GraphsWindow::on_isConnectedButton_clicked()
 {
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
+    bool connected = this->_currGraph->connected();
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
     this->_console->newPar();
     this->_console->printTech(this->_currGraph->type() + ": ");
     this->_console->newLine();
     this->_console->print("Graph is connected: ");
-    this->_console->print(this->_currGraph->connected() ? "true" : "false");
+    this->_console->print(connected ? "true" : "false");
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for checking connectivity: " + QString::number(dur.count()) + " microseconds!");
+    }
 }
 
 void GraphsWindow::on_isCyclicButton_clicked()
 {
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
+    bool cyclic = this->_currGraph->cyclic();
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
     this->_console->newPar();
     this->_console->printTech(this->_currGraph->type() + ": ");
     this->_console->newLine();
     this->_console->print("Graph is cyclic: ");
-    this->_console->print(this->_currGraph->cyclic() ? "true" : "false");
+    this->_console->print(cyclic ? "true" : "false");
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for checking cyclicity: " + QString::number(dur.count()) + " microseconds!");
+    }
 }
 
 void GraphsWindow::on_getComponentsButton_clicked()
 {
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->type() + ": ");
-    this->_console->newLine();
-    this->_console->print("Graph's components: ");
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
 
     auto comps = this->_currGraph->components();
 
-    for (auto comp : comps)
-    {
-        this->_console->newLine();
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
-        for (int node : comp)
+    this->_console->newPar();
+    this->_console->printTech(this->_currGraph->type() + ": ");
+    this->_console->newLine();
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->print("Time for finding components: " + QString::number(dur.count()) + " microseconds!");
+    } else
+    {
+        this->_console->print("Graph's components: ");
+
+        for (auto comp : comps)
         {
-            this->_console->print(QString::number(node) + "&nbsp;");
+            this->_console->newLine();
+
+            for (int node : comp)
+            {
+                this->_console->print(QString::number(node) + "&nbsp;");
+            }
         }
     }
 }
 
 void GraphsWindow::on_minDist2Button_clicked()
 {
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->type() + ": ");
-    this->_console->newLine();
-
     int from = ui->minDist2FromInput->value();
     int to = ui->minDist2ToInput->value();
 
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
     int dist = this->_currGraph->dijkstra(from, to);
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for getting distance between 2 nodes: " + QString::number(dur.count()) + " microseconds!");
+    }
+
+    this->_console->newPar();
+    this->_console->printTech(this->_currGraph->type() + ": ");
+    this->_console->newLine();
 
     this->_console->print("Nodes ");
     this->_console->print(QString::number(from) + " ");
@@ -256,92 +372,131 @@ void GraphsWindow::on_minDist1AllButton_clicked()
 {
     uint from = ui->minDist1AllFromInput->value();
 
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->type() + ": ");
-    this->_console->newLine();
-    this->_console->print("Nodes ");
-    this->_console->print(QString::number(from));
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
 
     auto dist = this->_currGraph->dijkstra(from);
 
-    for (uint tnode = 0; tnode < dist.size(); tnode++)
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    this->_console->newPar();
+    this->_console->printTech(this->_currGraph->type() + ": ");
+    this->_console->newLine();
+
+    if (ui->isBenchmarkInput->isChecked())
     {
-        if (tnode == from)
-            continue;
+        this->_console->print("Time for getting distance berween 1 node and others: " + QString::number(dur.count()) + " microseconds!");
+    } else
+    {
+        this->_console->print("Nodes ");
+        this->_console->print(QString::number(from));
 
-        this->_console->newLine();
-
-        this->_console->print("and ");
-        this->_console->print(QString::number(tnode) + " ");
-        this->_console->print("are ");
-
-        if (dist[tnode] != -1)
+        for (uint tnode = 0; tnode < dist.size(); tnode++)
         {
-            this->_console->print(" at distance ");
-            this->_console->print(QString::number(dist[tnode]));
-        } else
-        {
-            this->_console->print(" not connected!");
+            if (tnode == from)
+                continue;
+
+            this->_console->newLine();
+
+            this->_console->print("and ");
+            this->_console->print(QString::number(tnode) + " ");
+            this->_console->print("are ");
+
+            if (dist[tnode] != -1)
+            {
+                this->_console->print(" at distance ");
+                this->_console->print(QString::number(dist[tnode]));
+            } else
+            {
+                this->_console->print(" not connected!");
+            }
         }
     }
 }
 
 void GraphsWindow::on_minDistAllButton_clicked()
 {
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
+    auto dists = this->_currGraph->floyd();
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
     this->_console->newPar();
     this->_console->printTech(this->_currGraph->type() + ": ");
     this->_console->newLine();
 
-    auto dists = this->_currGraph->floyd();
-
-    for (uint distIdx = 0; distIdx < dists.size(); distIdx++)
+    if (ui->isBenchmarkInput->isChecked())
     {
-
-        this->_console->print("Nodes ");
-        this->_console->print(QString::number(distIdx));
-
-        for (uint tnode = 0; tnode < dists[distIdx].size(); tnode++)
+        this->_console->print("Time for getting distance between all nodes: " + QString::number(dur.count()) + " microseconds!");
+    } else
+    {
+        for (uint distIdx = 0; distIdx < dists.size(); distIdx++)
         {
-            if (tnode == distIdx)
-                continue;
+            this->_console->print("Nodes ");
+            this->_console->print(QString::number(distIdx));
 
-            this->_console->newLine();
-
-            this->_console->print(" and ");
-            this->_console->print(QString::number(tnode) + " ");
-            this->_console->print("are ");
-
-            if (dists[distIdx][tnode] != INT_MAX)
+            for (uint tnode = 0; tnode < dists[distIdx].size(); tnode++)
             {
-                this->_console->print(" at distance ");
-                this->_console->print(QString::number(dists[distIdx][tnode]));
-            } else
-            {
-                this->_console->print(" not connected!");
+                if (tnode == distIdx)
+                    continue;
+
+                this->_console->newLine();
+
+                this->_console->print(" and ");
+                this->_console->print(QString::number(tnode) + " ");
+                this->_console->print("are ");
+
+                if (dists[distIdx][tnode] != INT_MAX)
+                {
+                    this->_console->print(" at distance ");
+                    this->_console->print(QString::number(dists[distIdx][tnode]));
+                } else
+                {
+                    this->_console->print(" not connected!");
+                }
             }
-        }
 
-        this->_console->newPar();
+            this->_console->newPar();
+        }
     }
 }
 
 void GraphsWindow::on_topSortButton_clicked()
 {
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->type() + ": ");
-    this->_console->newLine();
-
     if (this->_currGraph->cyclic())
     {
         this->_console->print("For nodes to be topologically sorted graph must not be cyclic!");
     } else
     {
-        this->_console->print("Topological sort: ");
+        auto start = std::chrono::high_resolution_clock::now();
+    // ==========================================================
 
         auto sort = this->_currGraph->topologicalSort();
 
-        for (int node : sort)
-            this->_console->print(QString::number(node));
+    // ==========================================================
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+
+        if (ui->isBenchmarkInput->isChecked())
+        {
+            this->_console->print("Time for sorting topologically: " + QString::number(dur.count()) + " microseconds!");
+        } else
+        {
+            this->_console->print("Topological sort: ");
+
+            for (int node : sort)
+                this->_console->print(QString::number(node));
+        }
     }
 }
 
@@ -352,6 +507,9 @@ void GraphsWindow::on_spanningTreeButton_clicked()
     bool byWeight = ui->spanningByWeightInput->isChecked();
 
     QString algorithm;
+
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
 
     if (ui->spanningBydfsRadioButton->isChecked())
     {
@@ -364,44 +522,87 @@ void GraphsWindow::on_spanningTreeButton_clicked()
         algorithm = "BFS";
     }
 
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
     this->_console->newPar();
     this->_console->printTech(this->_currGraph->type() + ": ");
     this->_console->newLine();
-    this->_console->print("Spanning tree by " + algorithm + "" + (byWeight ? " by weight" : "") + ": ");
 
-    this->_console->newLine();
-    this->_console->print(sTree->QStr());
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->print("Time for creating spanning tree by " + algorithm + (byWeight ? " by weight" : " ") + ": " + QString::number(dur.count()) + " microseconds!");
+    } else
+    {
+        this->_console->print("Spanning tree by " + algorithm + (byWeight ? " by weight" : " ") + ": ");
+
+        this->_console->newLine();
+        this->_console->print(sTree->QStr());
+    }
 }
 
 void GraphsWindow::on_minSpanningTreeButton_clicked()
 {
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->type() + ": ");
-    this->_console->newLine();
-
     if (!this->_currGraph->connected() || !this->_currGraph->weighed())
     {
         this->_console->print("To find minimal spanning tree, graph must be connected and weighed!");
     } else
     {
-        this->_console->print("Minimal spanning tree: ");
+        auto start = std::chrono::high_resolution_clock::now();
+    // ==========================================================
+
+        auto minSpTree = this->_currGraph->kruskal();
+
+    // ==========================================================
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
         this->_console->newLine();
-        this->_console->print(this->_currGraph->kruskal()->QStr());
+
+        if (ui->isBenchmarkInput->isChecked())
+        {
+            this->_console->print("Time for creating minimal spanning tree: " + QString::number(dur.count()) + " microseconds!");
+        } else
+        {
+            this->_console->print("Minimal spanning tree: ");
+            this->_console->newLine();
+            this->_console->print(minSpTree->QStr());
+        }
     }
 }
 
 void GraphsWindow::on_toTheOtherGraphTypeButton_clicked()
 {
+    auto start = std::chrono::high_resolution_clock::now();
+// ==========================================================
+
     if (this->_currGraph->type() == "MGraph")
     {
         this->_lgr = new LGraph(*this->_mgr);
         this->_currGraph = this->_lgr;
         ui->adjListRadioButton->setChecked(true);
+        on_adjListRadioButton_clicked();
     } else
     {
         this->_mgr = new MGraph(*this->_lgr);
         this->_currGraph = this->_mgr;
         ui->adjMatrixRadioButton->setChecked(true);
+        on_adjMatrixRadioButton_clicked();
+    }
+
+// ==========================================================
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    if (ui->isBenchmarkInput->isChecked())
+    {
+        this->_console->newPar();
+        this->_console->printTech(this->_currGraph->type() + ": ");
+        this->_console->newLine();
+        this->_console->print("Time for building " + this->_currGraph->type() + " from the other type is: " + QString::number(dur.count()) + " microseconds!");
     }
 
     this->setGraphValues(*this->_currGraph);
@@ -492,4 +693,15 @@ void GraphsWindow::on_demoButton_clicked()
         ui->demoButton->setEnabled(true);
         ui->graphsBox->setAttribute( Qt::WA_TransparentForMouseEvents, false );
         ui->graphsBox->setAttribute( Qt::WA_KeyCompression, false ); });
+}
+
+void GraphsWindow::on_isBenchmarkInput_stateChanged(int arg1)
+{
+    if (arg1 == 0)
+    {
+        ui->isBenchmarkGroupBox->setStyleSheet("background-color: #f2f2f2");
+    } else
+    {
+        ui->isBenchmarkGroupBox->setStyleSheet("background-color: #eba4a4");
+    }
 }

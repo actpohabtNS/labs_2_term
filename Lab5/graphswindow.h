@@ -7,6 +7,7 @@
 #include "lgraph.h"
 #include "mgraph.h"
 #include "console.h"
+#include "benchmark.h"
 
 namespace Ui {
 class GraphsWindow;
@@ -28,8 +29,6 @@ private slots:
     void on_adjMatrixRadioButton_clicked();
 
     void on_adjListRadioButton_clicked();
-
-    void on_addEdgeButton_clicked();
 
     void on_newEdgeFromInput_valueChanged(int arg1);
 
@@ -63,6 +62,8 @@ private slots:
 
     void on_demoButton_clicked();
 
+    void on_isBenchmarkInput_stateChanged(int arg1);
+
 private:
     Ui::GraphsWindow *ui;
 
@@ -71,6 +72,14 @@ private:
     Graph* _currGraph;
 
     Console* _console;
+
+    template <typename T, class ...Types>
+    void _writeBench(QString text, T alg(Types ...Args), Types ...Args)
+    {
+        auto time = benchAlg(alg, Args...);
+
+        this->_console->printTech(text + " " + QString::number(time) + " microseconds");
+    }
 
     void _manageNewEdgeInputs();
     void _setNewEdgeMaxValues();

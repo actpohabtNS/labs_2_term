@@ -1078,7 +1078,7 @@ font-family: Roboto;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_58">
+    <widget class="QGroupBox" name="isBenchmarkGroupBox">
      <property name="geometry">
       <rect>
        <x>0</x>
