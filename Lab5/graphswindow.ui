@@ -49,23 +49,10 @@ font-size: 35px;
 font-family: Roboto;</string>
     </property>
     <property name="text">
-     <string>Graphs</string>
+     <string>Lab 5 | Graphs</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="backButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>111</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>← Go back</string>
     </property>
    </widget>
   </widget>
@@ -444,7 +431,7 @@ font-family: Roboto;</string>
 }</string>
      </property>
      <property name="text">
-      <string>  Is [ directed ]</string>
+      <string> Is [ directed ]</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="newGraphIsWeighedInput">
@@ -464,7 +451,7 @@ font-family: Roboto;</string>
 }</string>
      </property>
      <property name="text">
-      <string>  Is [ weighed ]</string>
+      <string> Is [ weighed ]</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_92">
@@ -562,7 +549,7 @@ font-weight: bold;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>220</y>
+       <y>200</y>
        <width>351</width>
        <height>161</height>
       </rect>
@@ -593,7 +580,7 @@ font-size: 13px;
 font-family: Roboto;</string>
       </property>
       <property name="text">
-       <string>Prints min distance between given nodes</string>
+       <string>Gets min distance between given nodes</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -752,7 +739,7 @@ font-family: Roboto;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>530</y>
+       <y>510</y>
        <width>351</width>
        <height>51</height>
       </rect>
@@ -783,7 +770,7 @@ font-size: 13px;
 font-family: Roboto;</string>
       </property>
       <property name="text">
-       <string>Prints min distances between all the nodes</string>
+       <string>Gets min distances between all the nodes</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -863,7 +850,7 @@ font-family: Roboto;</string>
        <string>Is connected</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="printComponentsButton">
+     <widget class="QPushButton" name="getComponentsButton">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -876,7 +863,7 @@ font-family: Roboto;</string>
        </rect>
       </property>
       <property name="text">
-       <string>Print components</string>
+       <string>Get components</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_141">
@@ -894,7 +881,7 @@ font-size: 13px;
 font-family: Roboto;</string>
       </property>
       <property name="text">
-       <string>Prints nodes of every component of graph</string>
+       <string>Gets set of nodes of every component of graph</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -942,7 +929,7 @@ font-family: Roboto;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>400</y>
+       <y>380</y>
        <width>351</width>
        <height>111</height>
       </rect>
@@ -973,7 +960,7 @@ font-size: 13px;
 font-family: Roboto;</string>
       </property>
       <property name="text">
-       <string>Prints min distance between given node and others</string>
+       <string>Gets min distance between given node and others</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -1037,7 +1024,7 @@ font-family: Roboto;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>620</y>
+       <y>580</y>
        <width>351</width>
        <height>51</height>
       </rect>
@@ -1068,7 +1055,7 @@ font-size: 13px;
 font-family: Roboto;</string>
       </property>
       <property name="text">
-       <string>Prints nodes in topological order</string>
+       <string>Gets nodes in topological order</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -1088,6 +1075,68 @@ font-family: Roboto;</string>
       </property>
       <property name="text">
        <string>Topological sort</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_58">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>670</y>
+       <width>351</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+	background-color: #f2f2f2;
+	color: #4a455c;
+	font-size: 17px;
+	padding-top: 5px;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_129">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>10</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #7a7a7a;
+font-size: 13px;
+font-family: Roboto;</string>
+      </property>
+      <property name="text">
+       <string>Whether result or time of algorithm will be printed</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="isBenchmarkInput">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox {
+	color: #4a455c;
+	font-size: 18px;
+	font-family: Roboto;
+}</string>
+      </property>
+      <property name="text">
+       <string> Is benchmark</string>
       </property>
      </widget>
     </widget>
