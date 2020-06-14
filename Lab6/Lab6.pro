@@ -17,10 +17,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    random.cpp
 
 HEADERS += \
+    container.h \
+    linkedList.h \
+    listContainer.h \
     mainwindow.h \
+    random.h \
     sortedList.h
 
 FORMS += \
