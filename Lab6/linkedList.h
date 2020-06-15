@@ -39,7 +39,6 @@ public:
 };
 
 // ----------------------------------- LinkedList -----------------------------------
-#endif // LINKEDLIST_H
 
 template<typename T>
 LinkedList<T>::LinkedList()
@@ -73,10 +72,8 @@ void LinkedList<T>::push(const T &elem)
 
     int idx = 0;
 
-    for (const auto& e : this->_container)
+    for (const T& e : this->_container)
     {
-        qDebug() << "here";
-
         if (e < elem)
             idx++;
         else
@@ -196,3 +193,4 @@ uint LinkedList<T>::size() const
 {
     return this->_container.size();
 }
+#endif // LINKEDLIST_H

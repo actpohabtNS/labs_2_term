@@ -3,6 +3,7 @@
 
 #include <initializer_list>
 #include <QtDebug>
+#include <stdexcept>
 
 template <class T>
 class Container
@@ -11,11 +12,11 @@ public:
     Container() = default;
     virtual ~Container() = default;
 
-    virtual void push(int idx, const T& val) = 0;
+    virtual void push(unsigned idx, const T& val) = 0;
     virtual void pushFront(const T& val) = 0;
     virtual void pushBack(const T& val) = 0;
 
-    virtual void pop(int idx) = 0;
+    virtual void pop(unsigned idx) = 0;
     virtual void popFront() = 0;
     virtual void popBack() = 0;
 

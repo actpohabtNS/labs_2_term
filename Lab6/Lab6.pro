@@ -21,6 +21,8 @@ SOURCES += \
     random.cpp
 
 HEADERS += \
+    ArrayContainer.h \
+    arrayList.h \
     container.h \
     linkedList.h \
     listContainer.h \

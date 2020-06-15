@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "linkedList.h"
+#include "arrayList.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    LinkedList<int> list;
+    ArrayList<int> list;
 
     list.push(1);
     list.push(2);
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     list.push(1);
     list.push(6);
 
-    list.print();
+    qDebug()<< list.exist(5);
 }
 
 MainWindow::~MainWindow()

@@ -1,8 +1,6 @@
 #ifndef LISTCONTAINER_H
 #define LISTCONTAINER_H
 
-#include <stdexcept>
-
 #include "container.h"
 
 template <class T>
@@ -73,11 +71,11 @@ public:
 
     ~ListContainer() override;
 
-    void push(int idx, const T& val) override;
+    void push(unsigned idx, const T& val) override;
     void pushFront(const T& val) override;
     void pushBack(const T& val) override;
 
-    void pop(int idx) override;
+    void pop(unsigned idx) override;
     void popFront() override;
     void popBack() override;
 
@@ -263,11 +261,9 @@ ListContainer<T>::~ListContainer()
 }
 
 template<class T>
-void ListContainer<T>::push(int idx, const T &val)
+void ListContainer<T>::push(unsigned idx, const T &val)
 {
-    qDebug() << "pushing" << val << idx;
-
-    if (idx < 0 || idx > this->_size)
+    if (idx > this->_size)
         return;
 
     if (idx == 0)
@@ -329,9 +325,9 @@ void ListContainer<T>::pushBack(const T &val)
 }
 
 template<class T>
-void ListContainer<T>::pop(int idx)
+void ListContainer<T>::pop(unsigned idx)
 {
-    if (idx < 0 || idx > this->_size-1)
+    if (idx > this->_size-1)
         return;
 
     if (idx == 0)
